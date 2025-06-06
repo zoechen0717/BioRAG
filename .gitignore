@@ -44,4 +44,8 @@ Thumbs.db
 .ipynb_checkpoints
 
 # Logs
-*.log 
+*.log
+
+# Papers and data
+data/papers/
+data/cache/ 
