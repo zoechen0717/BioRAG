@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioRAG Web Interface</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .loading-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Processing your request...</p>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-8 text-blue-600">BioRAG Web Interface</h1>
+        
+        <!-- Query Type Selection -->
+        <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Query Type:</label>
+            <select id="queryType" class="w-full p-2 border rounded">
+                <option value="general">General Query</option>
+                <option value="code">Code Analysis</option>
+                <option value="research">Research Brainstorming</option>
+            </select>
+        </div>
+
+        <!-- Query Input -->
+        <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Your Question:</label>
+            <textarea id="question" class="w-full p-2 border rounded" rows="3" placeholder="Enter your question here..."></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mb-6">
+            <button onclick="submitQuery()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Submit Query
+            </button>
+        </div>
+
+        <!-- Response Section -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold mb-4">Response:</h2>
+            <div id="response" class="prose max-w-none">
+                <p class="text-gray-500">Your response will appear here...</p>
+            </div>
+        </div>
+
+        <!-- Additional Features -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Paper Analysis -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-4">Paper Analysis</h2>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Topic:</label>
+                    <input type="text" id="paperTopic" class="w-full p-2 border rounded" placeholder="Enter topic for paper analysis...">
+                </div>
+                <button onclick="analyzePapers()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    Analyze Papers
+                </button>
+                <div id="paperAnalysis" class="mt-4 prose max-w-none"></div>
+            </div>
+
+            <!-- Implementation Suggestions -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-4">Implementation Suggestions</h2>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Topic:</label>
+                    <input type="text" id="implTopic" class="w-full p-2 border rounded" placeholder="Enter topic for implementation suggestions...">
+                </div>
+                <button onclick="getImplementation()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+                    Get Suggestions
+                </button>
+                <div id="implementation" class="mt-4 prose max-w-none"></div>
+            </div>
+        </div>
+
+        <!-- Add Paper Section -->
+        <div class="mb-8 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Add New Paper</h2>
+            <form id="addPaperForm" class="space-y-4">
+                <div>
+                    <label for="paperTitle" class="block text-sm font-medium text-gray-700">Title</label>
+                    <input type="text" id="paperTitle" name="title" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="paperAuthors" class="block text-sm font-medium text-gray-700">Authors (comma-separated)</label>
+                    <input type="text" id="paperAuthors" name="authors"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="paperYear" class="block text-sm font-medium text-gray-700">Year</label>
+                    <input type="text" id="paperYear" name="year"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="paperUrl" class="block text-sm font-medium text-gray-700">URL</label>
+                    <input type="url" id="paperUrl" name="url"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="paperContent" class="block text-sm font-medium text-gray-700">Content</label>
+                    <textarea id="paperContent" name="content" rows="10" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Add Paper
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        function formatResponse(text) {
+            try {
+                // Ensure text is a string
+                if (text === null || text === undefined) {
+                    return 'No response available.';
+                }
+                
+                // Convert to string if it's not already
+                text = String(text);
+                
+                // Handle empty string
+                if (!text.trim()) {
+                    return 'No response available.';
+                }
+
+                // Convert markdown-style formatting to HTML
+                return text
+                    .replace(/\n\n/g, '<br><br>')
+                    .replace(/\n/g, '<br>')
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    .replace(/```(.*?)```/gs, '<pre><code>$1</code></pre>');
+            } catch (error) {
+                console.error('Error formatting response:', error);
+                return 'Error formatting response.';
+            }
+        }
+
+        async function submitQuery() {
+            const question = document.getElementById('question').value.trim();
+            const queryType = document.getElementById('queryType').value;
+            
+            if (!question) {
+                alert('Please enter a question');
+                return;
+            }
+
+            showLoading();
+            try {
+                const response = await fetch('/query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        question: question,
+                        type: queryType
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const responseElement = document.getElementById('response');
+                
+                if (data.error) {
+                    responseElement.innerHTML = `<p class="text-red-500">${data.error}</p>`;
+                } else if (data.answer) {
+                    const formattedResponse = formatResponse(data.answer);
+                    responseElement.innerHTML = formattedResponse;
+                } else {
+                    responseElement.innerHTML = '<p class="text-yellow-500">No response received from server.</p>';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('response').innerHTML = `<p class="text-red-500">Error: ${error.message}</p>`;
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function analyzePapers() {
+            const topic = document.getElementById('paperTopic').value.trim();
+            
+            if (!topic) {
+                alert('Please enter a topic');
+                return;
+            }
+
+            showLoading();
+            try {
+                const response = await fetch('/analyze_papers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        topic: topic
+                    })
+                });
+
+                const data = await response.json();
+                if (data.error) {
+                    document.getElementById('paperAnalysis').innerHTML = `<p class="text-red-500">${data.error}</p>`;
+                } else {
+                    document.getElementById('paperAnalysis').innerHTML = formatResponse(data.analysis);
+                }
+            } catch (error) {
+                document.getElementById('paperAnalysis').innerHTML = `<p class="text-red-500">Error: ${error.message}</p>`;
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function getImplementation() {
+            const topic = document.getElementById('implTopic').value.trim();
+            
+            if (!topic) {
+                alert('Please enter a topic');
+                return;
+            }
+
+            showLoading();
+            try {
+                const response = await fetch('/get_implementation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        topic: topic
+                    })
+                });
+
+                const data = await response.json();
+                if (data.error) {
+                    document.getElementById('implementation').innerHTML = `<p class="text-red-500">${data.error}</p>`;
+                } else {
+                    document.getElementById('implementation').innerHTML = formatResponse(data.suggestions);
+                }
+            } catch (error) {
+                document.getElementById('implementation').innerHTML = `<p class="text-red-500">Error: ${error.message}</p>`;
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // Add paper form submission
+        document.getElementById('addPaperForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                title: document.getElementById('paperTitle').value.trim(),
+                authors: document.getElementById('paperAuthors').value.split(',').map(a => a.trim()),
+                year: document.getElementById('paperYear').value.trim(),
+                url: document.getElementById('paperUrl').value.trim(),
+                content: document.getElementById('paperContent').value.trim()
+            };
+            
+            if (!formData.title || !formData.content) {
+                alert('Title and content are required');
+                return;
+            }
+            
+            showLoading();
+            try {
+                const response = await fetch('/add_paper', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                if (data.error) {
+                    alert(`Error: ${data.error}`);
+                } else {
+                    alert(data.message);
+                    // Clear the form
+                    this.reset();
+                }
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            } finally {
+                hideLoading();
+            }
+        });
+    </script>
+</body>
+</html> 

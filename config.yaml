@@ -1,0 +1,44 @@
+openai:
+  api_key: ${OPENAI_API_KEY}
+  model: gpt-3.5-turbo
+  embedding_model: text-embedding-ada-002
+
+rag:
+  chunk_size: 1000
+  top_k: 3
+  cache_embeddings: true
+  max_tokens: 4000
+
+paths:
+  papers: data/papers
+  code: data/code
+  embeddings: data/embeddings
+  cache: data/cache
+  logs: "logs"
+
+logging:
+  level: INFO
+  file: logs/biorag.log
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  max_size: 10485760  # 10MB
+  backup_count: 5
+
+bioinfo:
+  code_analysis:
+    min_docstring_length: 10
+    max_function_length: 100
+    style_threshold: 0.8
+  
+  paper_analysis:
+    min_relevance_score: 0.7
+    max_papers_per_topic: 5
+    citation_format: "bibtex"
+
+  research:
+    max_brainstorm_items: 10
+    min_confidence_score: 0.6
+    max_implementation_steps: 5
+
+web:
+  port: 3000
+  debug: true 

@@ -1,0 +1,542 @@
+RESEARCH ARTICLE
+◥
+HUMAN GENETICS
+Transcription factor networks disproportionately enrich for heritability of blood cell phenotypes
+Jorge Diego Martin-Rufino1,2,3†, Alexis Caulier1,2,3†*, Seayoung Lee3, Nicole Castano1,2,3, Emily King1,2,3, Samantha Joubran1,2,3, Marcus Jones4, Seth R. Goldman4, Uma P. Arora1,2,3, Lara Wahlster1,2,3, Eric S. Lander3,5,6, Vijay G. Sankaran1,2,3,7*
+Most phenotype-associated genetic variants map to noncoding regulatory regions of the human genome, but their mechanisms remain elusive in most cases. We developed a highly efficient strategy, Perturb-multiome, to simultaneously profile chromatin accessibility and gene expression in single cells with CRISPR-mediated perturbation of master transcription factors (TFs). We examined the connection between TFs, accessible regions, and gene expression across the genome throughout hematopoietic differentiation. We discovered that variants within TF-sensitive accessible chromatin regions in erythroid differentiation, although representing <0.3% of the genome, show a ~100-fold enrichment for blood cell phenotype heritability, which is substantially higher than that for other accessible chromatin regions. Our approach facilitates large-scale mechanistic understanding of phenotype-associated genetic variants by connecting key cis-regulatory elements and their target genes within gene regulatory networks.
+H
+uman genetic studies have uncovered tens of thousands of genetic variants associated with complex diseases and phenotypes. With increasingly large sample sizes, the fraction of heritability explained is approaching saturation (1–4). However, genetic mapping fails to identify the mechanisms by which variants impact phenotypes, limiting biological understanding and the development of therapeutic strategies (5). Base editing can assess the effect of variants and connect them with target genes and molecular pathways implicated in human disease. Although there has been recent progress in achieving high-throughput base editing (6–10), systematic analysis of all variants of interest is not currently feasible. Another approach leverages the fact that most trait-associated variants are located in noncoding regulatory elements of the genome, where they alter transcription factor (TF) and related protein binding and thereby regulate gene expression (11–13). A powerful way to study the mechanisms influenced by genetic variation could thus be to modulate TFs and
+simultaneously read out the genome-wide consequences on chromatin accessibility of cis-regulatory elements and gene expression (Fig. 1A). To assess many TFs across diverse cell states involved in physiology and disease (14, 15), such studies should be performed at single-cell resolution and in disease-relevant primary cells (16, 17). In this study, we developed Perturb-multiome to achieve this goal and apply it to study perturbations of key TFs in primary human hematopoietic stem and progenitor cells (HSPCs), which can then be differentiated to produce mature red and other blood cells. We found that the regulatory regions in erythroid differentiation whose chromatin accessibility is sensitive to perturbation of these TFs (i.e., TFsensitive regulatory regions) comprise <0.3% of all regions in the genome but are enriched by nearly 100-fold for single-nucleotide polymorphisms (SNPs) associated with certain blood cell phenotypes. Our framework can be applied to human diseases and phenotypes beyond hematopoiesis to advance the understanding of genetic variants and the mechanisms underlying inherited risk for complex diseases.
+Results
+Pooled TF perturbation screens to uncover coordinated chromatin accessibility and RNA alterations
+Perturb-multiome applies a library of CRISPRbased perturbations to a cell population and recovers three distinct readouts from each single cell: (i) the identity of the genetic perturbation [single-guide RNA (sgRNA)]; (ii) chromatin accessibility at cis-regulatory elements
+[single-cell sequencing assay for transposaseaccessible chromatin (scATAC-seq)]; and (iii) gene expression [single-cell RNA sequencing (scRNA-seq)] (Fig. 1, A and B). To apply Perturb-multiome in primary cells, we designed the method to overcome challenges in gene-editing efficiency and to effectively identify a specific perturbation. To achieve high editing efficiency with minimal toxicity, we delivered pooled sgRNAs through an optimized CRISPR droplet sequencing (CROP-seq) vector and electroporated recombinant Cas9 ribonucleoprotein (6, 18) [Fig. 1B; fig. S1, A to C; and materials and methods]. To optimally identify perturbations, we developed a biotinbased enrichment strategy (fig. S11, materials and methods, and supplementary text). We achieved high specificity by amplifying CROPseq transcripts containing the identity of the perturbation in each single cell by using biotinylated primers, which were then pulled down with streptavidin-coated magnetic beads and further amplified for sequencing. We applied Perturb-multiome to primary human HSPCs, which can be differentiated to faithfully recapitulate hematopoietic differentiation in vitro (6, 19, 20). We perturbed 19 TFs, ranging from well-known master hematopoietic regulators to others with suggested roles in hematopoiesis (fig. S3A) (21). For each TF, we delivered three different sgRNAs targeting distinct positions in the coding sequences, along with six controls [three nontargeting sgRNAs and three sgRNAs targeting the “safe harbor locus” adeno-associated virus integration site 1 (AAVS1) in the genome to account for potential effects induced in cells by doublestranded DNA breaks and repair] (table S1 and materials and methods). We profiled cells across four time points. With modest sequencing depth, we detected (i) sgRNA identity in 91.1% of cells (137,604 cells); (ii) an average of 27,774 ATAC fragments and 10,803 distinct ATAC peaks per cell; and (iii) an average of 15,970 RNA molecules from 4,129 distinct genes per cell (fig. S2, A to H). Across the cell population, we detected 230,083 distinct ATAC peaks and 33,415 expressed transcripts. We focused on the process of red blood cell production, or erythropoiesis, because nearly half of blood cell trait–associated variants have associations with the erythroid lineage, and genetic variation explains a substantial portion (between 7.19 and 26.95%) of the heritability of these phenotypes (fig. S8A and materials and methods) (1, 2, 13). After a brief initial stage of multilineage differentiation to enable some differentiation to non-erythroid fates, we promoted erythroid differentiation of HSPCs. Cells were assayed at days 7, 9, 11, and 14. We recovered a wide range of cell states, from early common progenitors and non-erythroid lineages (megakaryocyte, monocyte, dendritic cell, and granulocyte precursors)
+RESEARCH
+1Division of Hematology/Oncology, Boston Children’s Hospital and Department of Pediatric Oncology, Dana-Farber Cancer Institute, Harvard Medical School, Boston, MA, USA. 2Howard Hughes Medical Institute, Boston, MA, USA. 3Broad Institute of MIT and Harvard, Boston, MA, USA. 4Nascent Transcriptomics Core, Department of Biological Chemistry and Molecular Pharmacology, Harvard Medical School, Boston, MA, USA. 5Department of Biology, Massachusetts Institute of Technology, Cambridge, MA, USA. 6Department of Systems Biology, Harvard Medical School, Boston, MA, USA. 7Harvard Stem Cell Institute, Cambridge, MA, USA.
+*Corresponding author. Email: acaulier@broadinstitute.org (A.C.); sankaran@broadinstitute.org (V.G.S.) †These authors contributed equally to this work.
+Martin-Rufino et al., Science 388, 52–59 (2025) 4 April 2025 1 of 8
+Downloaded from https://www.science.org at University of California San Francisco on May 05, 2025
+
+
+C
+A
+Transcription factor
+Accessible
+chromatin region Genetic
+variant
+Gene
+Perturb-multiome
+Pooled lentiviral sgRNA libraries (GFP+)
+Cas9
+Multi-lineage
+differentiation In vitro erythroid differentiation
+Pooled TF knock-out
+Regulators of erythropoiesis
+TF
+Transposed nuclei
+B
+Isolation of CD34+ HSPCs from healthy donors
+Day: 0 4 7 9 11 14
+D
+ATAC
+2
+1 RNA
+sgRNA
+3
+Joint single-nucleus:
+EoBasoMast Precursor
+Monocyte, DC, Granulocyte precursors
+rythroblast
+Basophilic Erythroblast
+MEP
+Megs and precursors
+Polychromatic Erythroblast
+Orthochromatic Erythroblast
+RNA UMAP 1
+RNA UMAP 2
+ATAC UMAP 1
+ATAC UMAP 2
+Joint UMAP 1
+Joint UMAP 2
+0
+2
+4
+6
+8
+BCL11Aperturbed
+AAVS1control
+HBG2 Normalized Expression Levels
+HBG1 HBG2
+Genes Peaks
+Tn5 insertion frequency
+(normalized)
+BCL11A perturbed ***
+AAVS1 control
+chr11 position (bp)
+5250000
+5252500
+5255000
+Transcription factor knock-out
+128493000
+128494000
+128495000
+Peaks
+Tn5 insertion frequency
+(normalized)
+Genes
+GATA2
+chr3 position (bp)
+0
+1
+2
+3
+4
+GATA2 Normalized Expression Levels
+GATA1 perturbed
+AAVS1 control
+GATA1perturbed
+AAVS1control
+E
+***
+Fig. 1. Perturb-multiome: Pooled CRISPR screens with coupled single-cell RNA and chromatin accessibility readouts to profile primary human
+hematopoiesis. (A) (Top) Simplified representation of a basic gene regulatory network in which a transcription factor (TF) modulates chromatin accessibility of a cis-regulatory element (enriched in trait- or disease-associated genetic variation) and its linked gene. (Bottom) Changes in accessibility and expression after experimental TF knockout. (B) Schematic of the experimental setup for pooled TF knockout with multimodal single-cell readouts. Days spanned since thawing of hematopoietic stem and progenitor cells (HSPCs) are noted at the bottom. Between days 0 and 4, cells underwent in vitro multilineage
+differentiation, after which cells underwent in vitro erythroid differentiation. GFP, green fluorescent protein. (C) (Top left) Uniform manifold approximation and projection (UMAP) reduction using RNA measurements collected from all single cells in the experiment. (Top right) UMAP reduction using chromatin accessibility measurements collected from all single cells in the experiment. (Bottom) UMAP reduction using a weighted–nearest neighbor graph (56) to integrate RNA and chromatin accessibility peak information from the same single cells. Cell types were annotated using a human bone marrow dataset (22) (materials and methods). DC, dendritic cells; EoBasoMast Precursor, eosinophileasophil-mastocyte precursor; MEP, megakaryocytic-erythroid progenitors;
+RESEARCH | RESEARCH ARTICLE
+Martin-Rufino et al., Science 388, 52–59 (2025) 4 April 2025 2 of 8
+Downloaded from https://www.science.org at University of California San Francisco on May 05, 2025
+
+
+to terminal erythroid precursors that closely mimic cell states present in human bone marrow (22) (Fig. 1C; fig. S1, D to J; and materials and methods). Perturb-multiome faithfully identified various well-characterized gene regulatory mechanisms in hematopoiesis. For example, cells with perturbations in the BCL11A TF, a repressor of fetal hemoglobin and a regulator of the fetal-to-adult hemoglobin switch (23, 24), displayed both increased chromatin accessibility at the fetal hemoglobin promoters and increased gene expression at the fetal hemoglobin genes (HBG1 and 2), compared with controls (Fig. 1D). Similarly, cells with perturbations in GATA1 TF showed significantly higher promoter accessibility and gene expression at GATA2 (Fig. 1E), which is consistent with the negative feedback loop between GATA1 and GATA2 (25, 26). These results illustrate the ability of Perturb-multiome to obtain finegrained insights into physiologically relevant processes directly in primary human cells.
+Assessment of perturbation effects and identification of TF-sensitive accessible chromatin regions and genes.
+As a first step in our analysis, we sought to characterize (i) the gene-editing efficiency of each sgRNA and (ii) the perturbation level actually achieved in individual cells, which can vary among cells receiving the same sgRNA. To characterize gene editing efficiency, we used pooled single-cell genotyping (fig. S3B and materials and methods) (6). We relied on genotyping rather than the mRNA level of the targeted gene, because some CRISPR-Cas9 edits that disrupt protein-coding regions do not alter mRNA levels. We analyzed 17,665 single cells in droplets, performing 55 multiplexed polymerase chain reactions (PCRs) in each cell to estimate editing efficiency. These PCRs corresponded to the human genomic sites targeted by sgRNAs, as well as 10 regions within the integrated lentiviral genome to identify the sgRNA in the cell (Fig. 2A, left, and fig. S3, C and D). Given that a simple binary classification of cells either being perturbed or not has limitations during dynamic processes such as differentiation, we defined “perturbation scores” for both the ATAC and RNA data by comparing the chromatin accessibility and gene expression profiles of the cell with those from nearestneighbor control cells, which represent a similar differentiation state (Fig. 2A, middle and
+right; fig. S3F; and materials and methods) (27). The perturbation scores were well correlated with sgRNA editing efficiency (fig. S3E). The exceptions included two TFs (GATA2 and SPI1) for which we achieved strong knockdown (confirmed by protein levels) but saw low perturbation scores in erythroid lineages; these TFs have their strongest effects in nonerythroid lineages (fig. S3G) (28, 29). The accessible chromatin regions (ACRs) identified in Perturb-multiome were similar to the ACRs characterized in ex vivo bone marrow hematopoietic cells (30), suggesting that our findings are representative of gene regulation in human hematopoietic cells (fig. S3, H and I, and materials and methods). We then defined TF-sensitive ACRs and TFsensitive genes by using a linear model that incorporated the perturbation level achieved in each single cell (materials and methods). We found that roughly 21.8% of the ACRs (50,114/ 230,083) (table S2) and 26.0% of expressed genes (8,694/33,415) (table S3) were affected by at least one TF perturbation (fig. S5, A and B). Calibration analyses are included in the supplementary text. TF-sensitive and non–TFsensitive ACRs were similarly distributed across genomic features and the genome (figs. S4B and S8B). Of these TF-sensitive results, 32% of ACRs and 22% of genes responded to only a single TF perturbation (fig. S4, C, D, and F). To assess data robustness, we examined an independent biological replicate (using HSPCs from a different donor and sgRNAs targeting different locations in the coding sequences of each TF, for a subset of eight TFs) and found that the results were highly correlated, both qualitatively and quantitatively, with average correlation of >0.9 for TFs targeted in both replicates (Fig. 2, B and C, and fig. S4A). GATA1sensitive genes and ACRs were in agreement with independent GATA1 loss-of-function datasets (31, 32) (fig. S7, C and D). In summary, a continuous perturbation score was used to identify TF-sensitive genes and ACRs in the heterogeneous cell populations that we studied (supplementary text).
+Properties of TF-sensitive ACRs and genes
+Having used Perturb-multiome to separately analyze changes in chromatin accessibility and gene expression, we next examined the correlation between these features in single cells carrying a given sgRNA to define ACR-gene linkages (Fig. 3A and materials and methods). If an ACR regulates a gene and TF perturba
+tion modulates the ACR’s accessibility, the regulated gene will change its expression. To assess ACR-gene linkages, for each cell we defined two scores: (i) the average expression of the TF-sensitive genes for a given TF and (ii) the average expression of the genes correlated with TF-sensitive ACRs. We found strong concordance between these scores (Fig. 2D; fig. S5, C and D; and materials and methods). First, we examined the effect of TF perturbation on ACR-gene pairs lying within 50 kb of one another. For pairs in which the ACR and the gene were both TF-sensitive (hereafter TFsensitive ACR-gene pairs), the correlation (at the single-cell level) was higher; this result was seen at all six erythroid TFs for which there was a substantial number of such pairs (fig. S6, A and B, and fig. S7, A and B). For example, pairs in which the ACR and gene were both GATA1-sensitive had higher correlations across single cells (Fig. 3B, top). We found that TFsensitive pairs were 10.34 times more likely among pairs in which the gene responded to enhancer perturbation [by CRISPR interference (CRISPRi)] than among pairs where the gene did not show a response [odds ratio (OR) 10.34, P < 0.001, Fisher’s exact test] (Fig. 3B, bottom, and materials and methods) (33). This suggests the possibility of using ACR-gene pair TF sensitivity in correlated pairs to reconstruct gene regulatory networks on a genomewide scale. Second, we considered ACR-gene pairs within 2 Mb that showed coordinated changes and examined their three-dimensional proximity, based on Hi-C data from human HSPCs (materials and methods) (34). We found that significant TF-sensitive ACR-gene pairs had higher odds of being found within topologically associated domains (TADs) in HSPCs (OR 1.53, P < 0.001) (Fig. 3C). Third, we observed that TF-sensitive genes exhibited lower RNA polymerase II pausing compared with non–TF-sensitive genes with similar expression levels (fig. S4E and materials and methods) (35). Fourth, we examined whether TF-sensitive ACRs occurred near binding sites for the perturbed TF. We analyzed published chromatin immunoprecipitation sequencing (ChIP-seq) datasets for two of our TFs, GATA1 and NFE2, in primary human proerythroblasts (materials and methods) (36). We found that TFsensitive ACRs in the regions surrounding GATA1 and NFE2 ChIP-seq peaks showed
+Meg, megakaryocytes; BFU-E, burst-forming unit – erythroid; CFU-E, colonyforming unit – erythroid. (D) (Left) Normalized Tn5 insertion frequency in BCL11A perturbed cells (perturbation score > 2; see materials and methods) and control AAVS1 cells. Chromatin accessibility peaks are denoted below and were called using all cells in the experiment. (Right) HBG2 gene expression levels in BCL11A-perturbed cells and AAVS1 control cells. *** represents an adjusted
+P value < 0.001 using a Wilcoxon rank sum test. (E) (Left) Normalized Tn5 insertion frequency in GATA1 perturbed cells (perturbation score > 2; see materials and methods) and control AAVS1 cells. Chromatin accessibility peaks are denoted below and were called using all cells in the experiment. (Right) GATA2 gene expression levels in GATA1 perturbed cells and AAVS1 control cells. *** represents an adjusted P value < 0.001 using a Wilcoxon rank sum test.
+RESEARCH | RESEARCH ARTICLE
+Martin-Rufino et al., Science 388, 52–59 (2025) 4 April 2025 3 of 8
+Downloaded from https://www.science.org at University of California San Francisco on May 05, 2025
+
+
+Gene expression Chromatin accessibility
+A
+AAVS1_1
+AAVS1_2
+AAVS1_3
+NT_1
+NT_2
+NT_3
+PRDM16_204
+PRDM16_379
+SNAI2_80
+SNAI2_523
+LDB1_732
+PRDM16_1182
+IRF1_199
+IRF1_241
+IRF1_170
+SOX12_162
+SNAI2_167
+GATA2_752
+ATF4_406
+SOX12_310
+KLF1_395
+LDB1_141
+IRF9_325
+IRF9_81
+FOSL1_106
+ATF4_343
+LMO2_351
+SPI1_69
+FOSL1_346
+SPI1_295
+IRF9_111
+SOX12_268
+ATF4_566
+GATA2_176
+TAL1_536
+SPI1_140
+LMO2_428
+GFI1B_526
+FOSL1_397
+GATA2_562
+BCL11A_686
+MYB_339
+BCL11A_476
+LMO2_459
+BCL11A_752
+GATA1_187
+RUNX1_844
+GFI1B_140
+GFI1B_413
+GATA1_261
+MYB_518
+TAL1_556
+MYB_136
+KLF1_347
+TAL1_523
+LDB1_265
+NFE2_533
+GATA1_674
+NFE2_682
+KLF1_636
+NFE2_288
+RUNX1_615
+RUNX1_312
+0 4 6 0 46 Perturbation score
+D
+B
+sgRNAs
+C
+Edited cells (%)
+100
+75
+50
+25
+0
+= 0.83, p < 0.001
+ve ACRs (Donor 1)
+FC GFI1B-sensitive ACRs
+Density
+0
+0
+ve ACRs
+v
+= 0.85, p < 0.001
+0
+0 FC v (Donor 1)
+FC v
+300
+600
+900
+Density
+0
+0
+500
+1000
+= 0.97, p < 0.001
+Fig. 2. Widespread gene expression and chromatin accessibility changes in response to transcription factor perturbations. (A) (Left column) Percent of edited cells from pooled single-cell genotyping experiments for each sgRNA (fig. S3, B to D, and materials and methods). Amplicons with missing data (not covered by single-cell multiplexed PCR) and nontargeting (NT) guides are shown in gray. (Middle column) Per-guide perturbation score distribution computed on single-cell RNA counts. (Right column) Per-guide perturbation score distribution computed on single-cell chromatin accessibility peak counts. Each sgRNA is ordered along the color gradient based on the median perturbation score across all cells with that guide, for the RNA or chromatin accessibility modalities.
+(B) Scatter plot of the Z-scored log2FC (FC, fold change) for RNA gene expression levels (shown are statistically significant genes after multiple hypothesis testing correction) between cells with one of the GFI1B-targeting sgRNAs and AAVS1-targeting control sgRNAs from two independent pooled TF Perturb-multiome screens in two different HSPC donors. The Spearman correlation coefficient r is shown, as well as a regression line with confidence intervals. (C) Scatter plot of the Z-scored log2FC for ATAC peak counts (shown are statistically significant genes after multiple hypothesis testing correction) between cells with one of the GFI1B-targeting sgRNAs and AAVS1-targeting control sgRNAs for two independent pooled TF Perturb-multiome screens in
+RESEARCH | RESEARCH ARTICLE
+Martin-Rufino et al., Science 388, 52–59 (2025) 4 April 2025 4 of 8
+Downloaded from https://www.science.org at University of California San Francisco on May 05, 2025
+
+
+two different HSPC donors. The Spearman correlation coefficient r is shown, as well as a regression line with confidence intervals. (D) Scatter plot of the single-cell Z-scored RNA module score computed using GFI1B-sensitive genes [defined as in (B)] and the single-cell Z-score RNA module score
+computed using genes correlated with GFI1B-sensitive ACRs [defined as in (C); see materials and methods], for cells with a Z-scored perturbation score >1. The Spearman correlation coefficient r is shown, as well as a regression line with confidence intervals.
+A
+E
+G
+H
+Transcription factor (TF)
+Accessible chromatin region (ACR)
+Gene
+TF knock-out
+B
+ACR influencing gene expression
+Change in ACR accessibility:
+within 50kb of each other
+C
+D
+GATA1 peaks
+-3.0kb Center 3.0kb
+0
+5
+10
+15
+20
+25
+30
+Distance (bp)
+30
+20
+10
+0
+-3.0kb Peak Summit 3.0kb
+Average
+GATA1 ChIP-seq
+enrichment
+F
+173.0Mb 173.3Mb
+173.0Mb
+173.3Mb
+173.5Mb
+Genes
+GATA1 ChIP-seq
+Perturb-multiome
+ATAC log2FC
+(GATA1 KO vs control)
+CPEB4
+173.5Mb
+0
+20
+40
+60
+10 v
+173.297Mb chr5 coordinates
+Corr: 0.24
+CPEB4 expression:
+CPEB4 expression:
+173.317Mb
+AAVS1
+ATAC
+norm. signal
+rs875741 rs875742
+0
+10
+20
+30
+40
+50
+r2
+0 8 6 4 2
+MCV GWAS
+–log10(p-value)
+GATA1 KO
+ATAC
+norm. signal
+G
+I
+100%
+73%
+chr5 coordinates
+Relative CPEB4
+expression
+0.0
+0.5
+1.0
+1.5
+AAVS1
+ACRdeletion
+CPEB4KO
+p < 0.05
+p < 0.01
+0
+50
+100
+150
+AAVS1 ACR deletion CPEB4 KO
+Cumulative
+expansion fold
+Relative CPEB4
+expression
+0.0
+0.5
+1.0
+1.5
+AAVS1
+rs875742sgRNA1
+rs875742sgRNA2
+p < 0.01 p < 0.01
+0.10
+0.14
+0.18
+0.22
+0.26
+Average Perturb-multiome ATAC
+p-value (GATA1 KO vs. control)
+GATA1 KO p-values Shuffled GATA1 KO p-values
+Average Perturb-multiome ATAC-seq peak width
+-3.0kb 3.0kb
+GATA1 ChIP-seq peak summit
+0
+20
+40
+60
+% C>T substitutions
+AAVS1
+rs875742sgRNA1
+rs875742sgRNA2
+0.25
+0.50
+0.75
+1.00
+0.001–50
+50–100
+100–150
+150–200
+200–250
+250–300
+300–350
+350–400
+400–450
+450–500
+w A
+A
+ry
+v A
+A
+All possible ACR–gene pairs
+TF-sensitive gene
+Day2
+Day5
+Day8
+Day12
+Day16
+Day20
+0
+100
+200
+300
+0 25 50 75 100
+10 v A2
+10 v
+2
+0.00
+0.05
+0.10
+0.15
+>0.20
+TF-sensitive ACR
+ACR–gene cor. coefficient in NT cells
+Odds Ratio with 95% Confidence Interval TF-sensitive ACR–gene pair in CRISPRi-validated ACR–gene links
+10 v ACR log2FC
+ACR–gene correlation coefficient across single cells
+Change in ACR accessibility:
+10 v gene log2FC
+–40 –30 –20 0 10 20 30 40
+Fig. 3. Genome-wide characterization of TF-sensitive elements. (A) Simplified representation of the metrics analyzed in this figure for a basic TF-cis-regulatory element–target gene regulatory network. (B) (Top) Scatter plots of the ACR and gene –log10(P value) for GATA1-targeting sgRNAs, respectively, for all possible ACR-gene pairs within 50 kb of each other. Dots are colored by the ACR-gene
+correlation coefficient computed in cells with control NT sgRNAs (materials and methods). The vertical and horizontal dashed lines represent the P value cutoffs for TF sensitivity of ACRs and genes, respectively. (Bottom) OR with 95% confidence interval of a TF-sensitive ACR-gene pair to be found in CRISPRi-validated ACRgene links (materials and methods). (C) Odds of ACR-gene pairs being found within
+RESEARCH | RESEARCH ARTICLE
+Martin-Rufino et al., Science 388, 52–59 (2025) 4 April 2025 5 of 8
+Downloaded from https://www.science.org at University of California San Francisco on May 05, 2025
+
+
+stronger significance levels [i.e., higher –log10(P values)] (Fig. 3D and fig. S7, E and F). We then focused on one of the ACR-gene pairs with the highest TF sensitivity upon GATA1 perturbation. This pair, located at 5q35.2, involves the CPEB4 gene and an ACR 25 kb upstream of the gene’s transcription start site and lies within a TAD in HSPCs. Cpeb4 plays a role in mouse erythropoiesis but has not been studied in humans (37). The ACR has two variants in strong linkage disequilibrium with each other that are associated with multiple red blood cell traits (1, 2). We found that the most significant TF-sensitive ACRs within the TAD were strongly correlated with GATA1 ChIPseq peaks (Fig. 3E) (2). Besides having high geneACR correlation, independently, CPEB4 and the ACR each also had the most significant changes in response to GATA1 perturbation within the TAD (Fig. 3F). These observations suggest that GATA1 binds at the ACR to modulate CPEB4 expression. To test this hypothesis, we used CRISPRCas9 to delete the ACR in primary cells. The deletion resulted in decreased CPEB4 expression during erythroid differentiation (Fig. 3G and fig. S7G). Furthermore, perturbation of CPEB4—and to a lesser extent, deletion of the regulatory element—resulted in impaired terminal erythroid differentiation, which is consistent with the variant associations within the ACR with multiple erythroid traits and prior studies on the role of Cpeb4 in mouse erythropoiesis (Fig. 3H) (37). We next examined the effect of editing one of the variants with base editor TadCBE (38) (materials and methods). This single-nucleotide change reduced the expression of CPEB4 in primary erythroblasts (Fig. 3I). Together, these results illustrate how coupling readouts of TF perturbation, gene expression, and chromatin accessibility in the
+same single cells can identify TF-sensitive ACRgene pairs with important roles in human erythropoiesis and can help systematically pinpoint associations between phenotypes and variants discovered by genome-wide association studies (GWASs).
+TF-sensitive cis-regulatory elements are massively enriched in the heritability of blood cell phenotypes
+Encouraged by the CPEB4 example, we sought to examine more broadly how TF-sensitive regulatory regions were related to naturally occurring genetic variation underlying blood cell phenotypes and diseases. We began by noting that TF-sensitive ACRs are under greater constraint (lower rate of genetic variation) (39) compared with the nonaccessible genome (Fig. 4A and materials and methods). Furthermore, for several TFs, the average constraint for TF-sensitive ACRs was higher than for non–TF-sensitive ACRs. This suggested that the TF-sensitive ACRs may play key, conserved functional roles in hematopoiesis. We explored whether genetic variants associated with blood cell phenotypes were enriched in the TF-sensitive ACRs by examining how credible sets for each trait overlapped with TF-sensitive ACRs, non–TF-sensitive ACRs, and random genomic regions. We found that, averaged across traits, the proportion of regions that contained a variant in a credible set for a trait was much higher for TF-sensitive ACRs (50.59%) than for non–TF-sensitive ACRs (39.25%) and random genomic regions (22%) (Fig. 4B). When we examined the results for individual TFs and traits, we found striking differences. The highest proportion was 65.75% for TFsensitive ACRs containing variants in credible sets for basophil number (Fig. 4B, figs. S8F and S9, and materials and methods).
+For each of the blood cell traits, we also examined the proportion of heritability explained by SNPs in various regions, using partitioned linkage disequilibrium score regression (LDSC) (materials and methods). We examined four types of ACRs: (i) TF-sensitive ACRs active during erythroid differentiation, (ii) all TFsensitive ACRs, (iii) all ACRs active during erythroid differentiation, and (iv) all ACRs observed in both erythroid and non-erythroid cells (materials and methods and fig. S8C). Although TF-sensitive ACRs active during erythroid differentiation comprise <0.3% of the genome, heritability in these regions showed ~100-fold enrichment for several traits—that is, 22.25% of the heritability for erythroid traits lies in this small proportion of the genome (Fig. 4, C and D). By contrast, the ACRs active during erythroid differentiation and all TF-sensitive ACRs showed lower enrichment (up to ~46-fold and ~26-fold enrichment for certain traits, respectively) (Fig. 4, C and D). We observed similar trends for posterior probability distributions of fine-mapped variants (fig. S10). The set of all ACRs comprises much more of the genome (7.24%) and explains more of the heritability (~79%), but the enrichment is much lower (~11-fold) (Fig. 4, C and D). Notably, the TF-sensitive ACRs active during erythroid differentiation were also significantly enriched in TF binding motifs compared with all ACRs active during erythroid differentiation (fig. S8, D and E). Furthermore, we observed that credible sets of GWAS variants that lie within the TF-sensitive regions showed clear patterns of cell type–specific enrichments for their respective traits, unlike other variants (Fig. 4E and materials and methods). These results suggest a critical role for TF-sensitive ACRs and the associated variants lying within them in explaining the heritability of blood cell phenotypes.
+HSPC topologically-associated domains (TADs) (34), as a function of genomic distance and TF-sensitivity status. The odds for TF-sensitive ACR-gene pairs are shown in red. The odds for randomly sampled expression and accessibility matched control ACR-gene pairs (each non–TF-sensitive, each selected among a distribution of nonsensitive elements with similar expression and accessibility levels to their TF-sensitive counterparts) are shown in blue. Each genomic distance bin has the same number of pairs as the TF-sensitive pair, and sampling was repeated 100 times to build a distribution for each genomic bin (34) (materials and methods). The bars represent 1 SD. (D) (Top) Profile plot of independent GATA1 ChIP-seq enrichment surrounding called ChIP-seq peaks from day 12 erythroid progenitors (36). (Middle) Heatmap plot for GATA1 ChIP-seq reads surrounding GATA1 peaks. (Bottom) Profile plot of Perturb-multiome P values for the log2FC of accessibility for ACRs in cells with GATA1-targeting sgRNAs compared with control centered on GATA1 ChIP-seq peaks as defined in the top panel. (E) Analysis of Perturb-multiome differential accessibility results within an HSPC TAD in hg19 coordinates. Shown are the Perturb-multiome –log10(P values) for the log2FC of accessibility for ACRs in cells with GATA1-targeting sgRNAs compared with control, GATA1 ChIP-seq signal (36), gene annotations highlighting the GATA1-sensitive CPEB4 gene, and chromosome loops from Hi-C data (34). TADs are shown in yellow and loop anchors in black (materials and methods). The TF-sensitive ACR with the most significant change compared with control (discussed
+in Fig. 3F) is highlighted with an arrow. (F) (Top) Locus zoom plot in hg19 coordinates showcasing –log10(P values) for variants associated with mean corpuscular volume (MCV) (2). The color scale represents the squared correlation (r2) between rs875741 and other neighboring alleles. (Middle and bottom) Normalized (norm.) ATAC signal in cells with AAVS1-targeting and GATA1-targeting cells, respectively. The TF-sensitive ACR with the most significant change compared with control is highlighted with an arrow. The Spearman’s rank correlation coefficient (r = 0.24) between this ACR and CPEB4 is shown, as well as the mean CPEB4 expression relative to control. (G) Bar plots of the relative CPEB4 expression for HSPCs edited with a control dual cut in the AAVS1 locus, a deletion of the putative CPEB4 enhancer on chromosome 5, or a CPEB4 knockout (KO), and subsequently differentiated into the erythroid lineage. Data for day 14 of erythroid differentiation, for two distinct HSPC donors (deletion efficiencies for this experiment are shown in fig. S7G). (H) Cumulative expansion fold for HSPCs edited with a control dual cut in the AAVS1 locus, a deletion of the putative CPEB4 enhancer on chromosome 5, or a CPEB4 knockout, and subsequently differentiated into the erythroid lineage. (I) (Left) Bar plots of the relative CPEB4 expression for HSPCs edited with the TadCBE cytosine base editor precomplexed with AAVS1targeting control sgRNAs or two different sgRNAs targeting rs875742. Data for day 14 of erythroid differentiation, for two distinct HSPC donors. (Right) Gene editing efficiencies for one of the donors shown in the left panel.
+RESEARCH | RESEARCH ARTICLE
+Martin-Rufino et al., Science 388, 52–59 (2025) 4 April 2025 6 of 8
+Downloaded from https://www.science.org at University of California San Francisco on May 05, 2025
+
+
+A
+C
+Percentage of SNPs in the genome overlapping ACRs (MCHC – erythroid trait)
+Percentage of heritability explained by SNPs overlapping ACRs (MCHC – erythroid trait)
+0.27%
+All accessible
+7.24%
+Enrichment (proportion
+heritability/proportion SNPs)
+B
+230,083
+50,114 29,555
+8,690
+D
+E
+0
+20
+40
+60
+BAS
+EOS
+MCHC
+MCH
+NEU
+MON
+MPV
+RDW
+MCV
+RBC
+LYM
+PLT
+WBC
+HGB
+HCT
+Blood cell trait
+Percentage of category
+overlapping credible sets
+Random genomic DNA ve ve
+ACR category:
+TF-sensitive AND active during erythroid diff.
+TF-sensitive Active during
+erythroid diff.
+Accessible chromatin regions
+D
+A
+BC AB C D
+Credible sets overlapping TF-sensitive ACRs
+Credible sets overlapping non-TF-sensitive ACRs
+2400000000
+10000
+20000
+LPENMWYLEOOBMUSCN
+HRMBGCCBHC
+RMMDCCWVH
+Cell number
+0
+2000
+4000
+TRS
+0
+1
+2
+3
+4
+LPENMWYLEOOBMUSCN
+HRMBGCCBHC
+RMMDCCWVH
+2400000000
+Cell number
+Variant number
+Variant number
+0
+0
+0
+EoBasoMastPrecursor
+Monocyte,DC,Granulocyteprecursors
+Megakaryocytesandprecursors
+MEP
+rythroblast
+BasophilicErythroblast
+PolychromaticErythroblast
+OrthochromaticErythroblast
+Number of ACRs:
+1.60% 0.88%
+27.05% 32.46% 40.07% 71.30%
+ACR category ve ACRs AND active during erythroid differentiation ACRs active during erythroid differentiation ve ACRs (across all lineages) ve ACRs All ACRs
+Erythroid Lymphoid Myeloid Platelets
+EoBasoMastPrecursor
+Monocyte,DC,Granulocyteprecursors
+Megakaryocytesandprecursors
+MEP
+rythroblast
+BasophilicErythroblast
+PolychromaticErythroblast
+OrthochromaticErythroblast
+MCHC RDW
+0
+50
+100
+MCV MCH RBC BAS EOS PLT MON MPV HBG NEU WBC LYM HCT Blood cell trait
+Fig. 4. Characterization of genetic variation within TF-sensitive cis-regulatory elements. (A) Cumulative distribution of the genomic noncoding constraint of haploinsufficient variation score (39), colored by functional category. Each blue line represents all TF-sensitive ACRs for a given TF. (B) Bar plots for the percentage of 95% credible sets overlapping TF-sensitive ACRs, for each blood cell trait. Error bars represent the standard deviation of 100 sampling events of non-TF-sensitive accessible ACRs (“Non–TF-sensitive”) or of any genomic region (“Random genomic DNA”) (materials and methods). (C) (Top) Area-proportional Venn diagrams representing the number of total ACRs. (Middle) Percentage of SNPs in the genome that overlap ACRs for mean corpuscular hemoglobin concentration (MCHC). (Bottom) Percentage of heritability explained by SNPs overlapping ACRs. (D) Bar plots of the enrichment (proportion of heritability divided by the proportion of SNPs) for the four functional categories defined in (C), as well as non–TF-sensitive ACRs.
+Traits are colored by the respective associated lineage. (E) Heatmaps of the trait relevant score (TRS) (materials and methods) for variants belonging to credible sets overlapping TF-sensitive ACRs (left) and not overlapping TF-sensitive ACRs (right). Similar enrichments were observed using only variants from the 95% credible sets directly overlapping with the aforementioned elements (data not shown). Blood cell traits indicated in the figure are as follows: BAS, basophil count; EOS, eosinophil count; HCT, hematocrit; HGB, hemoglobin; LYM, lymphocyte count; MCH, mean corpuscular hemoglobin; MCHC, mean corpuscular hemoglobin concentration; MCV, mean corpuscular volume; MON, monocyte count; NEU, neutrophil count; PLT, platelet count; RBC, red blood cell count; RDW, red cell distribution width; WBC, white blood cell counts. BAS, EOS, MON, NEU, and WBC are non-erythroid myeloid traits; LYM is a lymphoid trait; PLT is a megakaryocytic trait; and HCT, HGB, MCH, MCHC, MCV, RBC, and RDW are erythroid traits.
+RESEARCH | RESEARCH ARTICLE
+Martin-Rufino et al., Science 388, 52–59 (2025) 4 April 2025 7 of 8
+Downloaded from https://www.science.org at University of California San Francisco on May 05, 2025
+
+
+Collectively, we found that ACRs that change in response to TF perturbation are disproportionately enriched for phenotype-relevant genetic variation. More broadly, if this is true for other complex diseases and phenotypes, it suggests that systematic mapping of TF-mediated gene regulatory networks could accelerate variant-to-function mapping.
+Discussion
+Understanding the molecular and functional consequences of noncoding variation is essential to dissect the mechanisms underlying complex diseases and phenotypes. These insights have proven key for the development of new diagnostic and therapeutic interventions, as recently achieved in the hemoglobin disorders by emerging gene therapies (11, 20, 36, 37, 39). Scalable approaches to functionalize regulatory elements and link them to large sets of candidate phenotype-associated genetic variation are critical for making progress toward these goals, especially in human tissues with complex mixtures of cells. Analysis of genome-wide TF-sensitive regions after perturbation of 19 TFs identified a tiny subset of the genome (<0.3%) highly enriched in heritability for blood cell phenotypes, relative to hematopoietic- or erythroid-specific accessible chromatin. Notably, these regions overlapped an average of 51% of credible sets for blood cell traits (ranging from 41.31 to 65.75%) and had up to a 100-fold heritability enrichment for certain cell traits. In the future, expanding perturbations to more TFs will likely uncover additional enrichments for genetic variation. Several of the TFs studied are master regulators of hematopoietic differentiation, and their perturbation results in developmental blocks (40–43). We nonetheless obtained finegrained observations of the effects of TFs at each stage by using analytical approaches that weigh comparisons by the perturbation scores of each single cell with respect to nearestneighbor control cells, thereby leveraging the asynchronous nature of hematopoietic differentiation and overcoming the variable efficiencies and effects of perturbations. The TF perturbation approach is modular and compatible with alternative strategies to modulate gene expression (44, 45). Endogenous tagging of TFs with degrons or related approaches could explore the immediate consequences of TF degradation (46–49). However, this strategy is not currently applicable to large numbers of regulators and in HSPCs isolated from human donors (50). Although we focused on single perturbations per cell, future efforts using multiplexed perturbations could be used to discern the combinatorial logic of TF regulatory control (51, 52). While this work was under review, additional studies reported distinct but related approaches to performing
+pooled perturbations with multiomic readouts in cell lines (53, 54), illuminating the broad potential for these types of approaches and the possibility to expand them with additional genome perturbation tools. We focused on the study of TF-sensitive regions and likely causal variants, which allowed us to study a larger fraction of phenotyperelevant variation beyond those that directly disrupt TF-binding motifs (13). These regions will be excellent candidates for saturation mutagenesis to identify functional base pairs and pinpoint causal variants. In addition, TFsensitive networks are likely to harbor additional genes and associated regulatory elements with still-to-be-characterized critical hematopoietic functions. We envision that the identification of TFsensitive gene regulatory networks through perturbation approaches will help in prioritizing and understanding the mechanisms underlying a wide range of human diseases and phenotypes across many tissues and organs.
+REFERENCES AND NOTES
+1. D. Vuckovic et al., Cell 182, 1214–1231.e11 (2020). 2. M.-H. Chen et al., Cell 182, 1198–1213.e14 (2020). 3. B. V. Halldorsson et al., Nature 607, 732–740 (2022). 4. L. Yengo et al., Nature 610, 704–712 (2022). 5. US Food and Drug Administration, “FDA Approves First Gene Therapies to Treat Patients with Sickle Cell Disease” (2023); https://www.fda.gov/news-events/press-announcements/ fda-approves-first-gene-therapies-treat-patients-sicklecell-disease. 6. J. D. Martin-Rufino et al., Cell 186, 2456–2474.e24 (2023). 7. R. Cuella-Martin et al., Cell 184, 1081–1097.e19 (2021). 8. R. E. Hanna et al., Cell 184, 1064–1080.e20 (2021). 9. F. J. Sánchez-Rivera et al., Nat. Biotechnol. 40, 862–873 (2022). 10. S. I. Gould et al., Nat. Biotechnol. (2024). 11. D. E. Bauer et al., Science 342, 253–257 (2013). 12. F. W. Albert, L. Kruglyak, Nat. Rev. Genet. 16, 197–212 (2015). 13. J. C. Ulirsch et al., Nat. Genet. 51, 683–693 (2019). 14. A. Regev et al., eLife 6, e27041 (2017). 15. J. E. Rood, A. Maartens, A. Hupalowska, S. A. Teichmann, A. Regev, Nat. Med. 28, 2486–2496 (2022). 16. J. A. Morris et al., Science 380, eadh7699 (2023). 17. G. R. Schnitzler et al., Nature 626, 799–807 (2024). 18. P. Y. Ting et al., Nat. Methods 15, 941–946 (2018). 19. R. A. Voit et al., Nat. Immunol. 24, 69–83 (2023). 20. S. K. Nandakumar et al., eLife 8, e44080 (2019). 21. L. S. Ludwig et al., Cell Rep. 27, 3228–3240.e7 (2019). 22. A. G. X. Zeng et al., Single-cell transcriptional mapping reveals genetic and non-genetic determinants of aberrant differentiation in AML. bioRxiv 2023.12.26.573390 (2024). doi:10.1101/2023.12.26.573390 23. V. G. Sankaran et al., Science 322, 1839–1842 (2008). 24. A. Basak et al., J. Clin. Invest. 125, 2363–2368 (2015). 25. J. D. Martin-Rufino, V. G. Sankaran, Curr. Opin. Hematol. 28, 269–276 (2021). 26. T. Moriguchi, M. Yamamoto, Int. J. Hematol. 100, 417–424 (2014). 27. L. Jiang et al., Nat. Cell Biol. 27, 505–517 (2025). 28. S. Koschmieder, F. Rosenbauer, U. Steidl, B. M. Owens, D. G. Tenen, Int. J. Hematol. 81, 368–377 (2005). 29. I. J. A. Peters, E. de Pater, W. Zhang, Front. Cell Dev. Biol. 11, 1250827 (2023). 30. C. Weng et al., Nature 627, 389–398 (2024). 31. S. E. Pierce, J. M. Granja, W. J. Greenleaf, Nat. Commun. 12, 2969 (2021). 32. L. S. Ludwig et al., Blood 139, 2534–2546 (2022). 33. A. R. Gschwind et al., An encyclopedia of enhancer-gene regulatory interactions in the human genome, bioRxiv 2023.11.09.563812 [Preprint] (2023). doi:10.1101/ 2023.11.09.563812
+34. X. Zhang et al., Mol. Cell 78, 506–521.e6 (2020). 35. K. Mukherjee, J. J. Bieker, Cell Rep. 41, 111830 (2022). 36. Q. Qi et al., Blood 137, 1327–1339 (2021). 37. W. Hu, B. Yuan, H. F. Lodish, Dev. Cell 30, 660–672 (2014). 38. M. E. Neugebauer et al., Nat. Biotechnol. 41, 673–685 (2023). 39. S. Chen et al., Nature 625, 92–100 (2024). 40. L. Gutiérrez et al., Blood 111, 4375–4385 (2008). 41. M. C. Simon et al., Nat. Genet. 1, 92–98 (1992). 42. D. L. Stachura, S. T. Chou, M. J. Weiss, Blood 107, 87–97 (2006). 43. H. Zeng, R. Yücel, C. Kosan, L. Klein-Hitpass, T. Möröy, EMBO J. 23, 4116–4125 (2004). 44. T. I. Jensen et al., Genome Res. 31, 2120–2130 (2021). 45. R. Schmidt et al., Science 375, eabj4008 (2021). 46. H. Yoon, J. C. Rutter, Y.-D. Li, B. L. Ebert, J. Clin. Invest. 134, e175265 (2024). 47. Y.-D. Li et al., Nat. Chem. Biol. 20, 1640–1649 (2023). 48. M. Słabicki et al., Nature 585, 293–297 (2020). 49. A. S. Fedl et al., Nat. Immunol. 25, 1663–1677 (2024). 50. B. Lehnertz et al., Blood 138, 2642–2654 (2021). 51. R. T. Walton, Y. Qin, P. C. Blainey, CROPseq-multi: A versatile solution for multiplexed perturbation and decoding in pooled CRISPR screens. bioRxiv 2024.03.17.585235 [Preprint] (2024). doi: 10.1101/2024.03.17.585235 52. N. E. Anvar et al., Nat. Commun. 15, 3577 (2023). 53. E. Metzner, K. M. Southard, Y. M. Norman, Cell Syst. 16, 101161 (2025).
+54. R. E. Yan et al., Nat. Biotechnol. (2024).
+55. J. D. Martin-Rufino et al., sankaranlab/perturb_multiome, Version v1, Zenodo (2025). doi: 10.5281/zenodo.14854259
+ACKNOWLEDGMENTS
+We are grateful to the members of the Sankaran and Lander Laboratories, as well as A. Guillaumet and A. Sule for valuable discussions regarding this work. Funding: J.D.M.-R. was supported by fellowships from La Caixa Foundation (ID 100010434), the Rafael del Pino Foundation, and the American Society of Hematology. This work was supported by the Broad Institute Gene Regulation Observatory (V.G.S.), the New York Stem Cell Foundation (V.G.S.), a gift from the Lodish Family to Boston Children’s Hospital (V.G.S.), the Howard Hughes Medical Institute (V.G.S.), and NIH grants R01 DK103794, R01 CA265726, R01 CA292941, R33 CA278393, and R01 HL146500 (V.G.S.). V.G.S. is an Investigator of the Howard Hughes Medical Institute and is supported by the Jan Ellen Paradise, MD Professorship in Pediatrics from Harvard Medical School. Author contributions: Conceptualization, J.D.M.-R., A.C., V.G.S.; Formal analysis, J.D.M.-R., A.C., E.K., S.R.G., E.S.L., V.G.S.; Funding acquisition, J.D.M.-R, V.G.S; Investigation, J.D.M.-R., A.C., S.L., N.C., E.K., S.J., S.R.G., U.P.A., L.W., E.S.L., V.G.S.; Methodology, J.D.M.-R., A.C., E.S.L., V.G.S; Resources, S.R.G., E.S.L., V.G.S.; Software, J.D.M.-R., A.C., E.K.; Supervision, V.G.S.; Visualization, J.D.M.-R., A.C.; Writing – original draft, J.D.M.-R., A.C., V.G.S.; Writing – review & editing, J.D.M.-R., A.C., E.S.L., V.G.S., with input from all authors. Competing interests: V.G.S. is an advisor to Ensoma, unrelated to this work. Data and materials availability: Raw and processed data have been deposited at GEO (accession nos. GSE274110 and GSE274113), and the corresponding code is available in our GitHub repository (https://github.com/sankaranlab/perturb_ multiome) and Zenodo (55). License information: Copyright © 2025 the authors, some rights reserved; exclusive licensee American Association for the Advancement of Science. No claim to original US government works. https://www.science.org/about/ science-licenses-journal-article-reuse. This article is subject to HHMI’s Open Access to Publications policy. HHMI lab heads have previously granted a nonexclusive CC BY 4.0 license to the public and a sublicensable license to HHMI in their research articles. Pursuant to those licenses, the Author Accepted Manuscript (AAM) of this article can be made freely available under a CC BY 4.0 license immediately upon publication.
+SUPPLEMENTARY MATERIALS
+science.org/doi/10.1126/science.ads7951 Materials and Methods Supplementary Text Figs. S1 to S14 Tables S1 to S6 References (56–69) MDAR Reproducibility Checklist
+Submitted 28 August 2024; accepted 12 February 2025 10.1126/science.ads7951
+RESEARCH | RESEARCH ARTICLE
+Martin-Rufino et al., Science 388, 52–59 (2025) 4 April 2025 8 of 8
+Downloaded from https://www.science.org at University of California San Francisco on May 05, 2025

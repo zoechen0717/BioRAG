@@ -1,0 +1,419 @@
+252 | CANCER DISCOVERY MARCH 2017 www.aacrjournals.org
+RESEARCH BRIEF
+Polyclonal Secondary FGFR2 Mutations Drive Acquired Resistance to FGFR Inhibition in Patients with FGFR2 Fusion–Positive Cholangiocarcinoma
+Lipika Goyal1, Supriya K. Saha1, Leah Y. Liu1, Giulia Siravegna2,3,4, Ignaty Leshchiner5, Leanne G. Ahronian1, Jochen K. Lennerz6, Phuong Vu1, Vikram Deshpande6, Avinash Kambadakone7, Benedetta Mussolin2, Stephanie Reyes1, Laura Henderson1, Jiaoyuan Elisabeth Sun1, Emily E. Van Seventer1, Joseph M. Gurski Jr1, Sabrina Baltschukat8, Barbara Schacher-Engstler8, Louise Barys8, Christelle Stamm8, Pascal Furet9, David P. Ryan1, James R. Stone6, A. John Iafrate6, Gad Getz1,5, Diana Graus Porta8, Ralph Tiedt8, Alberto Bardelli2,3, Dejan Juric1, Ryan B. Corcoran1, Nabeel Bardeesy1, and Andrew X. Zhu1
+ABSTRACT Genetic alterations in the fibroblast growth factor receptor (FGFR) pathway are promising therapeutic targets in many cancers, including intrahepatic cholangiocarcinoma (ICC). The FGFR inhibitor BGJ398 displayed encouraging efficacy in patients with FGFR2 fusion–positive ICC in a phase II trial, but the durability of response was limited in some patients. Here, we report the molecular basis for acquired resistance to BGJ398 in three patients via integrative genomic characterization of cell-free circulating tumor DNA (cfDNA), primary tumors, and metastases. Serial analysis of cfDNA demonstrated multiple recurrent point mutations in the FGFR2 kinase domain at progression. Accordingly, biopsy of post-progression lesions and rapid autopsy revealed marked inter- and intralesional heterogeneity, with different FGFR2 mutations in individual resistant clones. Molecular modeling and in vitro studies indicated that each mutation led to BGJ398 resistance and was surmountable by structurally distinct FGFR inhibitors. Thus, polyclonal secondary FGFR2 mutations represent an important clinical resistance mechanism that may guide the development of future therapeutic strategies.
+SIGNIFICANCE: We report the first genetic mechanisms of clinical acquired resistance to FGFR inhibition in patients with FGFR2 fusion–positive ICC. Our findings can inform future strategies for detecting resistance mechanisms and inducing more durable remissions in ICC and in the wide variety of cancers where the FGFR pathway is being explored as a therapeutic target. Cancer Discov; 7(3); 252–63. ©2016 AACR.
+See related commentary by Smyth et al., p. 248.
+1Massachusetts General Hospital Cancer Center, Harvard Medical School, Boston, Massachusetts. 2Candiolo Cancer Institute-FPO, IRCCS, Candiolo, Torino, Italy. 3Department of Oncology, University of Torino, Torino, Italy. 4Fondazione Italiana per la Ricerca sul Cancro (FIRC) Institute of Molecular Oncology (IFOM), Milano, Italy. 5Broad Institute of Massachusetts Institute of Technology and Harvard, Cambridge, Massachusetts. 6Department of Pathology, Massachusetts General Hospital, Boston, Massachusetts. 7Department of Radiology, Massachusetts General Hospital, Boston, Massachusetts. 8Novartis Institutes for BioMedical Research, Oncology Translational Research, Basel, Switzerland. 9Novartis Institutes for BioMedical Research, Global Discovery Chemistry, Basel, Switzerland.
+Note: Supplementary data for this article are available at Cancer Discovery Online (http://cancerdiscovery.aacrjournals.org/). L. Goyal and S. Saha contributed equally to this article.
+Current address for S.K. Saha: Fred Hutchinson Cancer Research Center, Seattle, Washington.
+Corresponding Authors: Andrew X. Zhu, Massachusetts General Hospital Cancer Center, 55 Fruit Street, LH/POB 232, Boston, MA 021142698. Phone: 617-643-3415; Fax: 617-724-3166; E-mail: azhu@partners. org; Nabeel Bardeesy, Massachusetts General Hospital, 185 Cambridge Street, CPZN 4216, Boston, MA 02114. Phone: 617-643-2579; Fax: 617-643-3170; E-mail: nbardeesy@partners.org; and Ryan B. Corcoran, Massachusetts General Hospital Cancer Center, 149 13th Street, 7th Floor, Boston, MA 02129. Phone: 617-726-8599; Fax: 617-643-0798; E-mail: rbcorcoran@partners.org doi: 10.1158/2159-8290.CD-16-1000 ©2016 American Association for Cancer Research.
+Downloaded from http://aacrjournals.org/cancerdiscovery/article-pdf/7/3/252/1838385/252.pdf by guest on 14 April 2025
+
+
+Acquired FGFR2 Resistance Mutations in Cholangiocarcinoma RESEARCH BRIEF
+MARCH 2017 CANCER DISCOVERY | 253
+INTRODUCTION
+The fibroblast growth factor receptor (FGFR) pathway includes a family of 22 polypeptide ligands (FGFs) and 4 receptor tyrosine kinases (FGFRs), which regulate diverse physiologic processes (reviewed in ref. 1). FGFR signaling is activated through recurrent gain-of-function mutations, chromosomal translocations, and amplifications in a variety of cancers, including squamous non–small cell lung cancers, head and neck squamous cell carcinomas, breast cancers, urothelial carcinomas, and intrahepatic cholangiocarcinomas (ICC; reviewed in ref. 2). Thus, the recent clinical development of potent and selective FGFR kinase inhibitors has opened a promising therapeutic avenue into many previously intractable malignancies. Genomic alterations that activate FGFR2 are particularly common in ICC, a malignancy of the intrahepatic bile ducts that has been rising in incidence both in the United States and globally for decades (3, 4). As an aggressive tumor originating in the liver, ICC often remains asymptomatic until reaching an advanced stage, precluding curative therapy in a majority of cases. Palliative chemotherapy with gemcitabine and a platinum agent offers patients with unresectable or metastatic disease a median survival of less than one year (5). Although no targeted agents are currently approved in ICC, the recent discovery of FGFR2 fusions in an estimated 10% to 20% of patients stands to change the therapeutic paradigm in this disease. Multiple fusion partners have been identified, including BICC1, AHCYL1, TACC3, MGEA5, and PPHLN1 (6–12). In most cases, the 5′ exons 1 to 17 of FGFR2, containing the intact kinase domain, are fused in-frame to a 3′ partner. The chimeric proteins are believed to undergo ligand-independent receptor dimerization, leading to engagement of multiple downstream oncogenic pathways, including MAPK and PI3K/AKT signaling (13). The oral, selective, and ATP-competitive pan-FGFR inhibitor BGJ398 has demonstrated antitumor activity in preclinical models and a phase I study of patients with tumors harboring FGFR genetic alterations (14–16). This agent is currently being tested in a phase II multicenter trial in patients with advanced cholangiocarcinoma with FGFR aberrations who have progressed on first-line chemotherapy (NCT02150967). The reported preliminary data from this trial highlight an impressive objective response rate of 22% and a median time on treatment of 188 days (17). This efficacy of targeted therapy beyond the first line in ICC is unprecedented. However, as seen with other targeted therapies and kinase inhibitors in particular (18, 19), acquired resistance inevitably develops. Here, we present the integrative molecular analysis of cellfree circulating tumor DNA (cfDNA), primary tumors, and metastases to define the acquired resistance mechanisms to BGJ398 in three patients with advanced FGFR2 fusion–positive ICC. These combined analyses revealed the emergence of secondary kinase mutations that confer BGJ398 resistance in each patient at the time of progression. A striking degree of interlesional heterogeneity was observed, with distinct FGFR2 point mutations identified in different metastases from the same patient. Overall, these data suggest that secondary FGFR2 kinase domain mutations are an important mechanism of clinical acquired resistance to FGFR inhibitors, and that next-generation inhibitors capable of overcoming
+these resistance mutations may be important future clinical strategies for these cancers.
+RESULTS
+Clinical Acquired Resistance to BGJ398
+Among 32 patients with ICC screened with our internal Massachusetts General Hospital (MGH) Solid Fusion Assay (SFA) as part of routine clinical care, nine (28%) tested positive for an FGFR2 fusion and four of them enrolled in the phase II trial of BGJ398. Three of these four patients experienced significant tumor regression between −28% and −50% followed by short interval disease progression. Although this represents a few of the total number of patients enrolled in the trial and thus may not accurately reflect the true efficacy of BGJ398 in this population, we highlight these three patients to report early genetic evidence of acquired resistance to FGFR inhibition with BGJ398. Patient 1 was a 59-year-old female with an unresectable ICC, and she was initially treated with gemcitabine and cisplatin for 10 months. Molecular testing of the tumor tissue with the SFA, a clinical test capable of detecting fusion events in over 50 cancer-related genes (20), revealed a novel in-frame fusion between FGFR2 exon 17 and exon 10 of the ZMYM4 gene. Following progression on chemotherapy, she underwent a repeat liver biopsy (pretreatment) and then initiated treatment on BGJ398. The patient achieved a −40.6% response by RECIST v1.1 criteria at 2 months and a −49.9% response at four months (Fig. 1A, left and top right). However, the 6-month CT scan showed a mixed response with progression of 2 satellite left lobe lesions. The patient’s carbohydrate antigen (CA) 19-9 decreased from 242 to 48 and then rose to 156 U/mL during this time (Fig. 1A, top right). Patient 2 was a 47-year-old female who underwent a left hepatectomy for a 10.9 cm, T2N0 ICC, and received adjuvant chemotherapy. Five months later, she developed a solitary biopsy-proven liver metastasis (pretreatment) and multiple subcentimeter bilateral pulmonary metastases. SFA testing on the liver metastasis revealed a different novel fusion, this time between FGFR2 exon 17 and the OPTN exon 5. The patient was then enrolled in the BGJ398 trial, achieving a maximum response of −28% at 2 months (Fig. 1B, left and top right). The 4-month CT scan revealed a mixed response with a new 1.3-cm lesion appearing in the dome of the liver. The CA 19-9 also initially decreased from 57 to 17, but then increased marginally to 21 U/mL during this period (Fig. 1B, top right). The patient passed away 3 months later. Patient 3 was a 43-year-old man who presented with a 7-cm ICC involving the right hepatic lobe with metastases to the lymph nodes and lungs, and his tumor progressed through initial palliative chemotherapy. SFA testing revealed a fusion between FGFR2 exon 17 and BICC1 exon 3. The patient enrolled in the BGJ398 trial and achieved a response of −28.4% at 2 months and a maximum response of −36.9% at 6 months. The 8-month scan showed a mixed response with growth of multiple liver lesions and lymph nodes (Fig. 1C, left and top right). CA19-9 levels remained within normal limits throughout therapy and therefore did not serve as a reliable surrogate for tumor burden in this patient.
+Downloaded from http://aacrjournals.org/cancerdiscovery/article-pdf/7/3/252/1838385/252.pdf by guest on 14 April 2025
+
+
+Goyal et al.
+RESEARCH BRIEF
+254 | CANCER DISCOVERY MARCH 2017 www.aacrjournals.org
+Figure 1. Clinical acquired resistance to BGJ398. A–C (left), Axial contrast-enhanced CT images in the portal venous phase demonstrating initial response lesions that subsequently progressed despite BGJ398 therapy. The inset shows higher magnification of responsive/resistant lesion. FGFR2related genetic events detected by SFA, RNA sequencing, WES, or the Guardant360 assay are documented in the text below CT images. Top right, graphs illustrating serial CA 19-9 serum levels and tumor volume measurements by RECIST v1.1 criteria for patients 1 to 3, respectively. The pink box indicates time while the patient was receiving BGJ398. Bottom right, percent allele burden in cfDNA of the indicated mutations from patient 1 (A), patient 2 (B), and patient 3 (C) were monitored over time with ddPCR. The pink box indicates time while the patient was receiving BGJ398. ddPCR, droplet digital PCR; N.D., not detected; WES, whole-exome sequencing.
+Tumor biopsy
+Fusion: FGFR2–ZMYM4
+Mutations: None detected
+Plasma (cell-free DNA)
+Mutations: None detected
+Tumor biopsy
+Fusion: FGFR2–ZMYM4
+Mutations: FGFR2 V564F
+FGFR2 K659M
+Plasma (cell-free DNA)
+Mutations: FGFR2 N549H
+FGFR2 N549K
+FGFR2 V564F
+FGFR2 E565A
+FGFR2 K659M
+FGFR2-related genetic events
+Pretreatment Nadir (−49.9%) Progression
+A
+B
+Tumor biopsy
+Fusion: FGFR2–OPTN
+Mutations: None detected
+Plasma (cell-free DNA)
+Mutations: None detected
+Tumor biopsy
+Fusion: FGFR2–OPTN
+Mutations: FGFR2 K641R
+Plasma (cell-free DNA)
+Mutations: FGFR2 V564F FGFR2 N549H
+FGFR2 K641R
+FGFR2 E565A
+FGFR2 L617V
+Pretreatment Progression
+Nadir (−28%)
+FGFR2-related genetic events
+C
+Nadir (−36.9%)
+Tumor biopsy
+Fusion: FGFR2–BICC1 Mutations: None detected
+Plasma (cell-free DNA)
+Fusion: FGFR2–BICC1 Mutations: None detected
+Tumor biopsy
+Not assessed
+Plasma (cell-free DNA)
+Fusion: FGFR2–BICC1 Mutations: FGFR2 V564F
+FGFR2-related genetic events
+Patient #1
+Patient #2
+Patient #3
+N.D.
+N.D.
+N.D.
+Pretreatment Progression
+02468
+0
+100
+200
+300
+400
+−40
+−30
+−20
+−10
+0
+Month(s)
+CA19-9
+(U/mL)
+Volume
+(% change)
+on BGJ398
+400
+CA19-9
+(U/mL)
+CA19-9
+(U/mL) % Variant allele
+(ddPCR)
+300 200 100 0
+10
+400 300 200 100 0
+100
+% Variant allele
+(ddPCR)
+% Variant allele
+(Guardant360)
+10 1 0.1
+0
+1
+0 2468
+10
+24 Month(s)
+Month(s)
+68
+024 Month(s)
+68
+1 0.1
+024 Month(s)
+68
+ARID2 I200T
+FGFR2 V564F FGFR2 N549H FGFR2 N549K FGFR2 E565A FGFR2 K659M
+PIK3CA Q546R
+PBRM1 R710*
+FGFR2 V564F
+FGFR2–BICC1
+FGFR2 V564F
+FGFR2 K641R FGFR2 N549H FGFR2 E565A FGFR2 L617V
+024 Month(s)
+on BGJ398
+on BGJ398
+on BGJ398
+on BGJ398
+on BGJ398
+CA19-9
+Tumor volume
+CA19-9
+Tumor volume
+CA19-9 Tumor volume 0
+Volume
+(% change)
+Volume
+(% change)
+−20 −40
+−10 −20 −30
+0
+−60
+68
+Detection of Secondary FGFR2 Resistance Mutations in cfDNA
+To identify potential mechanisms of acquired resistance, we analyzed pretreatment and post-progression cfDNA from all three patients for mutations in 70 cancer-related genes and selected fusions, insertions/deletions, and copynumber amplifications using the digital sequencing–based
+Guardant360 assay (21). Remarkably, analysis of the postprogression cfDNA from patient 1 showed five independent point mutations in FGFR2 (p.N549H, p.N549K, p.V564F, p.E565A, and p.K659M), none of which were detected in the baseline plasma (Fig. 1A, left). Similarly, analysis of cfDNA from patient 2 also revealed five FGFR2 point mutations (p.N549H, p.V564F, p.E565A, p.L617V, and p.K641R) exclusively in post-progression specimens (Fig. 1B, left). Finally,
+Downloaded from http://aacrjournals.org/cancerdiscovery/article-pdf/7/3/252/1838385/252.pdf by guest on 14 April 2025
+
+
+Acquired FGFR2 Resistance Mutations in Cholangiocarcinoma RESEARCH BRIEF
+MARCH 2017 CANCER DISCOVERY | 255
+cfDNA from patient 3, who continued on therapy for the longest period of time, contained a single FGFR2 point mutation (p.V564F) at the time of progression (Fig. 1C, left). Interestingly, the p.V564F point mutation was identified in all three cases, further highlighting its relevance. We monitored the specific mutant allele frequencies in cfDNA in a set of serially collected plasma samples from patients 1 and 2 (n = 4 and n = 5 samples, respectively) using droplet digital PCR (ddPCR). Because detection of gene fusions across all cfDNA specimens is technically challenging, we examined “truncal” mutations identified by whole-exome sequencing of pretreatment tumor biopsy as a surrogate for overall tumor burden in cfDNA (ARID2 p.I200T in patient 1 and PBRM1 p.R710* in patient 2). Both alterations decreased initially with treatment but rose with disease progression (Fig. 1A and B, bottom right), mirroring radiologic assessments. By contrast, FGFR2 point mutations were not detected at baseline, but each arose at 2 to 6 months after response, coincident with clinical progression. In patient 2, the FGFR2 p.V564F and p.E565A mutations were detected by Guardant360 at 6 months, but were not yet detected at 4 months by ddPCR, when they were likely present at lower allele frequencies below the assay’s limit of detection. In patient 3, next-generation sequencing (NGS) analysis of cfDNA using the Guardant360 assay identified this specific FGFR2–BICC1 fusion in each of three serial samples collected and revealed a decrease upon initiation of BGJ398 and an increase at the time of radiologic progression. Concomitantly with progression, an increase of the FGFR2 p.V564F mutant levels was detected (Fig. 1C, bottom right) with cfDNA NGS. The development of secondary FGFR2 kinase domain mutations in all three patients suggests that such mutations are an important mechanism of acquired resistance to FGFR inhibition.
+Whole-Exome and RNA Sequencing of Serial Tumor Biopsies
+Paired pretreatment and post-progression biopsy samples available from patients 1 and 2 were analyzed by wholeexome sequencing (WES) and RNA sequencing to determine intratumoral genomic changes. Importantly, RNA sequencing confirmed the presence of the fusion alleles in the postprogression biopsies in both cases (patient 1, FGFR2–ZMYM4; patient 2, FGFR2–OPTN; Fig. 1A and B, right), suggesting that clinical progression resulted from the acquisition of resistance by the FGFR2 fusion–positive tumor cells rather than from the outgrowth of fusion-negative subclones. A subset of the FGFR2 kinase domain mutations observed in the cfDNA were detected by WES of the post-progression biopsies, whereas none were found in the pretreatment samples. These secondary mutations included FGFR2 p.V564F and p.K659M (patient 1) and FGFR2 p.K641R (patient 2; Fig. 1A and B, left). To determine whether these mutations occurred in the full-length FGFR2 allele or the FGFR2 fusion allele, we reverse transcribed either full-length FGFR2 or FGFR2ZMYM4 mRNA from our post-progression biopsy sample for patient 1 and subjected both products to Sanger sequencing. Indeed, the p.K569M mutation could be detected only on the FGFR2–ZMYM4 allele, whereas the full-length FGFR2 had no evidence of mutations (Supplementary Fig. S1A and S1B). Overall, these data are consistent with convergent evolution
+of multiple individual FGFR2 resistance mutations arising in distinct metastatic lesions or in different tumor cells within the same metastatic lesion. These findings also reinforce the inadequacy of single-lesion tumor biopsy to capture the full heterogeneity of resistance mechanisms present in a single patient and illustrate the potential of cfDNA analysis toward this purpose.
+Functional Modeling of Secondary FGFR2 Resistance Mutations
+Altogether, six amino acids were affected across the three patients. Notably, structural modeling predicts that each mutation compromises inhibition by BGJ398. The p.V564F gatekeeper mutation, which was common to all three patients, confers resistance by inducing a steric clash with BGJ398 in its FGFR2 binding pocket (Fig. 2A). V564 is in direct contact with the dichloro, dimethoxy phenyl ring of BGJ398. A residue with a bulkier side chain clashes with this part of the inhibitor. Interestingly, although none of the other five residues are in direct contact with BGJ398, their mutation destabilizes the inactive conformation of the kinase to which BGJ398 binds. The p.N549, p.E565, and p.K641 triad define a molecular brake that maintains the kinase in an inactive conformation. Thus, mutation of these residues leads to activation of the kinase (22). Mutation of the p.K659 residue also leads to FGFR2 kinase activation by stabilizing the active conformation of its activation loop (23). Similarly, the effect of the p.L617 mutation is to weaken a stabilizing interaction of this residue with the phenylalanine residue of the FGFR2 AspPhe–Gly (DFG) motif, which normally adopts a special conformation favoring the binding of inhibitors in the BGJ398 class. Thus, acquired resistance to BGJ398 is associated with the emergence of recurrent and functionally relevant FGFR2 kinase domain mutations in cfDNA. To model the development of resistance mutations within the FGFR2 kinase domain following exposure to BGJ398, we performed a mutagenesis screen using BaF3 cells engineered to express a TEL–FGFR2 fusion protein. Under growth factor–restricted conditions, these cells were dependent on FGFR2 signaling and were thus sensitive to BGJ398 inhibition. Nevertheless, exposure to lethal doses resulted in the rapid development of resistant cells. Sanger sequencing of pooled resistant clones identified FGFR2 p.N549D and p.V564I mutations (data not shown), both corresponding to amino acid residues observed in the setting of clinical resistance. Because FGFR2 and FGFR3 share 89% amino acid homology in their kinase domains (Supplementary Fig. S2AS2C), all six corresponding residues in FGFR3 would be expected to have the same role in either inducing steric clash with BGJ398 or stabilizing the active kinase conformation. Accordingly, exposure of TEL–FGFR3-expressing BaF3 cells to lethal doses of BGJ398 resulted in the rapid formation of resistant colonies harboring five distinct FGFR3 mutations, all of which resulted in amino acid changes that corresponded to those seen in FGFR2 in patients 1 to 3. At the lowest dose (100 nmol/L), 10 individual clones were isolated, harboring FGFR3 p.N540K, p.V555L, p.V555M, p.L608V, and p.K650E mutations, corresponding to FGFR2 p.N549, p.V564, p.L617, and p.K659, respectively. By contrast, higher doses of BGJ398 resulted exclusively in colonies harboring
+Downloaded from http://aacrjournals.org/cancerdiscovery/article-pdf/7/3/252/1838385/252.pdf by guest on 14 April 2025
+
+
+Goyal et al.
+RESEARCH BRIEF
+256 | CANCER DISCOVERY MARCH 2017 www.aacrjournals.org
+Figure 2. FGFR point mutations confer resistance to BGJ398 and other FGFR inhibitors. A, In silico model of BGJ398 in binding pocket of FGFR2, demonstrating steric clash in the context of a V564F mutation. B and C, Mutagenesis screen in BaF3 cells that were engineered to express a TEL–FGFR3 fusion protein and subjected to increasing doses of BGJ398. The bar graph in B indicates the number of BGJ398-resistant clones isolated with indicated FGFR3 point mutations, with higher doses of BGJ398 resulting exclusively in colonies harboring the V555M gatekeeper mutation. Proliferation was quantified in C after 3 days with Alamar blue. Corresponding FGFR2 amino acids are indicated after the slash. D, IC50 values for BaF3 cells expressing the indicated constructs and treated with a variety of inhibitors. E and F, Proliferation assays with BaF3 cells expressing the FGFR2 V564F constructs and treated with increasing doses of either BGJ398 (E) or LY287445 (F). G, Phospho-FGFR2 ELISA demonstrating that FGFR2 V564F is resistant to inhibition by BGJ398 compared with wild-type (WT).
+A
+D
+N549
+V564/F
+E565
+L617 K659
+K641
+FGFR2 V564F + BGJ398
+G
+EF
+BC
+BGJ398 Ponatinib Dovitinib AZD-4547 Debio-1347 FIIN-2 LY2874455
+foldD
+IC50 in
+nmol/L foldD foldD
+IC50 in
+nmol/L foldD foldD foldD foldD SD (n) SD (n) SD (n) SD (n) SD (n) SD (n) SD (n)
+BaF3 3960 1427 1478 13 1474 21 7854 683 8355 113 5865 12304 71 533 2421 (3) 446 (4) 515 (3) 2526 (3) 2850 (3) 4139 (3) 11 (3)
+TEL–FGFR3 2.8 1 45 1 69 1 12 1 74 1 0.48 1 0.13 1
+1.34 (4) 4 (4) 35 (4) 3.5 (4) 39 (4) 0.3 (3) 0.04 (5)
+TEL–FGFR3 (L608V) 167 60 444 10 915 13 485 42 3236 44 6.7 14 0.72 5 33 (4) 29 (4) 266 (4) 98 (4) 921 (4) 2.5 (4) 0.2 (4)
+TEL–FGFR3 (V555M) 1540 555 637 13 164 2 1891 164 8236 111 90 189 0.32 2 606 (4) 123 (4) 65 (4) 404 (4) 2305 (4) 31 (4) 0.01 (4)
+TEL–FGFR3 (N540K) 600 216 81 2 1315 19 3454 300 6179 83 83 174 5.1 39 141 (4) 12 (4) 351 (4) 317 (4) 2037 (4) 49 (4) 1.7 (6)
+TEL–FGFR3 (K650E) 41 15 309 7 991 14 230 20 1489 20 5.9 12 0.90 7 10 (4) 59 (4) 156 (4) 37 (4) 377 (4) 1.3 (4) 0.13 (4)
+IC50 in
+nmol/L
+IC50 in
+nmol/L
+IC50 in
+nmol/L
+IC50 in
+nmol/L
+IC50 in
+nmol/L
+0
+0
+−2 −3 −2 −1 0 1 2 3 −2 −1 0 1 2 3 4 5
+−1 0 1 2 log [BGJ398] in nmol/L log [LY2874455] in nmol/L log [BGJ398] in nmol/L
+3 45
+WT V564F
+WT V564F WT
+V564F
+50
+100 100
+50
+0
+100
+50
+0
+TEL–FGFR2 TEL–FGFR2 FGFR2
+BGJ398 (nmol/L)
+100200400800
+1,600
+3
+6
+Number of clones
+% of control ± SD
+% of control ± SD
+% of control ± SD
+% inhibition
+9
+L608/617V K650/659E
+K650/659E
+N540/549K N540/549K
+WT
+V555/564L
+V555/564M
+V555/564M
+12
+00 2 log (BGJ398 [nmol/L])
+4
+20
+40
+60
+80
+100
+120
+the p.V555M gatekeeper mutation (Fig. 2B). These mutations decreased the sensitivity of BaF3 cells by 10- to 1,000-fold, with p.V555M conferring the greatest degree of resistance, consistent with the appearance of the corresponding FGFR2 mutation in all three patients and the predominance of this resistant clone at higher doses of BGJ398 (Fig. 2C). Importantly, the potential for a convergent resistance mechanism involving the FGFR2 kinase domain may have
+major implications for the selection of subsequent treatment strategies, as irreversible or structurally distinct FGFR inhibitors have been designed to overcome specific FGFR resistance mutations in vitro (24) and are already in clinical trials. Accordingly, we compared the sensitivity of individual resistant clones to a panel of five FGFR inhibitors that are currently in clinical trials, as well as the irreversible inhibitor FIIN-2. Each drug displayed a different profile,
+Downloaded from http://aacrjournals.org/cancerdiscovery/article-pdf/7/3/252/1838385/252.pdf by guest on 14 April 2025
+
+
+Acquired FGFR2 Resistance Mutations in Cholangiocarcinoma RESEARCH BRIEF
+MARCH 2017 CANCER DISCOVERY | 257
+with LY2874455 showing the smallest reduction in activity against the different resistance mutations overall, and with ponatinib and dovitinib showing the smallest change against the N540/549K mutation in particular (Fig. 2D). Interestingly, LY2874455, rather than FIIN-2, was by far the most potent compound tested against all of the different resistance mutations. To validate the effects of the key gatekeeper mutations in FGFR2, we introduced p.V564F mutation into a retroviral vector bearing TEL–FGFR2 by site-directed mutagenesis and infected BaF3 cells, rendering them IL3 independent. Consistent with our observations in the FGFR3 system, this mutation conferred resistance to BGJ398 but retained sensitivity to LY2874455 (Fig. 2E and F). Similarly, BGJ398 was unable to inhibit phosphorylation of FGFR2 p.V564F when overexpressed in 293T cells (Fig. 2G). Thus, different FGFR inhibitors may have unique abilities to overcome specific secondary mutations arising in cancers with FGFR2 or FGFR3 alterations.
+Rapid Autopsy Reveals Interlesional and Intralesional Heterogeneity of Resistance
+The identification of five concurrent FGFR2 resistance mutations in the cfDNA of patients 1 and 2 suggests marked inter- and/or intralesional heterogeneity associated with acquired resistance. Because single-lesion tumor biopsies performed at disease progression exhibited only a subset of these mutations, we performed a rapid autopsy on patient 2 to obtain a more complete assessment of the genetic alterations harbored by resistant tumors. This patient passed away 3 months after discontinuation of BGJ398 treatment, without any intervening anticancer therapies, and exhibited a substantial tumor burden with >25 discrete metastatic tumors. We collected 10 liver metastases and two lung metastases that were of adequate tumor cellularity for molecular analysis. Quantitative RT-PCR (qRT-PCR) detected the FGFR2–OPTN fusion in all samples (Supplementary Fig. S3A and S3B), reinforcing the conclusion that resistant tumor cells retain the FGFR2 fusion and that progression is not likely to be driven by the emergence of fusion-negative clones. Autopsy specimens along with the original resection specimen and the pretreatment and post-progression biopsies were analyzed by targeted deep sequencing using the FoundationOne assay, which assesses the mutational status of 315 cancer-related genes with >500-fold coverage (Fig. 3A and B). The autopsy specimens exhibited three of the FGFR2 kinase domain mutations that were identified in this patient’s post-progression cfDNA (p.N549H, p.E565A, and p.K641R), whereas only p.K641R was seen in the postprogression tumor biopsy. These mutations were found in 4 of the 12 distinct metastases analyzed, with 1 metastasis harboring 2 concurrent mutations (Fig. 3B). Despite this extensive analysis of multiple tumor lesions, two FGFR2 mutations identified in cfDNA were still not detected. This was likely due to the fact that this patient’s extensive tumor burden distributed throughout the liver did not allow for a comprehensive sampling of all metastatic sites. We next sought to relate the responsiveness of a given lesion to the presence of specific genetic alterations. Spatial correlation of autopsy specimens with the patient’s most recent CT scan
+identified three lesions that were clearly shrinking at the time of progression (“responsive”) and four lesions that were either growing or appeared as new lesions while the patient was on BGJ398 (“resistant”). Another five lesions appeared following discontinuation of BGJ398 and therefore could not be correlated with clinical response. The characterization of these tumors at the time of autopsy as either clearly “resistant” or “responsive” was limited by the fact that the autopsy occurred three months after the discontinuation of BGJ398, which may have allowed resistant tumor cells to seed previously responsive tumors or sensitive tumor cells to divide in the absence of selective pressure. Nevertheless, we identified FGFR2 mutations in two of the four “resistant” tumors (p.N549H and p.K641R) and in two of the five lesions that emerged after discontinuation of BGJ398 (p.K641R alone or concurrently with p.E565A), but in none of the “responsive” lesions. Truncal mutations in PRBM1, ATR, and FBXW7 were observed in all specimens, confirming a common clonal origin. A number of additional mutations were also detected that were specific to different tumors, although their clinical significance remains unclear (Supplementary Fig. S4). Beyond FGFR2 point mutations, several alterations in the PTEN/PI3K pathway were detected, including a PTEN truncation in the post-progression biopsy from patient 2, resulting from an apparent fusion between PTEN and the COL17A1 locus (Supplementary Fig. S5A). WES analysis revealed single copy loss across the entire long (“q”) arm of chromosome 10, including the PTEN gene in both pretreatment and postprogression biopsies from this patient (Supplementary Fig. S5B). Thus, the PTEN truncation could represent loss of heterozygosity (LOH) in a subset of tumor cells. Similarly, PTEN nonsense or frameshift mutations were also observed in one responsive lesion and one lesion that emerged after discontinuation of treatment. A single resistant lesion harbored a PIK3CA p.Q546R mutation; however, its significance is uncertain because this mutation was detected in the patient’s plasma prior to BGJ398 treatment and decreased in prevalence during therapy (Fig. 1B, bottom left). Thus, it is possible that alteration of the PTEN/PI3K pathway may represent an FGFR2-independent mechanism of resistance to FGFR2 inhibition, although further study is needed. Finally, we sought to assess the degree of intralesional genomic heterogeneity by conducting multiregion sequencing of two autopsy specimens from patient 2. One “responsive” (Liver Met #1) and one “resistant” (Liver Met #2) lesion were each transected into eight individual pieces (Fig. 3C and D). The responsive Liver Met #1 harbored three distinct PTEN loss-of-function mutations, each found in separate adjacent pieces, suggesting a potential selective advantage of PTEN inactivation in this particular lesion. In the resistant Liver Met #2, the FGFR2 p.K641R mutation was detected in six of eight tumor pieces, and no other point mutation was observed (Fig. 3B). By contrast, multiregion sequencing of the original resection specimen revealed no detectable FGFR2 point mutations or PTEN alterations (Supplementary Fig. S6). Taken together, our findings suggest that recurrent secondary FGFR2 kinase domain mutations and molecular heterogeneity confer clinical acquired resistance to FGFR inhibitors in FGFR2 fusion–positive ICC, and that therapeutic strategies capable of overcoming these mechanisms of
+Downloaded from http://aacrjournals.org/cancerdiscovery/article-pdf/7/3/252/1838385/252.pdf by guest on 14 April 2025
+
+
+Goyal et al.
+RESEARCH BRIEF
+258 | CANCER DISCOVERY MARCH 2017 www.aacrjournals.org
+Figure 3. Rapid autopsy reveals interlesional and intralesional heterogeneity of resistance. A, Axial contrast-enhanced CT images and autopsy photographs of seven liver metastases from patient #2. B, Heat map illustrating mutations detected in the indicated autopsy lesions. Three distinct FGFR2 point mutations and four distinct PTEN mutations were identified. C and D, Corresponding images of Liver met #1 (C) and Liver met #2 (D) taken from patient 2’s autopsy, including heat maps indicating mutations identified in eight spatially distinct pieces isolated from Responsive Liver met#1 and eight spatially distinct pieces isolated from Resistant Liver met #2. Asterisks indicate stop codons, which result in truncated proteins.
+PBRM1 R710*
+Resection
+Pretreatment
+Progression
+Liver met #1
+Liver met #2
+Liver met #1.1
+Liver met #1.2
+Liver met #1.3
+Liver met #1.4
+Liver met #1.5
+Liver met #1.6
+Liver met #1.7
+Liver met #1.8
+Liver met #2.1
+Liver met #2.2
+Liver met #2.3
+Liver met #2.4
+Liver met #2.5
+Liver met #2.6
+Liver met #2.7
+Liver met #2.8
+Liver met #4
+Liver met #6
+Liver met #7
+Liver met #5
+Liver met #8
+Liver met #9
+Liver met #10
+Liver met #11
+PTEN
+FGFR2 mutation
+Lung met #4
+Lung met #5
+ATR deletion FBXW7 duplication FGFR2–OPTN EPHA3 amplification FGFR2 point mutation PTEN LOH PIK3CA Q546R PTEN F81fs* PTEN N323fs* PTEN E43* PTEN truncation FGFR2 N549H FGFR2 E565A FGFR2 K641R
+PBRM1 R710*
+PBRM1 R710*
+Founder mutation FGFR2 mutation PTEN LOH/PIK3CA Not detected
+ATR deletion FBXW7 duplication EPHA3 amplification FGFR2 point mutation PTEN F81fs* PTEN N323fs* PTEN Truncation
+ATR deletion FBXW7 duplication EPHA3 amplification FGFR2 K641R
+Responsive
+Resistant
+Emergedafter
+BGJ398
+discontinuation
+1
+3 45
+Responsive
+B
+Resistant
+2.1 2.2
+2.3 2.4 2.5
+2.6 2.7
+2.8
+Rapid autopsy
+2
+Rapid autopsy
+6
+7
+C
+1.1
+1.2
+1.3
+1.5
+1.4
+1.6
+1.7
+1.8
+A
+2
+1
+3 4 5
+6
+7
+D
+resistance may be critical components of future treatments for these cancers.
+DISCUSSION
+To our knowledge, this study is the first to define mechanisms underlying clinical acquired resistance to FGFR inhibitor therapy. The observation that all three patients with FGFR2 fusion–positive ICC developed secondary FGFR2 kinase domain mutations, with multiple mutations emerging in two patients, suggests that these alterations are major drivers of clinical resistance to FGFR inhibition. The p.V564 gatekeeper mutation, which was common to all three patients, and the additional six FGFR2 point mutations identified were predicted to confer resistance by previous in vitro studies
+and structural modeling (22–26). These findings may have more general significance because equivalent FGFR2 point mutations exist de novo in many cancers (26). Moreover, FGFR3 fusions are present in several malignancies, including glioblastoma multiforme, urothelial carcinoma, and lung adenocarcinoma (27), and our in vitro data suggest that mutations affecting corresponding amino acids in FGFR3 may cause resistance to FGFR inhibitors in this context. Importantly, the discoveries reported here have immediate clinical implications because covalent FGFR inhibitors designed to overcome such mutations have recently been developed, including TAS-120, an irreversible FGFR inhibitor that has already entered phase I testing (NCT02052778; ref. 28). The rapid acquisition of polyclonal resistance can undoubtedly create challenges for the establishment of more
+Downloaded from http://aacrjournals.org/cancerdiscovery/article-pdf/7/3/252/1838385/252.pdf by guest on 14 April 2025
+
+
+Acquired FGFR2 Resistance Mutations in Cholangiocarcinoma RESEARCH BRIEF
+MARCH 2017 CANCER DISCOVERY | 259
+effective therapeutic strategies. Polyclonal resistance to targeted therapy within a single patient has been described in multiple solid tumors, including ALK-positive lung cancer, BRAF-mutant melanoma, KRAS wild-type colon cancer, and cKIT-mutant GIST (29–34). Encouragingly, however, prior studies have illustrated that convergent evolution of resistance through multiple secondary kinase mutations in ALK fusion–positive non–small cell lung cancers can be overcome clinically by structurally optimized inhibitors (35), suggesting a similar strategy may be effective in tumors harboring FGFR aberrations. Notable in this regard, we found that a collection of structurally and functionally distinct clinical and preclinical FGFR inhibitors displayed varying abilities to overcome specific resistance mutations. LY2874455, for instance, appeared to be the compound least affected by the panel of resistance mutations, although it still showed reduced activity in the p. N540/p.549K-mutated model (Fig. 2F). Thus, our study highlights that future development of FGFR inhibitors should focus on agents capable of surmounting multiple common secondary resistance mutations. It is also possible that FGFR2-independent mechanisms may contribute to acquired resistance and further limit the efficacy of next-generation FGFR inhibitors. In our study, patient 2 had a PTEN loss-of-function mutation in the biopsy tissue of a lesion that was clearly progressing on BGJ398 and had additional PI3K/PTEN pathway mutations in 3 of 12 metastases analyzed at rapid autopsy (Fig. 3A). It is notable that three distinct inactivating PTEN mutations were detected in the residual tissue from a single “responsive” tumor, suggesting there was a significant selective advantage granted by PTEN LOH in this lesion. Interestingly, knockdown of PTEN was recently found to confer resistance to loss of FGFR2 signaling in FGFR2-amplified cell lines (36). The PI3KCA p.Q546R mutation, however, was detectable in patient 2’s cfDNA prior to initiation of therapy (Fig. 1B, bottom left), and levels of this mutation tracked with those of a truncal PBRM1 nonsense mutation, implying that this mutation did not emerge during therapy. Thus, future studies will be needed to determine whether activation of the PI3K/PTEN pathway serves as an FGFR-independent resistance mechanism in FGFR-driven cancers. Our findings also highlight the potential advantages of cfDNA analysis in the monitoring and clinical management of patients undergoing FGFR inhibitor therapy. Although cfDNA analysis detected multiple distinct resistant clones emerging concurrently in different tumors within the same patient, a single post-progression biopsy or even extensive tumor sampling at rapid autopsy was unable to identify the full spectrum of resistance mutations detected in the plasma of these patients. cfDNA, which may reflect DNA shed from multiple metastatic sites, can thus offer a noninvasive and efficient approach to capturing intra- and interlesional heterogeneity in the setting of resistance (37). Furthermore, because structurally distinct FGFR inhibitors display varying abilities to overcome different secondary FGFR2 resistance mutations, real-time detection and monitoring of clonal evolution of individual mutations may be a valuable tool to guide the selection of the appropriate inhibitors for patient management. Limitations of ctDNA analysis include lack of spatial specificity for anatomically critical and clinically
+relevant lesions, inadequate shedding of ctDNA by certain tumors, and the lack of prospective validation for clinical practice for a majority of tumors. Additionally, current commercially available ctDNA assays assess a less comprehensive panel of genes compared with tissue-based panels, and they have limited sensitivity for detecting fusion events, as evidenced by the fact that the FGFR2 fusion events were detected in only one out of three of our patients by ctDNA analysis. Thus, a combined approach integrating cfDNA analysis with direct tumor sampling may represent an important approach to guide clinical decision-making. Overall, these studies indicate that recurrent secondary FGFR2 kinase domain mutations are a common mechanism of clinical resistance to FGFR inhibition. Importantly, our data also suggest that resistant clones harboring such mutations are likely to retain dependence on FGFR2 signaling, implying that structural optimization of next-generation FGFR inhibitors is needed to promote more durable remissions in FGFR2 fusion–positive ICC and other cancers harboring alterations in the FGFR signaling pathway.
+METHODS
+Patients
+Patients provided written informed consent to treatment on the phase II trial of BGJ398 (NCT02160041) at the MGH Cancer Center. They received a 100-mg capsule and a 25-mg capsule of BGJ398 daily for days 1 to 21 of each 28-day cycle, and all dose reductions and safety assessments were performed per protocol. Computed tomography and/or magnetic resonance imaging scans were performed at baseline and every 8 weeks to assess for tumor response by RECIST version 1.1 criteria. All biopsies, tumor specimens, and peripheral blood draws for plasma isolation were collected and analyzed in accordance with Institutional Review Board–approved protocols, to which patients provided written informed consent, and all studies were conducted in accordance with the Declaration of Helsinki. Rapid autopsy on patient 2 was performed within the first 3 hours postmortem.
+Solid Fusion Assay
+Our internal tumor-profiling assay was performed on RNA extracted from formalin-fixed paraffin-embedded (FFPE) specimens as part of routine clinical care. The SFA is a targeted RNA-sequencing method of Anchored Multiplex PCR to detect FGFR2 fusions, and the methodology has been previously described (20). Mutational profiling was performed at the Clinical Laboratory Improvement Amendments (CLIA)–certified Translational Research Laboratory at the Massachusetts General Hospital Cancer Center.
+Targeted Sequencing of Circulating Cell-Free Tumor DNA
+Cell-free DNA was extracted from whole blood, and 5 ng–30 ng of cfDNA was isolated. Sequencing libraries were prepared with custom in-line barcode molecular tagging, and complete sequencing at 15,000× read depth of the critical exons in a targeted panel of 70 genes was performed at a CLIA-certified, College of American Pathologists–accredited laboratory (Guardant Health; ref. 38). A summary of all data from these analyses is provided in Supplementary Table S1.
+Targeted Sequencing of Tumor Tissue
+DNA derived from the primary tumor, serial biopsies of liver metastases, autopsy specimens from liver and lung metastases, and
+Downloaded from http://aacrjournals.org/cancerdiscovery/article-pdf/7/3/252/1838385/252.pdf by guest on 14 April 2025
+
+
+Goyal et al.
+RESEARCH BRIEF
+260 | CANCER DISCOVERY MARCH 2017 www.aacrjournals.org
+matched normal muscle tissue were analyzed using deep-coverage targeted sequencing of key cancer-associated genes. Tumor samples sent for analysis had ≥10% tumor cellularity as determined by review of a hematoxylin and eosin slide by a board-certified pathologist (V. Deshpande). Targeted sequencing was performed via the FoundationOne platform, version T5, and the methodology has been previously described (39). A summary of all data from these analyses is provided in Supplementary Table S1.
+Quantitative Polymerase Chain Reaction on Tumor Tissue for Detection of the FGFR–OPTN Fusion on Autopsy Samples
+Autopsy specimens of patient 2 were homogenized with a tissue homogenizer and total RNA was extracted using the RNeasy Mini Kit (Qiagen) according to the manufacturer’s recommended protocol. cDNA synthesis was performed using the QuantiTect Reverse Transcription Kit (Qiagen) with 1 μg total RNA. All qPCR reactions were performed using the iTaq Universal SYBR Green Supermix (Bio-Rad) and CFX384 Touch Real-Time PCR Detection System (Bio-Rad). The following primers were used to detect the FGFR2–OPTN fusion breakpoint: 5′-TGATGATGAGGGACTGTTGG-3′ and 5′-GCCCAG GACTATGCTTGATT-3′. Relative expression levels of the fusion protein were normalized to expression of RNA18S5: 5′-CGTCTGC CCTATCAACTTTCG-3′ and 5′-TGCCTTCCTTGGATGTGGTAG-3′.
+Plasma cfDNA Isolation and Quantification of Genome Equivalents
+At least 10 mL of whole blood was collected by blood draw using EDTA as anticoagulant. Plasma was separated within 5 hours through 2 different centrifugation steps (the first at room temperature for 10 minutes at 1,600 × g and the second at 3,000 × g for the same time and temperature), obtaining up to 3 mL of plasma. Plasma was stored at −80°C until cfDNA extraction. cfDNA was extracted from plasma using the QIAamp Circulating Nucleic Acid Kit (Qiagen) according to the manufacturer’s instructions. cfDNA (6 μL) was used as a template for each reaction. All samples were analyzed in triplicate. PCR reactions were performed using 10 μL final volume containing 5 μL GoTaq qPCR Master Mix, 2X with CXR Reference Dye; Promega) and LINE-1 [12.5 μmol] forward and reverse primers. DNA at known concentrations was also used to build the standard curve. Primer sequences are available upon request.
+Droplet Digital PCR
+DNA template (8 to 10 μL) was added to 10 μL of ddPCR Supermix for Probes (Bio-Rad) and 2 μL of the custom primer/probe mixture. This reaction mix was added to a DG8 cartridge together with 60 μL of Droplet Generation Oil for Probes (Bio-Rad) and used for droplet generation. Droplets were then transferred to a 96-well plate (Eppendorf) and then thermal cycled with the following conditions: 5 minutes at 95°C, 40 cycles of 94°C for 30 seconds, 55°C for 1 minute followed by 98°C for 10 minutes (Ramp Rate 2°C/sec). Droplets were analyzed with the QX200 Droplet Reader (Bio-Rad) for fluorescent measurement of FAM and HEX probes. Gating was performed based on positive and negative controls, and mutant populations were identified. The ddPCR data were analyzed with QuantaSoft analysis software (Bio-Rad) to obtain Fractional Abundance of the mutant DNA alleles in the wild-type/normal background. The quantification of the target molecule was presented as the number of total copies (mutant plus wild-type) per sample in each reaction. Fractional Abundance is calculated as follows: F.A. % = (Nmut/(Nmut+Nwt))*100), where Nmut is the number of mutant events and Nwt is the number of wildtype events per reaction. ddPCR analysis of normal control plasma DNA (from cell lines) and no DNA template controls were always included. Probe and primer sequences are available upon request.
+In Vitro Studies
+The V564F gatekeeper mutation was introduced in pcDNA3.1 plasmid carrying wild-type human FGFR2 cDNA or a pMSCV plasmid carrying TEL–FGFR2 by Site-Directed Mutagenesis (Q5 Site-Directed Mutagenesis Kit; New England Biolabs). PCR primers for mutation introduction and amplification of plasmid (5′-CTATGTCATAtTTGAGTATGCCTCTAAAG-3′ and 5′-AGAGGCCCATCCTGTGTG-3′) were designed using NEBaseChanger program (NEB). Mutant FGFR2 constructs were selected and prepared from positive clones and targeted sequence mutation was confirmed by Sanger sequencing. For phospho-FGFR2 studies, HEK293 cells grown in 96-well plates were transiently transfected with pcDNA3.1, pcDNA3.1FGFR2 wild-type, or pcDNA3.1-FGFR2 V564F using Fugene 6 (Promega #E2691). Cells were treated in triplicate for 40 minutes with serial dilutions of NVP-BGJ398 or DMSO. The phospho-Tyr content of FGFR2 was measured by capture ELISA assay using the anti-FGFR2 monoclonal antibody (R&D MAB6841) as a capturing antibody and an alkaline phosphatase-coupled anti-phospho-Tyr antibody as secondary antibody (Zymed PY20 #03-7722). CDP-Star Emerald II (Applied Biosystems #T2216) was used as alkaline phosphatase substrate, and luminescence was measured using a Tecan reader. Upon subtracting the background value (value obtained from pcDNA3.1transfected HEK293 cells treated with DMSO) the IC50 was calculated using XLFit software. The IC50 value refers to the compound concentration needed to inhibit 50% of the signal obtained from FGFR2-transfected HEK293 cells treated with DMSO. In this assay, the concentration of NVP-BGJ398 required to reduce by 50% wildtype FGFR2 Tyr-phosphorylation was found to be 11.7 ± 2 nmol/L (average of three independent assays). Instead, NVP-BGJ398 was inactive against mutant FGFR2 V564 up to the concentration of 10,000 nmol/L. For BaF3 cell studies with TEL–FGFR2, retrovirus was produced using the pMSCV constructs (TEL–FGFR2 wild-type and V564F) by transient transfection into EcoPack 2-293 cells (Clontech). Parental BaF3 cells grown in medium containing 10 ng/mL recombinant murine IL3 were then infected with retrovirus-containing supernatants using a spin infection protocol and selected with 1 μg/mL puromycin and IL3 withdrawal. Cultures with at least 85% viable cells were used in proliferation assays as described. For mutagenesis studies, BaF3 TEL–FGFR2 or BaF3 TELFGFR3 cells were mutagenized with the alkylating agent N-ethylN-nitrosourea, and resistant clones were selected in presence of different concentrations of BGJ398 as previously described (40). In brief, mutagenized cells were distributed into 96-well plates with 100/200/400/800/1,600 nmol/L BGJ398 (3 plates each), placing 105 cells in 100 μL media into each well. Outgrowing clones were picked and expanded during days 13 to 24 with the original concentration of BGJ398. Mutations in the FGFR2 and FGFR3 kinase domain were determined by PCR and Sanger sequencing. Sequencing traces suggested that pure clones with single point mutations were obtained in all cases. Although it is an N-terminal fusion protein, rather than a C-terminal fusion as seen in patients with ICC, the TEL–FGFR fusion construct was used because it is a well-established system for rapidly and accurately evaluating kinase inhibitor sensitivity in Baf3 cells. The precise effect of the multiple distinct fusion partners and C-terminal versus N-terminal fusions on kinase inhibitor sensitivity will require further study. For proliferation assays with various FGFR inhibitors, BaF3 cells were seeded on 96-well plates in triplicate at 10,000 cells per well and incubated with various concentrations of FGFR inhibitors for 72 hours followed by quantification of viable cells using a resazurin sodium salt dye reduction readout (commercially known as AlamarBlue assay). IC50 values were determined with the XLFit Excel Add-In (ID Business Solutions) using a 4-parameter dose-response model. BGJ398 was synthesized at Novartis, and other FGFR inhibitors were obtained from commercial sources.
+Downloaded from http://aacrjournals.org/cancerdiscovery/article-pdf/7/3/252/1838385/252.pdf by guest on 14 April 2025
+
+
+Acquired FGFR2 Resistance Mutations in Cholangiocarcinoma RESEARCH BRIEF
+MARCH 2017 CANCER DISCOVERY | 261
+Homology Models of FGFR2 and FGFR3 in Complex with BGJ398
+The sequences of the human FGFR2 and FGFR3 kinases were obtained from SWISS-PROT (41), entries P21802 and P22607, respectively. The crystallographic structure of the FGFR1 kinase in complex with the inhibitor BGJ398 (PDB code 3TT0 from the Protein Data Bank) was chosen as template. The sequences were aligned using T-Coffe (42). On the basis of the resulting alignment, the 3-D structures of the FGFR2 and FGFR3 kinases were modeled using the What If program (43) with the default parameters (PIRPSQ module, BLDPIR command). The figures for the structural models were prepared using PYMOL (Schrodinger, Inc.).
+WES and RNA Sequencing
+WES and RNA sequencing were performed by the Broad Institute sequencing platform. WES of matched pretreatment and post-progression biopsies and normal blood was performed as previously described (44). Detailed methods for RNA sequencing are as follows. RNA was extracted from patient tumor biopsies using the AllPrep DNA/RNA Kit (Qiagen) according to the manufacturer’s instructions. All samples were quantified using Nanodrop and quality was evaluated using Agilent’s Bioanalyzer 2100. RNA samples and two positive controls (K-562) were assessed for quality using Agilent’s Bioanalyzer 2100. The percentage of fragments with a size greater than 200 nucleotides (DV200) was calculated using the Agilent software. Samples with a DV200 score less than 30% were not included, as the likelihood of success is dramatically reduced with these more fragmented samples (45). RNA (100 ng) was used as the input for first-strand cDNA synthesis using Superscript III reverse transcriptase (Life Technologies, cat. #18080044) and Illumina’s TruSeq Stranded Total RNA Sample Prep Kit (Illumina, cat. #RS-122-2201). The fragmentation step prior to cDNA synthesis was omitted in the FFPE RNA samples; only the K-562–positive control samples were fragmented at 94°C for 8 minutes. Synthesis of the second strand of cDNA was followed by indexed adapter ligation. Subsequent PCR amplification enriched for adapted fragments. The amplified libraries were quantified using a Qubit assay (Life Technologies, cat. #Q3285) and assessed for quality on an Agilent Technologies 2100 Bioanalyzer (DNA 1000 chip). Each cDNA library (200 ng), not including controls, was combined into two 4-plex pools. Illumina’s Coding Exome Oligos (Illumina, part #15034575) that target the exome were added, and hybridized on a thermacycler with the following conditions: 95°C for 10 minutes, 18 cycles of 1-minute incubations starting at 94°C, then decreasing 2°C per cycle, then 58°C for 90 minutes. Following hybridization, streptavidin beads were used to capture the probes that were hybridized in the previous step. Two wash steps effectively remove any nonspecifically bound products. These same hybridization, capture, and wash steps were repeated to assure high specificity. A second round of amplification enriches the captured libraries. qPCR (Kapa Biosystems, cat. #KK4600) was performed on the pooled libraries and normalized to 2 nmol/L. The normalized, pooled libraries were loaded onto HiSeq2500 for a target of 50 million 2 × 76 bp paired reads per sample. Data have been uploaded to dbGaP, accession number phs000803.v2.p1.
+Disclosure of Potential Conflicts of Interest
+B. Schacher-Engstler has ownership interest (including patents) in Novartis. L. Barys has ownership interest (including patents) in Novartis. D.P. Ryan has received speakers bureau honoraria from MPM Capital and Uptodate. A.J. Iafrate is the founder of Archerdx. R. Tiedt has ownership interest in Novartis. A. Bardelli is a consultant/advisory board for Horizon Discovery, Biocartis, and Trovagene. D. Juric is a consultant/advisory board member for Novartis, Eisai, EMD Serono, and Natera. R.B. Corcoran reports receiving commer
+cial research support from AstraZeneca and is a consultant/advisory board member for Novartis, Taiho, N-of-One, Astex, Genentech, Merrimack, and Avidity Biosciences. A.X. Zhu reports receiving commercial research grants from Novartis and Lilly and is a consultant/ advisory board member for Novartis. No potential conflicts of interest were disclosed by the other authors.
+Authors’ Contributions
+Conception and design: L. Goyal, S.K. Saha, L.Y. Liu, L.G. Ahronian, R. Tiedt, D. Juric, R.B. Corcoran, N. Bardeesy, A.X. Zhu Development of methodology: L. Goyal, S.K. Saha, L.G. Ahronian, J.R. Stone, R. Tiedt, R.B. Corcoran, N. Bardeesy, A.X. Zhu
+Acquisition of data (provided animals, acquired and managed patients, provided facilities, etc.): L. Goyal, L.Y. Liu, G. Siravegna, L.G. Ahronian, J.K. Lennerz, P. Vu, V. Deshpande, B. Mussolin, L. Henderson, J.E. Sun, E.E. Van Seventer, S. Baltschukat, B. SchacherEngstler, L. Barys, C. Stamm, J.R. Stone, A.J. Iafrate, D. Juric, R.B. Corcoran, N. Bardeesy, A.X. Zhu
+Analysis and interpretation of data (e.g., statistical analysis, biostatistics, computational analysis): L. Goyal, S.K. Saha, L.Y. Liu, G. Siravegna, I. Leshchiner, J.K. Lennerz, A. Kambadakone, B. Mussolin, S. Reyes, S. Baltschukat, B. Schacher-Engstler, C. Stamm, P. Furet, D.P. Ryan, A.J. Iafrate, G. Getz, D. Graus Porta, R. Tiedt, A. Bardelli, D. Juric, R.B. Corcoran, N. Bardeesy, A.X. Zhu
+Writing, review, and/or revision of the manuscript: L. Goyal, S.K. Saha, L.Y. Liu, G. Siravegna, J.K. Lennerz, V. Deshpande, A. Kambadakone, S. Reyes, P. Furet, J.R. Stone, A.J. Iafrate, D. Graus Porta, R. Tiedt, A. Bardelli, D. Juric, R.B. Corcoran, N. Bardeesy, A.X. Zhu Administrative, technical, or material support (i.e., reporting or organizing data, constructing databases): L. Goyal, J.K. Lennerz, S. Reyes, J.E. Sun, E.E. Van Seventer, J.M. Gurski Jr, B. SchacherEngstler, D.P. Ryan, R.B. Corcoran, N. Bardeesy, A.X. Zhu Study supervision: L. Goyal, E.E. Van Seventer, D.P. Ryan, R. Tiedt, R.B. Corcoran, N. Bardeesy, A.X. Zhu Other (molecular modeling): P. Furet
+Acknowledgments
+The authors acknowledge Guardant Health, Richard Lanman, and Rebecca Nagy for assistance with cfDNA analysis with the Guardant360 assay.
+Grant Support
+L. Goyal is supported by the MGH Executive Committee on Research Fund for Medical Discovery Award, the Cholangiocarcinoma Foundation Research Fellowship, and the NIH Loan Repayment Program Grant. S.K. Saha is supported by an NCI Mentored Clinical Scientist Research Career Development Award (1K08CA194268-01). D. Juric is supported by the HMS Laboratory for Systems Pharmacology Grant (P50GM107618) and the Susan Eid Tumor Heterogeneity Initiative. N. Bardeesy is the holder of the Gallagher Chair in Gastrointestinal Cancer Research at MGH. N. Bardeesy and A.X. Zhu are supported by the TargetCancer Foundation and by a Translational Research Grant Award from the V Foundation for Cancer Research. This work was also supported by grants from the NIH/NCI Gastrointestinal CancerSPORE P50 CA127003 (to L. Goyal, S.K. Saha, R.B. Corcoran, and N. Bardeesy). R.B. Corcoran acknowledges support from a Damon Runyon Clinical Investigator Award and NIH/NCI1K08CA166510 and 1R01CA208437. L. Goyal, N. Bardeesy, and A.X. Zhu are supported by the Jonathan Kraft Translational Award. A. Bardelli is supported by Fondazione Piemontese per la Ricerca sul Cancro-ONLUS 5 per mille 2011, Ministero della Salute and AIRC IG n. 16788.
+Received September 9, 2016; revised December 21, 2016; accepted December 27, 2016; published OnlineFirst December 29, 2016.
+Downloaded from http://aacrjournals.org/cancerdiscovery/article-pdf/7/3/252/1838385/252.pdf by guest on 14 April 2025
+
+
+Goyal et al.
+RESEARCH BRIEF
+262 | CANCER DISCOVERY MARCH 2017 www.aacrjournals.org
+REFERENCES
+1. Turner N, Grose R. Fibroblast growth factor signalling: from development to cancer. Nat Rev Cancer 2010;10:116–29. 2. Dienstmann R, Rodon J, Prat A, Perez-Garcia J, Adamo B, Felip E, et al. Genomic aberrations in the FGFR pathway: opportunities for targeted therapies in solid tumors. Ann Oncol 2014;25:552–63. 3. Saha SK, Zhu AX, Fuchs CS, Brooks GA. Forty-year trends in cholangiocarcinoma incidence in the U.S.: intrahepatic disease on the rise. Oncologist 2016;21:594–9. 4. Shaib Y, El-Serag HB. The epidemiology of cholangiocarcinoma. Semin Liver Dis 2004;24:115–25. 5. Valle J, Wasan H, Palmer DH, Cunningham D, Anthoney A, Maraveyas A, etal. Cisplatin plus gemcitabine versus gemcitabine for biliary tract cancer. N Engl J Med 2010;362:1273–81. 6. Arai Y, Totoki Y, Hosoda F, Shirota T, Hama N, Nakamura H, etal. Fibroblast growth factor receptor 2 tyrosine kinase fusions define a unique molecular subtype of cholangiocarcinoma. Hepatology 2014;59:1427–34. 7. Graham RP, Barr Fritcher EG, Pestova E, Schulz J, Sitailo LA, Vasmatzis G, etal. Fibroblast growth factor receptor 2 translocations in intrahepatic cholangiocarcinoma. Hum Pathol 2014;45:1630–8. 8. Ross JS, Wang K, Gay L, Al-Rohil R, Rand JV, Jones DM, et al. New routes to targeted therapy of intrahepatic cholangiocarcinomas revealed by next-generation sequencing. Oncologist 2014;19:235–42. 9. Sia D, Losic B, Moeini A, Cabellos L, Hao K, Revill K, etal. Massive parallel sequencing uncovers actionable FGFR2-PPHLN1 fusion and ARAF mutations in intrahepatic cholangiocarcinoma. Nat Commun 2015;6:6087. 10. Voss JS, Holtegaard LM, Kerr SE, Fritcher EG, Roberts LR, Gores GJ, etal. Molecular profi ling of cholangiocarcinoma shows potential for targeted therapy treatment decisions. Hum Pathol 2013;44:1216–22. 11. Wu YM, Su F, Kalyana-Sundaram S, Khazanov N, Ateeq B, Cao X, et al. Identifi cation of targetable FGFR gene fusions in diverse cancers. Cancer Discov 2013;3:636–47. 12. Borad MJ, Champion MD, Egan JB, Liang WS, Fonseca R, Bryce AH, et al. Integrated genomic characterization reveals novel, therapeutically relevant drug targets in FGFR and EGFR pathways in sporadic intrahepatic cholangiocarcinoma. PLoS Genet 2014;10:e1004135. 13. Wang Y, Ding X, Wang S, Moser CD, Shaleh HM, Mohamed EA, etal. Antitumor effect of FGFR inhibitors on a novel cholangiocarcinoma patient derived xenograft mouse model endogenously expressing an FGFR2-CCDC6 fusion protein. Cancer Lett 2016;380:163–73. 14. Guagnano V, Furet P, Spanka C, Bordas V, Le Douget M, Stamm C, et al. Discovery of 3-(2,6-dichloro-3,5-dimethoxy-phenyl)-1-{6-[4(4-ethyl-piperazin-1-yl)-phenylamino]-pyrimidin-4-yl}-1-methyl-urea (NVP-BGJ398), a potent and selective inhibitor of the fibroblast growth factor receptor family of receptor tyrosine kinase. J Med Chem 2011;54:7066–83. 15. Guagnano V, Kauffmann A, Wöhrle S, Stamm C, Ito M, Barys L, etal. FGFR genetic alterations predict for sensitivity to NVP-BGJ398, a selective pan-FGFR inhibitor. Cancer Discov 2012;2:1118–33. 16. Nogova L, Sequist LV, Perez Garcia JM, Andre F, Delord JP, Hidalgo M, et al. Evaluation of BGJ398, a fi broblast growth factor receptor 1-3 kinase inhibitor, in patients with advanced solid tumors harboring genetic alterations in fibroblast growth factor receptors: results of a global phase I, dose-escalation and dose-expansion study. J Clin Oncol 2016:JCO2016672048. 17. Javle MM, Shroff RT, Zhu AX, Sadeghi S, Choo S, Borad MJ, etal. A phase 2 study of BGJ398 in patients (pts) with advanced or metastatic FGFR-altered cholangiocarcinoma (CCA) who failed or are intolerant to platinum-based chemotherapy. Gastrointestinal Cancers Symposium. San Francisco, CA: J Clin Oncol 34, 2016(suppl 4S; abstr 335); 2015. 18. Garraway LA, Janne PA. Circumventing cancer drug resistance in the era of personalized medicine. Cancer Discov 2012;2:214–26. 19. Holohan C, Van Schaeybroeck S, Longley DB, Johnston PG. Cancer drug resistance: an evolving paradigm. Nat Rev Cancer 2013;13: 714–26.
+20. Zheng Z, Liebers M, Zhelyazkova B, Cao Y, Panditi D, Lynch KD, etal. Anchored multiplex PCR for targeted next-generation sequencing. Nat Med 2014;20:1479–84. 21. Kim ST, Lee WS, Lanman RB, Mortimer S, Zill OA, Kim KM, et al. Prospective blinded study of somatic mutation detection in cell-free DNA utilizing a targeted 54-gene next generation sequencing panel in metastatic solid tumor patients. Oncotarget 2015;6:40360–9. 22. Chen H, Ma J, Li W, Eliseenkova AV, Xu C, Neubert TA, etal. A molecular brake in the kinase hinge region regulates the activity of receptor tyrosine kinases. Mol Cell 2007;27:717–30. 23. Huang Z, Chen H, Blais S, Neubert TA, Li X, Mohammadi M. Structural mimicry of a-loop tyrosine phosphorylation by a pathogenic FGF receptor 3 mutation. Structure 2013;21:1889–96. 24. Tan L, Wang J, Tanizaki J, Huang Z, Aref AR, Rusan M, et al. Development of covalent inhibitors that can overcome resistance to first-generation FGFR kinase inhibitors. Proc Natl Acad Sci U S A 2014;111:E4869–77. 25. Byron SA, Chen H, Wortmann A, Loch D, Gartside MG, Dehkhoda F, etal. The N550K/H mutations in FGFR2 confer differential resistance to PD173074, dovitinib, and ponatinib ATP-competitive inhibitors. Neoplasia 2013;15:975–88. 26. Patani H, Bunney TD, Thiyagarajan N, Norman RA, Ogg D, Breed J, et al. Landscape of activating cancer mutations in FGFR kinases and their differential responses to inhibitors in clinical use. Oncotarget 2016;7:24252–68. 27. Stransky N, Cerami E, Schalm S, Kim JL, Lengauer C. The landscape of kinase fusions in cancer. Nat Commun 2014;5:4846. 28. Ochiiwa H, Fujita H, Itoh K, Sootome H, Hashimoto A, Fujioka Y, et al. Abstract A270: TAS-120, a highly potent and selective irreversible FGFR inhibitor, is effective in tumors harboring various FGFR gene abnormalities. Am Assoc Cancer Res 2013;12:A270–A. 29. Choi YL, Soda M, Yamashita Y, Ueno T, Takashima J, Nakajima T, et al. EML4-ALK mutations in lung cancer that confer resistance to ALK inhibitors. N Engl J Med 2010;363:1734–9. 30. Van Allen EM, Wagle N, Sucker A, Treacy DJ, Johannessen CM, Goetz EM, et al. The genetic landscape of clinical resistance to RAF inhibition in metastatic melanoma. Cancer Discov 2014;4:94–109. 31. Bettegowda C, Sausen M, Leary RJ, Kinde I, Wang Y, Agrawal N, etal. Detection of circulating tumor DNA in early- and late-stage human malignancies. Sci Transl Med 2014;6:224ra24. 32. Misale S, Yaeger R, Hobor S, Scala E, Janakiraman M, Liska D, etal. Emergence of KRAS mutations and acquired resistance to anti-EGFR therapy in colorectal cancer. Nature 2012;486:532–6. 33. Liegl B, Kepten I, Le C, Zhu M, Demetri GD, Heinrich MC, et al. Heterogeneity of kinase inhibitor resistance mechanisms in GIST. J Pathol 2008;216:64–74. 34. Lim KH, Huang MJ, Chen LT, Wang TE, Liu CL, Chang CS, et al. Molecular analysis of secondary kinase mutations in imatinib-resistant gastrointestinal stromal tumors. Med Oncol 2008;25:207–13. 35. Gainor JF, Dardaei L, Yoda S, Friboulet L, Leshchiner I, Katayama R, et al. Molecular mechanisms of resistance to fi rst- and secondgeneration ALK inhibitors in ALK-rearranged lung cancer. Cancer Discov 2016;6:1118–33. 36. Pearson A, Smyth E, Babina IS, Herrera-Abreu MT, Tarazona N, Peckitt C, et al. High-level clonal FGFR amplifi cation and response to FGFR inhibition in a translational clinical trial. Cancer Discov 2016;6:838–51. 37. Russo M, Siravegna G, Blaszkowsky LS, Corti G, Crisafulli G, Ahronian LG, et al. Tumor heterogeneity and lesion-specifi c response to targeted therapy in colorectal cancer. Cancer Discov 2016;6: 147–53. 38. Lanman RB, Mortimer SA, Zill OA, Sebisanovic D, Lopez R, Blau S, et al. Analytical and clinical validation of a digital sequencing panel for quantitative, highly accurate evaluation of cell-free circulating tumor DNA. PLoS One 2015;10:e0140712. 39. Frampton GM, Fichtenholtz A, Otto GA, Wang K, Downing SR, He J, et al. Development and validation of a clinical cancer genomic profiling test based on massively parallel DNA sequencing. Nat Biotechnol 2013;31:1023–31.
+Downloaded from http://aacrjournals.org/cancerdiscovery/article-pdf/7/3/252/1838385/252.pdf by guest on 14 April 2025
+
+
+Acquired FGFR2 Resistance Mutations in Cholangiocarcinoma RESEARCH BRIEF
+MARCH 2017 CANCER DISCOVERY | 263
+40. Tiedt R, Degenkolbe E, Furet P, Appleton BA, Wagner S, Schoepfer J, et al. A drug resistance screen using a selective MET inhibitor reveals a spectrum of mutations that partially overlap with activating mutations found in cancer patients. Cancer Res 2011;71: 5255–64. 41. Bairoch A, Boeckmann B. The SWISS-PROT protein sequence data bank: current status. Nucleic Acids Res 1994;22:3578–80. 42. Notredame C, Higgins DG, Heringa J. T-Coffee: A novel method for fast and accurate multiple sequence alignment. J Mol Biol 2000;302:205–17.
+43. Vriend G. WHAT IF: a molecular modeling and drug design program. J Mol Graph 1990;8:52–6, 29. 44. Ahronian LG, Sennott EM, Van Allen EM, Wagle N, Kwak EL, Faris JE, etal. Clinical acquired resistance to RAF inhibitor combinations in BRAF-mutant colorectal cancer through MAPK pathway alterations. Cancer Discov 2015;5:358–67. 45. Evaluating RNA Quality from FFPE Samples. Available from: http:// www.illumina.com/documents/products/technotes/technote-truseqrna-access.pdf
+Downloaded from http://aacrjournals.org/cancerdiscovery/article-pdf/7/3/252/1838385/252.pdf by guest on 14 April 2025

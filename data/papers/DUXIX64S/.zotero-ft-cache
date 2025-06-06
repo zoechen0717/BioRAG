@@ -1,0 +1,232 @@
+Brief communications
+5 6 0 VOLUME 21 | NUMBER 6 | JUNE 2015 nature medicine
+EGFR-mutant lung cancer is a subtype of non–small cell lung cancer (NSCLC) that exhibits sensitivity to EGFR TKIs such as erlotinib and gefitinib; however, acquired resistance develops after a median of 9–14 months (refs.1,2). The most common mechanism of TKI resistance is a second-site mutation (T790M) in the EGFR kinase domain, which can be detected in >50% of biopsies done after resistance develops3,4. AZD9291 is an oral, irreversible, mutant-selective EGFR TKI developed to have potency against tumors bearing EGFR activating mutations (for example, L858R or exon 19 deletion) in the presence of the T790M mutation5–7. In the ongoing phase 1 AURA
+study, AZD9291 induced durable responses in EGFR-mutant lung cancer patients with acquired resistance to other EGFR TKIs, with preliminary progression-free survival estimates of ~10 months in T790M+ patients8. To identify potential mechanisms of resistance to AZD9291 before the availability of resistance biopsy specimens, we studied cfDNA collected during the phase 1 AURA study. We first performed next-generation sequencing (NGS) on cfDNA from seven subjects whose disease progressed and from whom paired pretreatment and post-disease progression plasma specimens were available. cfDNA was isolated from plasma and all exons of a 20-gene panel were PCR-amplified and analyzed using an Illumina HiSeq. One subject (Subject 1) was a 33-year-old female whose cancer had progressed on multiple prior lines of chemotherapies and EGFR TKIs; resistance biopsy was T790M+. After 6 weeks of AZD9291 treatment, scans demonstrated a partial response (Supplementary Fig. 1); however, she developed systemic progression after 23 weeks of AZD9291. NGS of plasma collected from this subject at time of systemic progression revealed a new C797S mutation in exon 20 of EGFR in addition to the exon 19 deletion and T790M mutations that were present before treatment with AZD9291 (Fig. 1a). On the basis of in vitro studies, the EGFR C797S mutation is thought to induce resistance to irreversible EGFR TKIs, including quinazolone-based compounds (for example, HKI-272) and pyrimidine-based compounds (for example, WZ4002), by impairing covalent binding of these drugs to the EGFR protein5,9–11. To confirm that the C797S mutation induces resistance to AZD9291, we generated mouse Ba/F3 cells stably expressing an EGFR activating mutation (exon 19 deletion or L858R mutation) and the T790M mutation (in cis) either with or without the C797S mutation. Cells expressing the C797S-mutant construct were markedly less sensitive to AZD9291 in terms of cell growth and EGFR phosphorylation (Fig. 1b,c and Supplementary Fig. 2); they were similarly resistant to CO-1686, a second mutant-selective EGFR TKI which has induced responses in T790M+ lung cancer12. We therefore hypothesized that the EGFR C797S mutation could be a common mediator of acquired resistance to AZD9291 in lung cancer patients. To confirm the plasma NGS findings, we developed a droplet digital PCR (ddPCR) assay as done previously for the detection of other EGFR mutations in cfDNA13. ddPCR of serial plasma specimens from Subject 1 confirmed a high plasma concentration of the exon 19 deletion and the T790M mutation before treatment, without evidence of the C797S mutation (Fig. 1d). At week 6, the concentration of the exon 19 deletion and T790M mutation reduced 100-fold compared to pretreatment, and these increased as the cancer developed systemic progression (weeks 12–23); at progression, a newly
+Acquired EGFR C797S mutation mediates resistance to AZD9291 in non–small cell lung cancer harboring EGFR T790M
+Kenneth S Thress1, Cloud P Paweletz2,3, Enriqueta Felip4,5, Byoung Chul Cho6, Daniel Stetson1, Brian Dougherty1, Zhongwu Lai1, Aleksandra Markovets1, Ana Vivancos4, Yanan Kuang2,3, Dalia Ercan2, Sarah E Matthews2, Mireille Cantarini7, J Carl Barrett1, Pasi A Jänne2,3 & Geoffrey R Oxnard2
+Here we studied cell-free plasma DNA (cfDNA) collected from subjects with advanced lung cancer whose tumors had developed resistance to the epidermal growth factor receptor (EGFR) tyrosine kinase inhibitor (TKI) AZD9291. We first performed next-generation sequencing of cfDNA from seven subjects and detected an acquired EGFR C797S mutation in one; expression of this mutant EGFR construct in a cell line rendered it resistant to AZD9291. We then performed droplet digital PCR on serial cfDNA specimens collected from 15 AZD9291-treated subjects. All were positive for the T790M mutation before treatment, but upon developing AZD9291 resistance three molecular subtypes emerged: six cases acquired the C797S mutation, five cases maintained the T790M mutation but did not acquire the C797S mutation and four cases lost the T790M mutation despite the presence of the underlying EGFR activating mutation. Our findings provide insight into the diversity of mechanisms through which tumors acquire resistance to AZD9291 and highlight the need for therapies that are able to overcome resistance mediated by the EGFR C797S mutation.
+1AstraZeneca, Gatehouse Park, Waltham, Massachusetts, USA. 2Department of Medical Oncology, Dana-Farber Cancer Institute, Boston, Massachusetts, USA. 3Belfer Institute for Applied Cancer Science, Dana-Farber Cancer Institute, Boston, Massachusetts, USA. 4Vall d’Hebron Institute of Oncology, Barcelona, Spain. 5Vall d’Hebron University Hospital, Barcelona, Spain. 6Yonsei Cancer Center, Yonsei University College of Medicine, Seoul, Korea. 7AstraZeneca, Alderley Park, Macclesfield, UK. Correspondence should be addressed to G.R.O. (geoffrey_oxnard@DFCI.Harvard.edu).
+Received 13 January; accepted 9 April; published online 4 May 2015; doi:10.1038/nm.3854
+npg © 2015 Nature America, Inc. All rights reserved.
+
+
+nature medicine VOLUME 21 | NUMBER 6 | JUNE 2015 5 6 1
+Brief communications
+a
+Subject 1
+T790M C797S
+Baseline
+Plasma
+Progression
+3.3%
+1.8% 1.3%
+f
+Subject 12
+Subject 13
+EGFR mutation
+copies/ml of plasma
+50,000 10,000 1,000
+100 10
+1 N/D
+EGFR mutation
+copies/ml of plasma
+50,000 10,000 1,000
+100
+10
+1 N/D
+0 3 6 9 12 Time on AZD9291 (weeks)
+0 3 6 9 12 Time on AZD9291 (weeks)
+e
+Subject 8
+EGFR mutation
+copies/ml of plasma
+50,000 10,000
+1,000
+100
+10
+1 N/D
+0
+3
+6
+9
+12
+15
+18
+Time on AZD9291 (weeks)
+21
+24
+27
+30
+33
+36
+Subject 9
+EGFR mutation
+copies/ml of plasma
+50,000 10,000 1,000
+100
+10
+1 N/D
+0
+3
+6
+9
+12
+15
+18
+Time on AZD9291 (weeks)
+21
+24
+27
+30
+33
+36
+39
+42
+45
+48
+c
+Del19/T790M
+pEGFR
+Control
+AZD9291
+CO-1686
+Control
+AZD9291
+CO-1686
+EGFR
+Tubulin
+Del19/T790M C797S
+b
+125
+DEL/T790M DEL/T790M/C797S
+% of control
+100
+75
+50
+25
+0
+0 0.001 AZD9291 concentration (μM)
+0.01 0.1 1 10
+L858R/T790M L858R/T790M/C797S
+0 0.001 AZD9291 concentration (μM)
+0.01 0.1 1 10
+125
+% of control
+100
+75
+50
+25
+0
+DEL/T790M DEL/T790M/C797S 125
+% of control
+100
+75
+50
+25
+0
+0 0.001 CO-1686 concentration (μM)
+0.01 0.1 1 10
+L858R/T790M L858R/T790M/C797S
+0 0.001 CO-1686 concentration (μM)
+0.01 0.1 1 10
+125
+150
+% of control
+100 75 50 25 0
+d
+EGFR mutation
+copies/ml of plasma
+50,000 Subject 1 10,000
+1,000
+100 10
+N/D1 0 3 6 9 12 Time on AZD9291 (weeks)
+15 18 2123
+Subject 3
+EGFR mutation
+copies/ml of plasma
+50,000 10,000
+1,000
+100
+10
+N/D1 0 3 6 9 12 Time on AZD9291 (weeks)
+15 18
+EGFR sn EGFR T790M EGFR C797S
+EGFR sn EGFR T790M EGFR C797S
+acquired EGFR C797S mutation was detected. We then performed serial ddPCR profiling on a total of 19 subjects with advanced EGFRmutant NSCLC with acquired resistance to AZD9291 (two of these 19 subjects were also in the original NGS cohort). Pretreatment plasma ddPCR detected EGFR activating mutations in all subjects, T790M mutations in 15 subjects and C797S mutations in no subjects (Supplementary Table 1). In the 15 T790M+ cases, plasma C797S was detected at progression in six individuals (40%), always with a detectable plasma T790M concentration (Fig. 1d), and all harboring an exon 19 deletion as their EGFR activating mutation. In another five of the 15 T790M+ cases (33%), the T790M mutation was again detected at progression without evidence of the C797S mutation (Fig. 1e). Intriguingly, in four of the 15 T790M+ cases (27%), the T790M mutation was no longer detectable at progression despite detectable T790M in cfDNA before AZD9291 treatment (Fig. 1f); in such cases the EGFR activating mutation nevertheless increased in abundance at time of progression. Finally, in the four cases that were T790M− before AZD9291 treatment, none had detectable C797S or T790M mutations in plasma at progression (Supplementary Table 1).
+We performed plasma NGS on cases with acquired EGFR C797S to further characterize this mutation. In Subject 1, individual sequencing reads contained both the T790M and C797S mutations, indicating that
+they occur on the same allele (Fig. 1a). In another case (Subject 2), NGS of progression plasma detected the T790M and C797S mutations on different alleles (Fig. 2a), suggesting that T790M− alleles also can acquire the C797S mutation. In two cases, tumor biopsies after progression on AZD9291 were available (Subjects 4 and 5), and targeted NGS of these confirmed an acquired C797S mutation that was not detected in the pretreatment tumors (Fig. 2b,c), and no other acquired mutations. NGS of plasma obtained after disease progression in these subjects identified the same DNA alteration seen in the tumor and also identified a second DNA alteration encoding the C797S mutation (Fig. 2b,c), suggesting that multiple clones in parallel may be able to acquire this resistance mutation. No other acquired mutations were identified in any of the other cases or genes studied using plasma NGS. This genomic analysis of serial cfDNA specimens from an ongoing first-in-human study of AZD9291 identified three molecular subtypes of acquired resistance, including one defined by an EGFR C797S mutation not previously detected in patient samples. This acquired EGFR C797S mutation is anticipated to induce resistance to all covalent EGFR TKIs, highlighting the need for
+Figure 1 Acquired resistance to AZD9291 mediated by acquired EGFR C797S mutation. (a) In the index case (Subject 1), targeted NGS identified an acquired T→A mutation (green) in 1.3% of reads, encoding an EGFR C797S mutation. Overlapping reads spanning T790 and C797 contain both the T790M and C797S mutations, indicating the two mutations occurring in cis on the same allele. (b) Ba/F3 cells harboring one of two EGFR activating mutations (exon 19 deletion or L858R) plus the T790M resistance mutation, either with or without C797S, were treated with either AZD9291 or CO-1686 at the indicated concentrations, and viable cells were measured after 72 h of treatment and plotted relative to untreated control cells. Experiments were repeated three times, with mean ± s.d. plotted at each concentration. The curves were fitted using a nonlinear regression model with a sigmoidal dose response. (c) Ba/F3 cells expressing EGFR del 19/T790M or del 19/T790M/C797S were treated with 1.0 μM AZD9291 or CO-1686 for 6 h. Cell extracts were immunoblotted to detect total or phosphorylated EGFR and tubulin (loading control). (d–f) Representative images from serial plasma ddPCR show three molecular subtypes of acquired resistance to AZD9291 (N/D, not detected). A subset of subjects acquire an EGFR C797S resistance mutation, always in the presence of the T790M mutation (d). Other subjects maintain the EGFR T790M mutation without evidence of an acquired C797S mutation (e). The remaining subjects lose the EGFR T790M mutation despite increasing levels of the EGFR activating mutation, converting to T790M− resistance (f).
+npg © 2015 Nature America, Inc. All rights reserved.
+
+
+5 6 2 VOLUME 21 | NUMBER 6 | JUNE 2015 nature medicine
+Brief communications
+novel strategies to inhibit EGFR signaling even in the presence of this mutation. The EGFR C797S mutation mechanistically parallels the acquired Bruton tyrosine kinase (BTK) C481S mutation which can be detected in patients with chronic lymphocytic leukemia with acquired resistance to the irreversible BTK inhibitor ibrutinib14, suggesting that these cysteine point mutations that block drug binding may be a recurring vulnerability for a broad range of covalent kinase inhibitors. Although a more comprehensive analysis of plasma and biopsy tissue collected after resistance develops will be needed to provide greater clarity on C797S mutation incidence, the emergence of this mutation in a marked proportion of AZD9291-resistant patients suggests that development of targeted therapies with the ability to overcome the C797S mutation is warranted. The C797S mutation was only identified in cases harboring an exon 19 deletion (six of nine) and not in cases harboring L858R mutations (zero of six); because our cell line data suggests that the C797S mutation induces resistance with either activating mutation (Fig. 1b), we suspect this finding is due to the small sample size studied, although a disposition toward developing the C797S mutation in cancers with an exon 19 deletion will need to be considered going forward. Our finding that some cancers treated with AZD9291 convert from T790M+ to T790M−, and our identification of cases harboring two concurrent acquired C797S mutations, suggests an underappreciated genomic heterogeneity associated with resistance to EGFR TKIs in NSCLC. Such heterogeneity requires further study, but it may indicate a need for combination therapies that can inhibit or prevent the emergence of multiple resistance mechanisms simultaneously. The emerging toxicity profile of AZD9291 makes it potentially suitable for such rational combinations, some of which are currently under investigation in a multi-arm phase I study (NCT02143466) combining AZD9291 with either an PD-L1–specific antibody, a MET inhibitor or a MEK inhibitor.
+METHODS
+Methods and any associated references are available in the online version of the paper.
+Note: Any Supplementary Information and Source Data files are available in the online version of the paper.
+ACKnOwLEDGMEnTS
+This study was supported in part by the National Cancer Institute of the National Institutes of Health (R01CA135257 (P.A.J.), R01CA114465 (P.A.J.) and P01CA154303 (P.A.J.)), AstraZeneca, the Conquer Cancer Foundation of ASCO (G.R.O.), the Stading-Younger Cancer Research Foundation (G.R.O.), and the Department of Medical Oncology at Dana-Farber Cancer Institute. We would like to thank the numerous lung cancer patients and clinical investigators that contributed to this scientific effort.
+AuThOR COnTRiBuTiOnS
+K.S.T., P.A.J. and G.R.O. designed the study. E.F., B.C.C., S.E.M., M.C., P.A.J. and G.R.O. enrolled patients and provided specimens. C.P.P., D.S., B.D., Z.L., A.M., A.V., Y.K., D.E. and J.C.B. performed and/or designed experiments. K.S.T. and G.R.O. drafted the manuscript. All authors reviewed the final manuscript.
+COMPETinG FinAnCiAL inTERESTS
+The authors declare competing financial interests: details are available in the online version of the paper.
+Reprints and permissions information is available online at http://www.nature.com/ reprints/index.html.
+1. Mok, T.S. et al. N. Engl. J. Med. 361, 947–957 (2009). 2. Rosell, R. et al. N. Engl. J. Med. 361, 958–967 (2009). 3. Arcila, M.E. et al. Clin. Cancer Res. 17, 1169–1180 (2011). 4. Sequist, L.V. et al. Sci. Transl. Med. 3, 75ra26 (2011). 5. Zhou, W. et al. Nature 462, 1070–1074 (2009). 6. Ward, R.A. et al. J. Med. Chem. 56, 7025–7048 (2013). 7. Cross, D.A.E. et al. Cancer Discov. 4, 1046–0161 (2014). 8. Jänne, P.A. et al. N. Engl. J. Med. (in the press, 2015). 9. Yu, Z. et al. Cancer Res. 67, 10417–10427 (2007). 10. Godin-Heymann, N. et al. Mol. Cancer Ther. 7, 874–879 (2008). 11. Avizienyte, E., Ward, R.A. & Garner, A.P. Biochem. J. 415, 197–206 (2008). 12. Sequist, L.V. et al. N. Engl. J. Med. (in the press, 2015). 13. Oxnard, G.R. et al. Clin. Cancer Res. 20, 1698–1705 (2014). 14. Woyach, J.A. et al. N. Engl. J. Med. 370, 2286–2294 (2014).
+a
+Subject 2 Subject 4 Subject 5
+0.9%
+0.7%
+T790M C797S
+1.3%
+Plasma
+Progression Baseline
+8%
+46% 47%
+6%
+8% 3%
+6%
+T790M C797S
+Plasma
+Progression Baseline
+Tumor
+Progression Baseline
+69%
+90% 90%
+25%
+81%
+54% 81%
+T790M C797S
+Plasma
+Progression Baseline
+Tumor
+Progression Baseline
+bc
+Figure 2 NGS of baseline and progression cfDNA demonstrates several different genomic presentations of acquired EGFR C797S. (a) NGS of cfDNA from Subject 2 indicates that the acquired C797S G→C mutation (blue) is on a different allele, in trans with the T790M mutation. (b,c) NGS of baseline and progression tumor biopsies (top) confirmed the acquired C797S mutation detected with plasma NGS (bottom). Plasma NGS detects the same T→A C797S mutation (green) found in the tumor and additionally detects a second G→C mutation encoding the C797S mutation (blue).
+npg © 2015 Nature America, Inc. All rights reserved.
+
+
+nature medicine
+doi:10.1038/nm.3854
+ONLINE METHODS
+Trial design. The AURA study (NCT01802632) is a phase 1 study of AZD9291 which enrolled subjects with EGFR-mutant lung cancer and acquired resistance to EGFR TKI to escalating doses of AZD9291 (20–240 mg)8. At each dose level, expansion cohorts specifically studied patients with EGFR T790M+ or T790M− tumors based on a central genotyping assay. The study received Institutional Review Board approval at all participating centers, and all patients provided informed consent before treatment. In this study, objective tumor response was assessed using the Response Evaluation Criteria In Solid Tumors (RECIST)15. For the initial exploratory NGS cohort, we selected seven subjects from the AURA trial (four male, three female, median age 52, range 33–65) based on availability of pretreatment and post-progression plasma specimens, regardless of evidence of sensitivity to therapy. We then performed the confirmatory plasma analysis on subjects meeting criteria for acquired resistance to AZD9291, defined as one scan demonstrating response or stable disease on imaging, followed by development of systemic progression on treatment. From this population, we only studied those with paired pretreatment and end-oftreatment plasma specimens available as of 9/22/2014. We further limited the analysis to subjects harboring EGFR L858R or exon 19 deletions, excluding subjects with rare activating mutations not detectable with existing ddPCR assays. We also omitted from the resistance analysis those subjects with no detectable L858R or exon 19 deletion in cfDNA at time of progression due to the probability of inadequate cfDNA shed to allow genomic studies to be performed. Nineteen subjects met these eligibility criteria and were included in the confirmatory plasma analysis (5 male, 14 female, median age 56, range 28–72).
+Collection of plasma and extraction of cell-free DNA (cfDNA). Per the AURA study protocol, plasma was collected for all subjects on study when feasible to allow for genomic analysis of cfDNA. 10–20 cc of blood were collected into EDTA tubes pretreatment, intermittently on treatment (dependent on the specific cohort), and again when coming off AZD9291. In a parallel study at the Dana-Farber Cancer Institute (DFCI), we additionally consented subjects on the same clinical trial to collection of specimens every 3 weeks for more detailed analysis of response and progression kinetics. Within 4 h of collection, whole blood was centrifuged for 10 min at 1,200g, after which the plasma supernatant was further cleared by centrifugation for 10 min at 3,000g. Cleared plasma was stored in cryostat tubes at −80 °C until use. cfDNA was isolated using the QIAmp Circulating Nucleic Acid Kit (Qiagen) according to the manufacturer’s protocol. DNA was eluted in AVE buffer (100 μl) and stored at −80 °C.
+NGS of plasma cfDNA. For plasma NGS, we PCR-amplified all coding exons of a 20-gene panel using the Qiagen GeneRead Lung Cancer version 1 kit (cat. no. 180941 NGHS-005Z-96); genes in this panel are listed in Supplementary Table 2. We prepared libraries of amplified DNA with the Kapa Hyperprep kit (cat. no. KK8502). We then performed ultra-deep sequencing on an Illumina HiSeq instrument (2 × 100 bp) following QC with an Agilent TapeStation. We analyzed NGS data within the BCBio framework (https://bcbio-nextgen. readthedocs.org/en/latest/) using an AstraZeneca-developed variant calling algorithm (https://github.com/AstraZeneca-NGS/VarDict). NGS was performed once one on each specimen. Given the difficulty of accurate variant calling when using plasma-derived cfDNA and ultra-deep coverage of genes of interest (average 30,000×), we manually inspected variant calls of interest in IGV. We compared detected EGFR activating and resistance mutations to orthogonal genotyping data from plasma and tissue.
+C797S cell line studies. We introduced mutant EGFR constructs into authenticated Ba/F3 cells by retroviral infection as previously described5,16. Parental Ba/F3 cell lines were obtained previously from the laboratory of James Griffin at DFCI. We assessed growth and inhibition of growth by MTS assay performed according to previously established methods5,16. We exposed mutant Ba/F3 cells to drug treatment for 72 h and plotted the data relative to nondrug treated cells with the same genotype. We set up all experimental points in six wells and repeated all experiments three times. We graphically displayed the data using GraphPad Prism version 5.0 for Windows, (GraphPad Software;
+http://www.graphpad.com), fitting the curves using a nonlinear regression model with a sigmoidal dose response. Following drug treatment for 6 h, we lysed Ba/F3 cells in NP-40 buffer (Cell Signaling Technology). We conducted western blot analyses after separation by SDS–PAGE electrophoresis and transfer to polyvinylidene difluoride-P membrane (Millipore). We performed immunoblotting according to the antibody manufacturers’ recommendations and detected antibody binding using an enhanced chemiluminescence system (PerkinElmer Inc.). The phospho-specific EGFR (pY1068) antibody was purchased from Cell Signaling (cat. no. 3777s). Total EGFR- and tubulin-specific antibodies were purchased from Bethyl Laboratories (cat. no. A300-388A) and Sigma (cat. no. T9026), respectively.
+Droplet digital PCR of plasma cfDNA. We developed EGFR C797S ddPCR assays in a similar fashion as previously described for other EGFR mutations13. In brief, we custom designed primer and probe pairs, optimizing them for annealing temperature and cycling condition using serial dilutions of mutant DNA we obtained from Ba/F3 cells with and without EGFR T790M/C797S mutations. Similar to our previously developed ddPCR assays, the EGFR C797S ddPCR assays achieved a sensitivity between 0.05% and 0.1% (Supplementary Figs. 3 and 4). We purchased all ddPCR reagents from Bio-Rad, and custom ordered primers and probes from Life Technologies. We performed the ddPCR analysis on a Bio-Rad QX100 ddPCR instrument as previously described13, with the following PCR conditions: EGFR L858R: forward primer, 5′-GCAGCATGTCAAGATCACAGATT-3′, reverse primer, 5′-CCTCCTTCTGCATGGTATTCTTTCT-3′. Probe sequences: 5′-VIC-AGTTTGGCCAGCCCAA-MGB-NFQ-3′, 5′-FAM-AGTTTGGCCC GCCCAA-MGB-NFQ-3′. Cycling conditions: 95 °C × 10 min (1 cycle), 40 cycles of 94 °C × 30 s and 58 °C × 1 min, and 10 °C hold. EGFR del 19: forward primer, 5′-GTGAGAAAGTTAAAATTCCCGTC-3′, reverse primer, 5′-CACACAGCAAAGCAGAAAC-3′. Probe sequences: 5′-VICATCGAGGATTTCCTTGTTG-MGB-NFQ-3′, 5′-FAM-AGGAATTAAGAG AAGCAACATC-MGB-NFQ-3′. Cycling conditions: 95 °C × 10 min (1 cycle), 40 cycles of 94 °C × 30 s and 55 °C × 1 min, followed by 10 °C hold. EGFR T790M: forward primer, 5′-GCCTGCTGGGCATCTG-3′, reverse primer, 5′-TCTTTGTGTTCCCGGACATAGTC-3′. Probe sequences are: 5′-VICATGAGCTGCGTGATGAG-MGB-NFQ-3′, 5′-FAM-ATGAGCTGCATGATG AG-MGB-NFQ-3′. Cycling conditions: 95 °C × 10 min (1 cycle), 40 cycles of 94 °C × 30 s and 58 °C × 1 min, followed by 10 °C hold. EGFR C797S (T>A): forward primer: 5′-GCCTGCTGGGCATCTG-3′, reverse, 5′-TCTTTGTGTTCCCGGACATAGTC-3′. Probe sequences are: 5′-VIC-TTCGGCTGCCTCCTG-MGB-NFQ-3′, 5′-FAM-TTCGGCAGCCTCCMGB-NFQ-3′. Cycling conditions: 95 °C × 10 min (1 cycle), 40 cycles of 94 °C × 30 s and 56 °C × 1 min, followed by 10 °C hold. EGFR C797S (G>C): forward primer: 5′-GCCTGCTGGGCATCTG-3′, reverse, 5′-TCTTTGTGTTCCCGGACATAGTC-3′. Probe sequences are: 5′-VIC-TTC GGCTGCCTCCTG-MGB-NFQ-3′, 5′-FAM-CTTCGGCTCCCTCCTG-MGBNFQ-3′. Cycling conditions: 95 °C × 10 min (1 cycle), 40 cycles of 94 °C × 30 s and 56 °C × 1 min, followed by 10 °C hold. We ran each ddPCR assay in triplicate, each using approximately 1/20th of the DNA isolated from 2 ml of plasma. We analyzed the results using QuantaSoft (ver 1.6.6) software that accompanied the QX100 reader. In our analyses, EGFR mutation specific signals are generated in the FAM channel, whereas the EGFR wild-type signals are in the VIC channel. We dynamically determined cut-off values for positive signals using cell lysate controls with the respective EGFR mutations run concomitantly. We calculated Poisson concentrations using QuantaSoft, and EGFR mutation concentrations were adjusted to milliliters of plasma as follows:
+ΣPoisson Concentrations × 3.33. %mut
+were calculated from generated Poisson concentrations as follows:
+%mut = [ ]
+[]
+FAM
+FAM + VIC ×100
+Serial ddPCR measurements were plotted from the start of treatment with AZD9291 until the time of systemic progression.
+npg © 2015 Nature America, Inc. All rights reserved.
+
+
+nature medicine doi:10.1038/nm.3854
+Next-generation sequencing of resistance tumor biopsies. We extracted DNA from 5 × 10 μm sliced sections of FFPE material using the Maxwell FFPE Tissue LEV DNA Purification Kit. Tumor area content was evaluated by a clinical pathologist to confirm adequacy for sequencing; a minimum tumor content was set to 20%, in order to better detect somatic mutations. An initial multiplex PCR with a proofreading polymerase was performed on samples. For NGS, Vall d’Hebron Institute of Oncology has developed a panel of over 600 primer pairs targeting frequent mutations in oncogenes plus several tumor suppressors, totaling 57 genes, including EGFR; see Supplementary Table 2 for a list of genes included. We pooled indexed libraries and sequenced them on a MiSeq instrument (2 × 100) at an average coverage of 3,000×. Initial alignment
+was performed with BWA (ver 0.6.2, http://bio-bwa.sourceforge.net/) after primer sequence clipping, and variant calling was done with the GATK Unified Genotyper (ver 3.2.2, https://www.broadinstitute.org/gatk/) and VarScan2 followed by ANNOVAR annotation (ver 2.3.7, release 150322, http://varscan. sourceforge.net/). Mutations were called at a minimum 3% allele frequency. SNPs were filtered out with dbSNP and 1000 Genomes data sets. All detected variants were manually checked.
+15. Eisenhauer, E.A. et al. Eur. J. Cancer 45, 228–247 (2009). 16. Engelman, J.A. et al. Cancer Res. 67, 11924–11932 (2007).
+npg © 2015 Nature America, Inc. All rights reserved.

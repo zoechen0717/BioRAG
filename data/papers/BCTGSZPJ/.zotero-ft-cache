@@ -1,0 +1,870 @@
+Nature Methods | Volume 22 | April 2025 | 824–833 824
+nature methods
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+Comparing chromatin contact maps at scale: methods and insights
+Ketrin Gjoni 1,2,7, Laura M. Gunsalus1,2,7, Shuzhen Kuang 1,2,7, Evonne McArthur 2,3,4,5,7, Maureen Pittman1,2, John A. Capra 2,3 & Katherine S. Pollard 1,2,3,6
+Comparing chromatin contact maps is an essential step in quantifying how three-dimensional (3D) genome organization shapes development, evolution, and disease. However, methods often disagree, and no gold standard exists for comparing pairs of maps. Here, we evaluate 25 ways to compare contact maps using Micro-C and Hi-C data from two cell types and in silico-generated contact maps. We identify similarities and differences between the methods and quantify their robustness to common sources of biological and technical variation, including losses and gains of CTCF-binding sites, changes in contact intensity or patterns, and noise. We find that global comparison methods, such as mean squared error, are suitable for initial screening; however, biologically informed methods are necessary for identifying how maps diverge and for proposing specific functional hypotheses. We provide a reference guide, codebase, and thorough evaluation for rapidly comparing chromatin contact maps at scale to enable biological insights into 3D genome organization.
+The same genomic locus can adopt different 3D conformations in different cells, species, and disease states, affecting gene regulation, cell identity, and replication timing (Fig. 1a)1–7. Chromosome conformation capture methods (3C, 4C, 5C, Hi-C, and Micro-C)8–12 analyze how the genome folds across scales, including chromosomal territories, topologically associating domains (TADs), enhancer–promoter loops, and architectural stripes10,13–15. Recently, single-cell and deep-learning techniques have accelerated the study of chromatin conformations across biological contexts16–22. As the volume of data grows, analytical tools for chromatin contact maps are being rapidly developed23,24. Many methods aim to detect differences in contact maps for various applications, such as ranking differences between pairs of maps6,7,25–28, assessing reproducibility between replicates and modalities7,25,26,29, identifying tissue-specific contacts28, and highlighting differential chromatin interactions6,27. Some of these methods are designed to identify structural differences, such as TADs; others target focal changes,
+like loops within them (Fig. 1b). Additionally, there are methods that do not target specific changes. Choosing the appropriate map comparison method for a specific issue requires careful consideration of how different methods prioritize various map features and their sensitivity to technical artifacts. The decision-making process is challenging because methods for contact map comparison have not been benchmarked at scale across diverse use cases. To address this gap, we developed a unifying framework to guide strategies for comparing contact maps, evaluating 25 commonly used approaches (Supplementary Note). Our benchmark includes statistics for directly comparing matrices (global methods; Fig. 1c, left) and methods for comparing specific biologically motivated summaries of contact maps (contact map methods; Fig. 1c, right). We include four newly adapted contact map methods for analyzing maps predicted by machine-learning models, enabling comparisons in the contexts of in silico screens, synthetic sequence design, and simulations.
+Received: 20 April 2023
+Accepted: 14 February 2025
+Published online: 19 March 2025
+Check for updates
+1Gladstone Institute of Data Science and Biotechnology, San Francisco, CA, USA. 2Department of Epidemiology & Biostatistics, University of California, San Francisco, CA, USA. 3Bakar Computational Health Sciences Institute, University of California, San Francisco, CA, USA. 4Vanderbilt Genetics Institute, Vanderbilt University Medical Center, Nashville, TN, USA. 5Department of Medicine, University of Washington, Seattle, WA, USA. 6Chan Zuckerberg Biohub, San Francisco, CA, USA. 7These authors contributed equally: Ketrin Gjoni, Laura M. Gunsalus, Shuzhen Kuang, Evonne McArthur. e-mail: tony@capralab.org; katherine.pollard@gladstone.ucsf.edu
+
+
+Nature Methods | Volume 22 | April 2025 | 824–833 825
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+and MSE often identified differences in markedly different regions (Fig. 2, r2 = 0.0002)11 for reasons unrelated to the underlying biology. For example, Correlation prioritized a pair of maps exhibiting visible structural rearrangements and low contact frequencies, but MSE did not, because the absolute difference between the maps was small (Fig. 2, top left). Conversely, two maps with similar structures but different contact frequency ranges produced a large MSE, despite being very similar to each other according to Correlation (Fig. 2, bottom right). These inconsistencies are not surprising, given that Correlation is agnostic to intensity changes—consistently increasing values but maintaining their relative levels will not affect Correlation—whereas MSE is sensitive to intensity. This simple example illustrates the importance of considering the types of difference that should be prioritized when selecting a comparison method. To enhance our understanding, we selected a broad range of global and contact map comparison methods for comprehensive analysis (Fig. 1c, Supplementary Table 1, and Supplementary Note). For global methods, we included Correlation, MSE, and the structural similarity index measure (SSIM). Because these methods overlook specific properties of contact frequency maps, they might struggle to identify smaller, biologically meaningful changes, such as losses and gains of chromatin loops. In these instances, methods that account for expected genome organization structures, which we refer to as contact map methods, could provide an advantage. The first set of these methodsContact Directionality, Insulation, Distance Enrichment, Eigenvector, and Triangle—transform two-dimensional (2D) contact matrices into one-dimensional (1D) tracks (capturing features relevant to genome folding). These tracks are then compared using Correlation or MSE (indicated with either the (corr) or (mse) suffix, respectively). One benefit of the intermediate 1D tracks is that they can visually evaluate overall map differences along genome coordinates (Extended Data Fig. 2a), although some information present in the full matrix is lost in the reduction to 1D. The second type of contact map method we examine seeks to quantify certain 2D map characteristics, such as changes in loops31, TADs33,34, or TAD boundaries. A subset of these methods first calls features and then counts the differences in the number of features to score a pair of maps (Extended Data Fig. 2b). We evaluate both previously described contact map methodsArrowhead31, CHESS6, dcHiC35, HiC1Dmetrics36, HiCcompare27, Loops31, stratum-adjusted correlation coefficient (SCC)7, TADcompare37, and TADs34—as well as four methods—Eigenvector, Contact Directionality, Distance Enrichment, and Triangle—that we implemented on the basis of statistics used in the 3D genome field to assess known properties of contact maps. For each method, we adapted the single-map statistic into a score quantifying the difference in the statistic between a pair of maps. Eigenvector was adapted from compartment-calling methods38, extending the approach to compare eigenvectors in smaller window sizes. Contact Directionality was adapted from the directionality index39 and used to evaluate differences in contact directionality, that is whether a region interacts more with up- or downstream regions. Distance Enrichment, adapted from contact decay9, quantifies differences in contact decay plots between two maps. This method emphasizes how contact patterns between two regions are affected by their distance, focusing on changes in distal contacts. Triangle, a previously used but less-established method40, calculates average contact frequencies across submatrices and compares these averages between two matrices, ultimately comparing substructures at different levels. In summary, we describe, implement, and compare 25 methods, including several variants of the same approach, for scoring contact frequency maps. This set covers most commonly used approaches, excluding a small number that could not be implemented within the benchmarking datasets used in this study (Supplementary Table 1). We assessed the performance of these methods across diverse settings, including maps generated by experiments (Micro-C and HiC), machine-learning models, and direct simulation. We first applied all
+To rigorously quantify how different methods score pairs of contact maps, we used three types of data: (1) experimental Micro-C and Hi-C data at different resolutions and map sizes; (2) contact maps predicted by a machine-learning model from DNA sequences, both with and without genetic perturbations, and (3) in silico simulated contact maps that capture specific biological and technical variations. Our analyses reveal instances of divergence and consistency among methods, as well as identify redundant and complementary approaches and the features that they are most sensitive to. We summarize our findings into recommendations and provide a library of open-source code to implement all 25 methods, enabling scientists to choose and apply the right method for their research questions.
+Results
+Diverse strategies for scoring pairs of contact maps
+When scoring differences between pairs of contact maps at scale, it is common to compute statistics, such as the mean squared error (MSE) between contact map values, to mathematically compare contact matrices6,7,20. These global methods are easy and quick to implement, without embedding specific assumptions about which map features are biologically important. Such statistics are often used as loss functions in models that predict contact maps. It is unclear, however, which method to use. To investigate this, we first compared two widely used global methods, Spearman’s correlation coefficient and MSE30–32, to assess how they rank pairs of Micro-C contact maps from human foreskin fibroblasts (HFFs) and embryonic stem cells (ESCs). Because the Spearman correlation, like several other methods, yields larger values for more similar maps, we transformed all score ranges such that higher values indicate a greater difference in 3D organization (Extended Data Fig. 1), and normalized all scores to a range of 0 to 1 (Methods) to enable comparisons across methods. We refer to this transformed score as ‘Correlation.’ Analyzing results across all 7,840 windows, each ~1 Mb (1 × 220 base pairs (bp)), in the human genome (Methods), we found that Correlation
+#
+#
+or
+Global methods
+Contact map methods
+MSE Correlation SSIM
+Scoring, ranking, and comparing 3D chromatin contact maps
+?
+Global change Intensity change Local change
+Arrowhead CHESS Contact direct. dcHiC diffHiC Distance enrich. Eigenvector
+FIND HiC-DC+ HiC1Dmetrics HiCcompare HiCExplorer HOMER Insulation
+Loops SCC Selfish SnapHiC-D TADcompare TADs Triangle ZipHiC
+#
+b
+c
+Experimental versus prediction
+Consequence of mutations
+Cell-type differences
+Species differences
+Technical differences
+Contact map differences
+a
+Fig. 1 | Approaches for comparing 3D chromatin contact maps. a, 3D genome comparisons drive insights into many domains of chromatin biology. Differences observed between maps might reflect consequences of mutations, cell-type differences, species differences, or technical biases. b, 3D contact maps exhibit a range of functionally meaningful differences, for example, in global folding patterns, contact intensity, or small, focal changes in part of the map. c, The methods we evaluated include global methods, which are general statistics for comparing matrices, and contact map methods, which are designed to capture specific biologically motivated changes or features of contact maps. The symbol # indicates a numerical score.
+
+
+Nature Methods | Volume 22 | April 2025 | 824–833 826
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+25 methods to experimental maps of regions around differentially expressed genes (DEGs) between HFFs and ESCs, because these regions are likely to exhibit contact differences. We then evaluated 13 of the methods applicable to predicted maps in a large-scale screen of in silico genetic perturbations. Finally, we used simulated predicted maps to highlight method sensitivities to various technical and biological variations and to quantitatively measure performance. This extensive three-step evaluation explores how different methods rank map pairs to uncover their similarities, unique advantages, and sensitivities. Finally, we suggest guidelines to help users choose a method or set of methods catering to their application and goals.
+Evaluation of map comparison methods on experimental data To quantify how methods in the representative set compare to each other, we applied them to Micro-C and Hi-C datasets from ESC and HFF cell lines, normalized with a commonly used set of preprocessing steps (Methods). We first conducted a qualitative assessment using pairs of example HFF versus ESC maps with clear structural changes, such as variations in TAD boundaries, stripes, or loops (Extended Data Fig. 2). Eigenvector highlights signal at the example boundary and stripe differences, but less specifically at loop disparities. However, Contact Directionality identifies loop changes, suggesting that it is more sensitive to focal changes. As expected, Distance Enrichment shows the highest signal for the boundary difference map pair, which has the most changes in distal contacts. Next, we evaluated the TADs
+and Loops methods, which quantify features in each map and generate an overlap ratio on the basis of those counts. These methods have a small range of possible scores owing to the low number of features in many 1-Mb windows. Two example maps with TAD and loop differences each show three features in ESCs and two features in HFFs, resulting in an overlap ratio of two-thirds (Extended Data Fig. 2b). Together, these qualitative results provide insights into the best use-cases for the newly adapted methods and highlight key challenges associated with applying count-based methods on a genome-wide scale. Next, we conducted a large-scale quantitative comparison of the 25 map comparison scores (Supplementary Table 1) in ESCs and HFFs at genomic windows around DEGs, where we anticipate various contact changes (Methods). To discover which methods agree and disagree in scoring DEG contact maps, we computed clusters and a correlation matrix and performed principal component analysis (PCA) (Fig. 3). Because some of the methods have computational limitations, we focused on chromosomes 21 and 22. For methods that require parameter tuning, we used visual assessment on a subset of maps to select parameters that perform well on average (Supplementary Figs. 1 and 2)41,42. Overall, we observe several patterns in how contact maps are scored by different methods. First, the Correlation and MSE versions of techniques, such as dcHiC (mse) and dcHiC (corr), tend to cluster closely with the versions of other methods using the same statistic, but diverge from one another (Fig. 3), which is not surprising given
+MSE
+Correlation
+Different based on: Correlation but not MSE
+Different based on: Neither Correlation nor MSE
+Different based on: Correlation and MSE
+Different based on: MSE but not Correlation
+CACNA2D3 LRTM1
+PTPRT
+RASA1 CCNH
+chr20:41,852,928–42,770,432
+chr9:128,884,736–129,802,240 chr5:86,896,640–87,814,144
+chr3:54,046,720–54,964,224
+r2 = 0.00018 P = 0.23
+ESC
+HFF
+ESC
+HFF
+ESC
+HFF
+ESC
+HFF
+Contact frequency log (observed / expected)
+2
+2,000
+0
+1.0
+0.9
+0.8
+0.7
+0.6
+0.5
+0.4
+0.3
+0.2
+1.0
+0.9
+0.8
+0.7
+0.6
+0.5
+0.4
+0.3
+0.2 0.3
+0.3 0.4 0.5 0.6 0.7 0.8 0.9
+0.4 0.5 0.6 0.7 0.8 0.9 0 500
+–2
+–1
+0
+1
+Fig. 2 | Correlation and MSE score contact frequency map pairs differently. Spearman correlation and MSE were calculated across the genome on experimental contact maps from ESCs and HFFs (n = 7,840). Each point represents the scores for a pair of contact maps. The histograms on the top and right summarize the counts of pairs falling across the range of values for MSE (top) or Correlation (right). To facilitate comparison with MSE, the Correlation score is a transformed version of the Spearman correlation such that similar maps receive scores near 0 and different maps receive scores near 1 (Methods).
+Shown are examples in which only Correlation prioritizes the map pair as different (top left), both methods agree the maps are similar (bottom left), both methods agree the maps are different (top right), and only MSE prioritizes map pairs as different (bottom right). Genes in these regions are shown in the genomic tracks below the maps in purple, except for the bottom left map, in which there are too many genes to include names in the figure. Pearson correlation (P) and the coefficient of determination (r2) are shown in the figure.
+
+
+Nature Methods | Volume 22 | April 2025 | 824–833 827
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+a
+Disruption score
+0 0.5
+Triangle (corr)
+Triangle (mse) dcHiC (mse) HiCcompare Insulation (mse) Eigenvector (corr) Distance Enrichment (corr) Correlation SCC TADcompare HiC1Dmetrics ISC Selfish HiC1Dmetrics deltaDLR HiC1Dmetrics CIC HiC1Dmetrics SSC
+HiC1Dmetrics CD Loops Insulation (corr) TADs Arrowhead
+dcHiC (corr) Contact Directionality (corr) SSIM
+MSE
+1.0
+4
+2
+0
+–2
+–4
+–10 –5 0 5 10 15
+Insulation (corr)
+Contact Directionality (corr)
+Eigenvector (corr)
+dcHiC (corr)
+Insulation (mse)
+SCC
+MSE
+Triangle (corr)
+Triangle (mse)
+Correlation SSIM
+Distance Enrichment (corr)
+TADs
+CHESS
+TADcompare
+HiC1Dmetrics deltaDLR
+dcHiC (mse) Arrowhead
+Loops
+HiC1Dmetrics CIC
+HiC1Dmetrics SSC
+HiC1Dmetrics ISC
+HiC1Dmetrics CD
+HiCcompare
+PC 2 (12.4%)
+PC 1 (50.8%)
+Selfish
+cd
+Insulation (corr)
+Contact Directionality (corr)
+Eigenvector (corr)
+Insulation (mse)
+SCC MSE
+Triangle (corr) Triangle (mse)
+Correlation SSIM
+Distance Enrichment (corr)
+TADs
+Loops
+Pearson’s correlation
+0.5
+0 1.0
+DEG windows
+CHESS Distance Enrichment (corr)
+Triangle (corr)
+Triangle (mse)
+dcHiC (mse) HiCcompare
+Insulation (mse)
+Correlation
+SCC
+TADcompare
+HiC1Dmetrics ISC Selfish
+HiC1Dmetrics deltaDLR
+HiC1Dmetrics SSC
+HiC1Dmetrics CIC
+HiC1Dmetrics CD
+Loops
+Insulation (corr)
+TADs Arrowhead
+dcHiC (corr)
+SSIM
+MSE
+Pearson’s correlation
+0 0.5 1.0
+b
+CHESS
+Contact Directionality (corr)
+Eigenvector (corr)
+Fig. 3 | Comparison of methods for evaluating contact frequency maps.
+a, A heatmap showing scores from 25 methods across 256 Micro-C maps, which represent 1-Mb regions at 2,048-bp resolution around DEGs between ESCs and HFFs in chromosomes 21 and 22. Columns are different DEG windows, and rows are scoring methods; both are clustered using Ward’s clustering with Euclidean distance. The purple scale values in heatmap cells represent the scores normalized across windows for each method. b, A heatmap of Pearson
+correlation values for all pairs of scores on regions in a. c, The results of PCA of scores in a. d, A heatmap of Pearson correlation values for scores on predicted contact maps, generated through a series of perturbations (Extended Data Fig. 5a), for all pairs of the 13 methods that can be applied to predicted maps. The colors across the top of the heatmap identify the methods. Maps that resulted in no scores for any method were removed from the analysis.
+
+
+Nature Methods | Volume 22 | April 2025 | 824–833 828
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+the differences in how the raw Correlation and MSE prioritize map differences (Fig. 2). Furthermore, methods can be categorized into two main groups: one including the methods that correlate with each other, and the other including the ones that don’t correlate well with the rest, namely TADcompare, Selfish, and HiC1Dmetrics ISC (Fig. 3b). This suggests that these methods provide somewhat different information about map changes as compared with the other techniques. On the second principal component, HiC1Dmetrics deltaDLR, SSC, and CIC cluster together, separate from the rest (Fig. 3c). Importantly, our four newly adapted methods—Eigenvector, Contact Directionality, Distance Enrichment, and Triangle—tend to score maps comparably to existing methods. These analyses give us a broad idea of which methods are concordant across a range of scenarios. To investigate the unique capabilities of each method, we analyzed the top-scoring maps for each approach, that is, maps ranked as most different between HFFs and ESCs (Supplementary Fig. 3). We identified all maps that scored in the top 5% by only one method (Supplementary Fig. 4). We found that 14 of the 25 methods uniquely identify divergent maps (Extended Data Fig. 3), including our four newly adapted methods, highlighting the complementary information they provide. Some methods have high overlap among their top 5% scoring maps (Extended Data Fig. 4). For example, SCC and Correlation share 88% of their top maps, and neither of these methods has uniquely high-scoring maps (Extended Data Figs. 3 and 4). However, some methods are outliers, suggesting that they prioritize different features. For example, only 2% of the top maps ranked by MSE and Arrowhead are shared with respect to MSE top maps. Notably, methods based on loops—Loops, HiCcompare, and Selfish—do not cluster together or correlate well (Fig. 3a–c) and share 10% or less of their top maps (Extended Data Fig. 4). However, methods that focus on TADs—Arrowhead, TADs, and TADcompare—cluster relatively close together, especially Arrowhead and TADs (Fig. 3a,b), although they share only 8% or less of their top maps (Extended Data Fig. 4). These analyses highlight which methods are redundant and which are complementary. The previous analyses focused on Micro-C data for 1-Mb windows at 2,048-bp resolution. To understand how different experimental techniques and analysis choices affect results, we compared methods using both Micro-C and Hi-C, at four resolutions (2,048, 4,096, 8,192, and 10,240 bp) and three window sizes (100 kb, 1 Mb, and 10 Mb). As expected, the scores for most methods agree well between Micro-C and Hi-C, although the two techniques do not match perfectly, given that Micro-C captures more detail (for example, local loops) (Supplementary Fig. 5)43. This agreement varies across window sizes: 1-Mb windows generally have higher agreement between the two methods than do 100-kb and 10-Mb windows (Supplementary Fig. 5). This is consistent with our finding that different methods cluster differently at varying window sizes (Supplementary Fig. 6). We hypothesize that, because different window sizes include different scales of genome structures (only loops at 100 kb, loops and TADs at 1 Mb, and compartments at 10 Mb), map ranking across methods changes on the basis of their individual focuses and biases. Nonetheless, certain methods cluster together regardless of window size, such as MSE, Insulation (mse), and Triangle (mse). Others, such as CHESS, are more affected by window size. However, most methods are robust to the choice of resolution, although there are exceptions, such as TADcompare and Loops (Supplementary Fig. 7). We also ensured that the data processing steps taken did not bias results (Supplementary Fig. 8). Altogether, these sensitivity analyses underscore the importance of window size in selecting a map comparison method and highlight methods that are sensitive to resolution and chromatin capture technology.
+Evaluation of comparison methods using in silico perturbation Above, we focused on experimentally determined contact maps derived from two human cell lines. Although these data contain many differences, they likely do not reflect the full range of biologically
+relevant contact map patterns. To expand our evaluation, we used machine-learning models that can accurately predict chromatin contact maps from DNA sequence alone20,21,44. Using predicted maps to benchmark map comparison methods, we can generate a huge number of map pairs with a variety of changes and patterns, overcoming the limitation that experimental contact maps are often highly conserved across cell types7,39,45. To generate map pairs with a wide range of differences, we perturbed sequences across the human reference genome in silico, generated contact maps for the perturbed and unperturbed sequence pairs using the Akita convolutional neural network model20, and evaluated how each map comparison method scored every pair of maps (Extended Data Fig. 5a). We designed three types of perturbations: CTCF canonical motif insertions46, endogenous CTCF motif deletions, and random 100-bp deletions (Methods), which in total produced 22,500 unique contact frequency map pairs. We used the same transformation and normalization process on the resulting scores as in the HFF versus ESC comparisons (Methods and Extended Data Fig. 6). Twelve of the existing methods cannot be applied to predicted maps because they cannot take locus-specific contact matrices as input and were therefore excluded from the analysis, resulting in 13 remaining methods (Supplementary Table 1). These include the four newly adapted methods, which can be applied to any distance-normalized map pairs, including predicted maps, highlighting one of their advantages. We began with a qualitative evaluation, applying the 13 methods to map pairs representing a range of effect sizes. This confirmed that all methods are sensitive to large changes and insensitive to small ones (Extended Data Fig. 7). We then evaluated the top three highest-scoring map pairs for each method and found that, although all methods pick up maps that are different, MSE-based methods—MSE, Insulation (mse), and Triangle (mse)—pick out maps that have overall higher contrast (Supplementary Fig. 9). We used PCA (Extended Data Fig. 5b) and correlation (Fig. 3d) to quantitatively assess similarities and differences between methods across the full set of 22,500 map pairs. These analyses revealed several trends. First, the TAD and Loop count-based methods have the lowest correlations with the rest of the methods (TADs and Loops mean correlation is 5.55 × 10–17 and the rest of the methods mean correlation is 0.22, Fig. 3d). We hypothesize that this is the result of the small range of discrete scores generated by these methods, as well as their focus on a specific type of map change. We also found that MSE-based methods (MSE, Triangle_MSE, and Insulation_MSE) cluster separately from the other methods along the first principal component (Extended Data Fig. 5b). Clustering of the methods on the basis of their score vectors shows a similar trend (Extended Data Fig. 5c). This result aligns with our initial observation that Correlation and MSE often do not agree, especially across their top-scoring variants (Fig. 2, Extended Data Fig. 8, and Supplementary Fig. 10). Thus, the relationships between scores on predicted map pairs based on a range of sequence perturbations support the main conclusions from the experimental map comparisons.
+Simulations quantify method sensitivities and performance
+Sequence perturbations can produce a diversity of structural alterations, which often affect multiple aspects of a contact map at the same time. For instance, insertion of a CTCF site can both create a new TAD boundary and alter overall contact intensity. To disentangle how each method responds to changes, in particular map features, we generated simulated maps and synthetically altered one aspect at a time. We then measured the sensitivity of each method to each type of map change. As a template, we created a contact frequency map with two CTCF motifs forming a TAD (‘Base’ in Fig. 4) and used this canvas to simulate both biologically meaningful changes (for example, changes in TAD size, substructure, or intensity) and technical artifacts (for example, changes in noise or resolution) (Methods). For each change, we gradually increased the strength of the perturbation across 100 maps and
+
+
+Nature Methods | Volume 22 | April 2025 | 824–833 829
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+subsequently quantified the sensitivity of each method to each type of map change (Extended Data Fig. 9). The methods responded differently across the simulated changes (Fig. 4). Global methods are most sensitive to technical variations, such as increased noise and decreased resolution, whereas contact map methods are more robust (Fig. 4a,b). The global methods have steeper curves, indicative of greater sensitivity to smaller perturbations, in contrast to the flatter curves of contact map methods. As expected, correlation-based methods are unaffected by changes in contrast and intensity, whereas MSE-based methods are highly sensitive (Fig. 4c,d). All methods except Eigenvector reliably identify TAD size and sub-structure changes. However, some prioritize certain types of organizational change (Fig. 4e,f). For example, Insulation and Triangle are sensitive to boundary changes, whereas Contact Directionality
+highlights new boundaries but is less effective in identifying changes to existing boundaries. Eigenvector and Distance Enrichment are the least sensitive to changes likely to be technical, such as noise, resolution, contrast, and intensity. Furthermore, Triangle, Eigenvector, and Contact Directionality show the lowest sensitivity to increased noise and decreased resolution, compared with MSE, Correlation, and Insulation, highlighting the strengths of these methods. We next used the simulated map framework to quantitatively evaluate the performance of each method. We generated a set of ‘positive’ map pairs with structural changes (changes in boundary) and a set of ‘negative’ map pairs with artificial changes (decreased resolution) (Fig. 5a). Although the positive map pairs don’t encompass all possible changes and might favor methods that detect TAD or triangle-shaped changes, they provide a robust way to measure performance uniformly
+Eigenvector
+Contact directionality
+Insulation
+Distance enrichment
+Triangle
+TADs
+SCC
+Correlation
+MSE 4 2
+0
+SSIM
+Noise Resolution Contrast intensity Size Substructure
+Base a b c d e f
+2 1 0 –1 –2
+log (observed /
+expected)
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+4
+2
+0
+Fig. 4 | Simulated contact frequency maps with controlled perturbations estimate disruption score method sensitivities. a–f, Normalized disruption scores are plotted for a simulated contact frequency map containing a TAD across six types of perturbation. Each perturbation was added at 100 different degrees. The images shown correspond to the final degree—the maximum perturbation added. The line plots show the disruption scores obtained by comparing the original map (top left corner) with each perturbed map. The maps, corresponding to the incremental increases in perturbation, are shown alongside the change scores in Extended Data Figure 9. a, Noise is added by
+introducing random values drawn from a Gaussian distribution to the maps. b, Resolution is lowered by increasing bin size by averaging values in adjacent bins. c, Contrast is applied by increasing the range of the signal. d, Intensity is increased globally by adding a constant to all values. e, Size is increased by slightly enlarging the domain width. f, A sub-structure is added by gradually incorporating a new boundary at the center of the existing TAD. Dashed lines represent the correlation version of the method and solid lines the MSE version. Loops were excluded from the analysis since there are no loops intended to be created in these plots.
+
+
+Nature Methods | Volume 22 | April 2025 | 824–833 830
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+across methods. We calculated disruption scores and evaluated their ability to distinguish positives from negatives on the basis of the area under the curve (AUC) for the receiver operating characteristic (ROC) and precision recall (PR) curves. For most methods, there was a clear differentiation between scores from ‘positive’ and ‘negative’ map pairs, while for others there was not (Fig. 5b). This was reflected in the ROC and PR curves (Fig. 5c and Extended Data Fig. 10). MSE, Triangle (mse and corr), Contact Directionality (corr), and Insulation (corr) performed particularly well, further supporting the utility of our newly adapted methods. Others, such as SSIM, did not perform as well (Fig. 5c,d). To check the robustness of these trends to our definition of the negative set, we repeated the analysis with a ‘negative’ set generated by adding noise, which resulted in similar AUC values (Fig. 5d). Overall, PR curves exhibited trends that mirrored those observed with ROC analysis (Fig. 5c and Extended Data Fig. 10). Combining these findings enabled us to generate a scorecard for the evaluated methods (Table 1).
+Guidelines
+Our study assessed 25 methods for comparing 3D genome contact maps (Supplementary Table 1). Through qualitative assessments, controlled
+sensitivity analyses, and performance evaluation, we determined which methods are similar or complementary across experimental techniques, genomic window sizes, and map resolutions. We found that most methods have unique strengths reflecting different sensitivities to biological and technical variation. Global methods have many benefits. They are fast and easy to implement (Supplementary Table 1), require no predetermined decision-making about which features are important, and are consistent because they do not have tunable parameters. Nonetheless, they might have predispositions to prioritize certain patterns that might or might not have biological meaning. Correlation-based methods are insensitive to changes in contrast and intensity, whereas MSE-based methods are highly sensitive to them (Figs. 1 and 4). Although differences in contrast and intensity could be consequences of technical variability, they could also be biologically meaningful. Furthermore, global methods, especially MSE and SSIM, are particularly sensitive to increased noise and decreased resolution (Figs. 4 and 5). In contrast to global methods, contact map methods can isolate specific changes of interest, such as changes to TAD boundaries or loops (Fig. 4 and Extended Data Figs. 2 and 9). At the same time,
+ROC curves
+Negative: decreased resolution
+Positive map pair Negative map pair
+a
+cd
+Correlation
+Eigenvector (corr)
+Insulation (corr)
+Insulation (mse)
+MSE
+SSC
+SSIM
+TADs
+Triangle (corr)
+Triangle (mse)
+Negative:
+b
+30
+20
+10
+0
+0
+0
+0.2
+0.4
+0.6
+0.8
+1.0
+0 0.2 0.4 0.6 0.8 1.0
+0.2 0.4 0.6 0.8 1.0
+0 0.5 0 AUC AUC
+1 0.5 1
+Map pair count
+Normalized disruption score
+True positive rate
+False positive rate
+Normalized disruption score
+High AUROC example: MSE Low AUROC example: SSIM
+Positive map pairs
+Negative map pairs
+0
+0
+10
+20
+0.2 0.4 0.6 0.8 1.0
+Contact Directionality (corr)
+Distance Enrichment (corr)
+PR ROC
+Decreased resolution
+Increased noise
+Fig. 5 | Quantitative evaluation of contact map comparison methods. a, Examples of ‘positive’ and ‘negative’ map pairs reflecting a biologically meaningful change. The center map corresponds to a sequence with three CTCF-rich sites randomly added in the central 60% of the sequence, resulting in a structure with TADs, created using Akita. The left map (positive) was generated by removing the middle CTCF-rich site, which results in a changed structure; that is, the middle boundary is removed. The right map (negative) was generated by adding Gaussian noise to the center map, which results in the same structure but
+more noisy signal (Methods). b, Example distributions of a set of 100 positive and 100 negative (increased noise) map pairs and their normalized scores from MSE (high AUROC, 0.822) and SSIM (low AUROC, 0.000). c, ROC curves for 12 methods, each evaluated on sets of 100 positive and 100 negative (lower resolution) map pairs. d, The AUC values for the precision-recall (PR, gray) and ROC (black) curves across 12 methods. The negative set was either generated by adding noise to the maps (left bar plot) or by decreasing the resolution (right bar plot), both at random amounts for each map pair (Methods).
+
+
+Nature Methods | Volume 22 | April 2025 | 824–833 831
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+they require more careful consideration. Contact map methods often require parameter tuning and significance thresholds, and are computationally and time intensive (Supplementary Table 1). These challenges can be addressed using default parameters and by decreasing resolution, although sensitivities to parameter tuning and resolution changes should be considered before a method is selected (Figs. 4 and 5 and Supplementary Figs. 1, 2, and 7). Finally, caution should be exercised when using TADs and Loops at scale, especially in maps without strong TADs or loops, where they can produce misleading results. Moreover, because they are count-based, these methods can rank map pairs only into groups of various count differences. In general, the new and adapted methods we proposed align well with existing techniques, especially when comparing the top 5% of genome-wide scores—up to 86% are shared (Extended Data Figs. 4 and 8). Additionally, they are less sensitive to technical changes (Fig. 4), and can very accurately distinguish changes likely to have biological relevance from those with only technical differences (Fig. 5). Triangle stands out among the newly implemented methods, demonstrating high concordance with other methods, both for experimental and in silico maps (Extended Data Figs. 4 and 8, respectively), but it is also the slowest one (Supplementary Table 1). The Loops method also identifies most of the top 5% map pairs called by other methods for in silico maps (Extended Data Fig. 8), and it can identify uniquely top-scoring experimental maps (Extended Data Fig. 3). Overall, we find that there is no ‘one size fits all’ metric that best identifies changes to every feature of interest in a chromatin contact map. Researchers should consider the intended application and the types of change that are meaningful when selecting the most effective and relevant metrics. In general, we recommend first applying global methods as an initial screen to identify the most disrupted maps, especially when evaluating large datasets. Using both correlationand MSE-based scores will help mitigate weaknesses of each. We then suggest applying appropriate contact map methods to a subset of high-scoring map pairs to gain insight into the types of changes present. Finally, we recommend using methods that enable plotting of intermediate results, such as Eigenvector, Insulation, and Directionality index, for more qualitative analyses, such as visualizing changes and developing mechanistic hypotheses (Extended Data Fig. 2).
+Discussion
+We evaluated and compared 25 methods for quantifying differences between pairs of 3D contact maps, including many methods that have not been previously used for this application. We introduced Eigenvector, Contact Directionality, Distance Enrichment, and Triangle. We found that the choice of scoring method can have a significant impact on the conclusions. Therefore, we suggest that multiple comparison metrics be used when seeking biological insights into the function of the 3D genome and provide guidance on which methods to use. Several limitations should be considered when evaluating our results. Although we consider a range of experimental, predicted, and simulated maps, our findings might not apply to other experimental conditions, such as single-cell contact matrices or scenarios in which maps have a high level of noise and/or sparsity. Additionally, some of the methods we evaluated have parameters that can be tuned to optimize performance (Supplementary Table 1 and Supplementary Note). We did not set out to thoroughly evaluate all possible parameterizations, but rather focused on either default parameters or, as for TADs and Loops, selected a representative set on the basis of inspection of a few examples (Supplementary Fig. 1). Thus, methods with tuning parameters have potential to perform better than reported on specific applications. We also only tested three TAD callers—TADs, Arrowhead, and TADcompare—and three loop callers—Loops, Selfish and HiCcompare—to examine their general utility41,42. These represent methods in common use, but other implementations of these general approaches exist. We did not directly address the problem of identifying the threshold at which differences should be considered biologically or statistically significant. One could apply previously proposed6,27,47 thresholding methods to the ranks computed with scoring methods to define a significant set of map pairs. Nonetheless, our evaluations quantified performance across the full range of scores for each method. Furthermore, although predicted maps provide an opportunity to evaluate large sets of map pairs with a variety of perturbations, they also have limitations, including the window size based on the input sequence of the model, a lack of compatibility with scoring methods that require .cool files (genome wide), and the inability to accept matrices (local) as input. Finally, differences in the input data and run times across methods, such as the use of whole-chromosome
+Table 1 | Contact map comparison methods differ in their performance and sensitivities
+Performance Sensitivities
+Comparison method High AUROCa (>0.75) Resistant to noise Resistant to decreased resolution
+Indifferent to contrast change
+Sensitive to TAD substructure changes
+Correlation ✓✓ ✓ ✓✓ ✓
+MSE ✓✓ ✓✓
+SSIM ✓ ✓
+Contact Directionality (corr) ✓✓ ✓✓ ✓ ✓✓ ✓✓
+Distance Enrichment (corr) ✓ ✓✓ ✓✓ ✓✓ ✓
+Eigenvector (corr) ✓ ✓✓ ✓ ✓✓
+Insulation (corr) ✓ ✓ ✓✓ ✓
+Insulation (mse) ✓✓ ✓✓ ✓✓
+SCC ✓ ✓✓
+Triangle (corr) ✓✓ ✓✓ ✓✓ ✓✓ ✓✓
+Triangle (mse) ✓✓ ✓✓ ✓ ✓✓
+TADs ✓ ✓✓
+Trends and patterns across disruption scores summarized from simulation analyses (Figs. 4 and 5). These features are evaluated qualitatively, taking into account various analyses and subjectively categorizing the results into three outcomes: no presence (blank), presence (single checkmark), and strong presence (double checkmark). No presence means that the method does not have a given feature, presence means that the method has the given feature, and strong presence means that the feature is more prevalent for that method. aHigh AUROC analysis is based on negative maps with decreased resolution.
+
+
+Nature Methods | Volume 22 | April 2025 | 824–833 832
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+data by some and locus-specific data by others, prohibited us from performing chromosome-wise comparisons. We focused on quantitative methods for measuring differences between contact maps. Researchers often integrate additional data types to evaluate regions of interest. For example, to identify differences in genome structure between two cell types, one might overlay functional genomic annotations such as chromatin immunoprecipitation sequencing, assay for transposase-accessible chromatin sequencing or RNA sequencing, to identify regions in which the contact map difference aligns with a functional change. Developing and comprehensively evaluating methods that integrate functional genomic and structural data is a promising avenue for future work. Overall, our study provides a foundation and framework for analyzing contact maps at scale. We provide practical and useful guidelines for scoring contact maps that will enable further discovery of the mechanisms of the 3D genome. Our codebase of methods enables flexible and fast scoring across contact maps in a unified framework. The experiments we performed as a part of this study, such as the in silico deletion and insertion of thousands of CTCF motifs, also provide a useful benchmark for evaluating diverse biological questions. Although we could not evaluate all possible methods and applications, we provide qualitative guidelines for users to make informed decisions when selecting a comparison method based on the scale and application of their research question. We anticipate that incorporating methods with greater biological interpretability, like those evaluated here, will also further improve machine-learning methods for predicting contact maps. Finally, several of the methods we investigated can be applied to other types of data, such as chromatin imaging, so our findings can likely inform genomic matrix comparisons beyond chromatin contact maps.
+Online content
+Any methods, additional references, Nature Portfolio reporting summaries, source data, extended data, supplementary information, acknowledgements, peer review information; details of author contributions and competing interests; and statements of data and code availability are available at https://doi.org/10.1038/s41592-025-02630-5.
+References
+1. Kragesteen, B. K. et al. Dynamic 3D chromatin architecture contributes to enhancer specificity and limb morphogenesis. Nat. Genet. 50, 1463–1473 (2018). 2. Spielmann, M., Lupiáñez, D. G. & Mundlos, S. Structural variation in the 3D genome. Nat. Rev. Genet. 19, 453–467 (2018). 3. Gorkin, D. U. et al. Common DNA sequence variation influences 3-dimensional conformation of the human genome. Genome Biol. 20, 255 (2019). 4. Eres, I. E., Luo, K., Hsiao, C. J., Blake, L. E. & Gilad, Y. Reorganization of 3D genome structure may contribute to gene regulatory evolution in primates. PLoS Genet. 15, e1008278 (2019). 5. Hoencamp, C. et al. 3D genomics across the tree of life reveals condensin II as a determinant of architecture type. Science 372, 984–989 (2021). 6. Galan, S. et al. CHESS enables quantitative comparison of chromatin contact data and automatic feature extraction. Nat. Genet. 52, 1247–1255 (2020). 7. Yang, T. et al. HiCRep: assessing the reproducibility of Hi-C data using a stratum-adjusted correlation coefficient. Genome Res. 27, 1939–1949 (2017). 8. Dekker, J., Rippe, K., Dekker, M. & Kleckner, N. Capturing chromosome conformation. Science 295, 1306–1311 (2002). 9. Lieberman-Aiden, E. et al. Comprehensive mapping of long-range interactions reveals folding principles of the human genome. Science 326, 289–293 (2009).
+10. Dixon, J. R., Gorkin, D. U. & Ren, B. Chromatin domains: the unit of chromosome organization. Mol. Cell 62, 668–680 (2016). 11. Krietenstein, N. et al. Ultrastructural details of mammalian chromosome architecture. Mol. Cell 78, 554–565 (2020). 12. Hsieh, T.-H. S. et al. Resolving the 3D landscape of transcription-linked mammalian chromatin folding. Mol. Cell 78, 539–553 (2020). 13. Fudenberg, G. et al. Formation of chromosomal domains by loop extrusion. Cell Rep. 15, 2038–2049 (2016). 14. Vian, L. et al. The energetics and physiological impact of cohesin extrusion. Cell 175, 292–294 (2018). 15. Kraft, K. et al. Serial genomic inversions induce tissue-specific architectural stripes, gene misexpression and congenital malformations. Nat. Cell Biol. 21, 305–310 (2019). 16. Nagano, T. et al. Single-cell Hi-C reveals cell-to-cell variability in chromosome structure. Nature 502, 59–64 (2013). 17. Nagano, T. et al. Cell-cycle dynamics of chromosomal organization at single-cell resolution. Nature 547, 61–67 (2017). 18. Tan, L., Xing, D., Chang, C.-H., Li, H. & Xie, X. S. Three-dimensional genome structures of single diploid human cells. Science 361, 924–928 (2018). 19. Tan, L. et al. Changes in genome architecture and transcriptional dynamics progress independently of sensory experience during post-natal brain development. Cell 184, 741–758 (2021). 20. Fudenberg, G., Kelley, D. R. & Pollard, K. S. Predicting 3D genome folding from DNA sequence with Akita. Nat. Methods 17, 1111–1117 (2020). 21. Schwessinger, R. et al. DeepC: predicting 3D genome folding using megabase-scale transfer learning. Nat. Methods 17, 1118–1124 (2020). 22. Zhang, R., Zhou, T. & Ma, J. Multiscale and integrative single-cell Hi-C analysis with Higashi. Nat. Biotechnol. 40, 254–261 (2022). 23. Nicoletti, C. Methods for the differential analysis of Hi-C data. In Hi-C Data Analysis: Methods and Protocols (eds Bicciato, S. & Ferrari, F.) 61–95 (Springer, 2022). 24. Gong, H., Yang, Y., Zhang, S., Li, M. & Zhang, X. Application of Hi-C and other omics data analysis in human cancer and cell differentiation research. Comput. Struct. Biotechnol. J. 19, 2070–2083 (2021). 25. Yan, K.-K., Yardimci, G. G., Yan, C., Noble, W. S. & Gerstein, M. HiC-spector: a matrix library for spectral and reproducibility analysis of Hi-C contact maps. Bioinformatics 33, 2199–2201 (2017). 26. Yardımcı, G. G. et al. Measuring the reproducibility and quality of Hi-C data. Genome Biol. 20, 57 (2019). 27. Stansfield, J. C., Cresswell, K. G., Vladimirov, V. I. & Dozmorov, M. G. HiCcompare: an R-package for joint normalization and comparison of HI-C datasets. BMC Bioinf. 19, 279 (2018). 28. Yang, D., Chung, T. & Kim, D. DeepLUCIA: predicting tissue-specific chromatin loops using Deep Learning-based Universal Chromatin Interaction Annotator. Bioinformatics 38, 3501–3512 (2022). 29. Boninsegna, L. et al. Integrative genome modeling platform reveals essentiality of rare contact events in 3D genome organizations. Nat. Methods 19, 938–949 (2022). 30. Imakaev, M. et al. Iterative correction of Hi-C data reveals hallmarks of chromosome organization. Nat. Methods 9, 999–1003 (2012). 31. Rao, S. S. P. et al. A 3D map of the human genome at kilobase resolution reveals principles of chromatin looping. Cell 159, 1665–1680 (2014). 32. Dixon, J. R. et al. Chromatin architecture reorganization during stem cell differentiation. Nature 518, 331–336 (2015).
+
+
+Nature Methods | Volume 22 | April 2025 | 824–833 833
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+33. Crane, E. et al. Condensin-driven remodelling of X chromosome topology during dosage compensation. Nature 523, 240–244 (2015). 34. Open2C et al. Cooltools: enabling high-resolution Hi-C analysis in Python. PLoS Comput. Biol. 20, e1012067 (2024). 35. Lun, A. T. L. & Smyth, G. K. diffHic: a Bioconductor package to detect differential genomic interactions in Hi-C data. BMC Bioinf. 16, 258 (2015). 36. Wang, J. & Nakato, R. HiC1Dmetrics: framework to extract various one-dimensional features from chromosome structure data. Brief. Bioinform. 23, bbab509 (2022). 37. Cresswell, K. G. & Dozmorov, M. G. TADCompare: an R package for differential and temporal analysis of topologically associated domains. Front. Genet. 11, 158 (2020). 38. Nichols, M. H. & Corces, V. G. Principles of 3D compartmentalization of the human genome. Cell Rep. 35, 109330 (2021). 39. Dixon, J. R. et al. Topological domains in mammalian genomes identified by analysis of chromatin interactions. Nature 485, 376–380 (2012). 40. McArthur, E. et al. Reconstructing the 3D genome organization of Neanderthals reveals that chromatin folding shaped phenotypic and sequence divergence. Preprint at bioRxiv https://doi.org/ 10.1101/2022.02.07.479462 (2022). 41. Forcato, M. et al. Comparison of computational methods for Hi-C data analysis. Nat. Methods 14, 679–685 (2017). 42. Zufferey, M., Tavernari, D., Oricchio, E. & Ciriello, G. Comparison of computational methods for the identification of topologically associating domains. Genome Biol. 19, 217 (2018). 43. Akgol Oksuz, B. et al. Systematic evaluation of chromosome conformation capture assays. Nat. Methods 18, 1046–1055 (2021).
+44. Tan, J. et al. Cell-type-specific prediction of 3D chromatin organization enables high-throughput in silico genetic screening. Nat. Biotechnol. 41, 1140–1150 (2023). 45. McArthur, E. & Capra, J. A. Topologically associating domain boundaries that are stable across diverse cell types are evolutionarily constrained and enriched for heritability. Am. J. Hum. Genet. 108, 269–283 (2021). 46. Castro-Mondragon, J. A. et al. JASPAR 2022: the 9th release of the open-access database of transcription factor binding profiles. Nucleic Acids Res. 50, D165–D173 (2022).
+47. Xu, Z. et al. A hidden Markov random field-based Bayesian method for the detection of long-range chromosomal interactions in Hi-C data. Bioinformatics 32, 650–656 (2016).
+Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional affiliations.
+Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third party material in this article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included in the article’s Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit http://creativecommons. org/licenses/by/4.0/.
+© The Author(s) 2025
+
+
+Nature Methods
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+Methods Datasets
+Experimental maps. Maps of 3D chromatin contacts are represented as 2D matrices of pairwise interaction frequencies. Regions with high values indicate genomic loci with a high frequency of interaction in physical space, on average. The experimental maps used in this study from HFFs and ESCs were preprocessed as training datasets for the Akita model11,20, reflecting log (observed / expected) contact frequencies48. These high-quality Micro-C and Hi-C datasets underwent several normalization and processing steps, including normalization using genome-wide iterative correction (ICE)30, adaptive coarse-graining, normalization for the distance-dependent decrease in contact frequency, log clipping to (−2,2), linearly interpolation to fill missing bins, and convolving with a 2D Gaussian filter for smoothing. The combination of observed-over-expected normalization with ICE enables removal of biases and the genomic-distance-dependent decay within the sample and scaling of the sequencing depth between samples49. Subsequent processing steps concentrate on locus-specific patterns, mitigate the impact of sparsity, and retain consistency across the experimental data and computational predictions. Our scoring metrics are minimally impacted by these steps, except for the log transformation, which leads to more sensitive detection of differences between map pairs (Supplementary Fig. 8). The genomic regions that we used for comparison were either genome-wide tiled regions (Fig. 2), select examples (Fig. 3), or regions surrounding DEGs between ESCs and HFFs (Fig. 4). The genome-wide tilted regions were obtained by sliding across genomic contigs, which were generated by splitting the genome at assembly gaps, large unmappable regions, and low-coverage regions. Each tile had a window size of 1 × 220 bp and stride of 1 × 218 bp (~262 kb) or 1 × 219 bp (~524 kb)20, to generate 7,840 windows of 1 Mb. To identify DEGs, we used edgeR with RNA-sequencing data downloaded from the 4DN data portal (https://data.4dnucleome.org/). The windows around the DEGs were the 100-kb, 1-Mb, or 10-Mb regions around the gene, centering the gene body in the window. When the region fell outside of chromosome-arm coordinates, we removed it from the analysis. The comparison of DEG-adjacent regions was done only for chromosomes 21 and 22—the two smallest chromosomes—because some of the methods, such as TADcompare and HiCcompare, are too computationally intensive to run on larger chromosomes without specialized computing resources. We then removed any windows in which more than 60% of the map had a value of 0, indicating potential data unreliability. This threshold was set by looking at maps at different thresholds and determining where they began to look artifact-based. As a result, we identified 201 10-kb regions, 256 1-Mb regions, and 285 10-Mb regions across the two chromosomes (Supplementary Table 2). For the 10-kb and 1-Mb windows, we used 2,048-bp bins—the same resolution as Akita—to maintain consistency. For 10-Mb windows, we used 20,480-bp bins so that the maps contained a similar number of bins across window sizes.
+In silico perturbed maps. To facilitate large-scale comparisons of contact maps, we generated thousands of maps predicted from in silico CTCF-motif insertions, CTCF-motif deletions, and deletions of random 100-bp sequences. These alterations were passed into Akita20, which predicts genome folding from sequence, enabling the creation of pairs of maps with structural rearrangements. For CTCF insertions, CTCF motif sequences were randomly selected from annotated CTCF sites in the reference genome from the hg38 build of the JASPAR database46. These motifs were inserted into the center of 1 Mb of DNA with start locations randomly selected from chromosome 1. Akita requires a fixed input of 1 × 220 bp. Additional sequence was trimmed from the 3′ end, such that the final sequence remained 1 Mb. To curate deletions, we again selected random CTCF sites from JASPAR, pulled the surrounding 1 Mb of DNA, removed the motif sequence, and pulled in additional sequence from the 3′ end such that the entire sequence remained 1 Mb in length. The same strategy was applied to randomly selected 100-bp
+fragments for deletion. All generated 1-Mb genomic query sequences were filtered to exclude overlap with ENCODE blacklisted regions50. For each perturbation, Akita was provided with both the original genomic sequence and the perturbed sequence, resulting in two predicted contact maps, each 448 × 448 pixels in size. Each pixel has a resolution of 2,048 bp, representing the center 917,504 bp of a total length of ~1 Mb of DNA sequence20. The dataset consists of 7,500 contact map pairs for each category of perturbation, totaling 22,500 pairs.
+Simulated maps. To generate simulated maps, we initially generated predicted maps with Akita using random DNA sequences. The predicted maps showed minimal structure. To eliminate any higher-order folding patterns, we shuffled sequence matches to the forward and reverse canonical CTCF motifs46 to produce a predicted blank canvas map. Structure was reintroduced to simulated maps by inserting forward and reverse CTCF motifs one-fourth and three-fourths through the random DNA sequence, producing TAD-like boundaries. To evaluate method sensitivity (Fig. 4), we tuned simulated parameters as described below. Visualizations of these changes are available in Extended Data Figure 9.
+• Noise: Gaussian noise was added to the maps with a s.d. ranging from 0 (no added noise) to 0.2. • Resolution: the original 448 × 448 map was downsampled ranging from a resolution of 2,048 bp (original resolution) to 50,972 bp, by averaging neighboring bins into larger bins. • Contrast: pixel intensities of the contact map were multiplied by a scalar ranging from 1 (no increase in contrast) to 2. • Intensity: a scalar value ranging from 0 (no addition) to 0.2 was added to all pixels in the contact map. • Size: the size of the substructure within the map was increased by resizing the original map by a scalar and trimming the matrix back down to the original dimensions. Map sizes were increased by a factor of 1 (no resize) to 1.1. • Substructure: an additional map was created by introducing CTCF halfway into the random sequence to produce an additional boundary. The original map was combined with the substructure map, with a multiplier ranging from 0 (no added structure) to 1 (total added structure).
+Map differences were scored between the base map and each map with a tuned parameter. Scores were adjusted, when necessary, so that larger values always correspond with bigger differences. Then, scores were scaled on the basis of 100 random deletions chosen randomly from a total of 7,500 (Extended Data Fig. 5), with each score divided by the mean of the 100 scaling scores. This process enables comparison of scores across methods (Fig. 4). To measure method performance, we generated positive and negative map pairs based on a neutral map containing a TAD. Positive maps were generated by perturbing the sequence to alter the structure, and negative maps were produced by degrading the resolution or increasing noise. Neutral maps began with a blank canvas map (no structure), as described above, and were formed by inserting a sequence of three consecutive CTCF motifs at three random locations in the sequence between the 20th and 80th percentile of the sequence length. The left CTCF cluster featured reverse motifs, while the middle and right clusters contained forward motifs. To generate positive maps, the middle CTCF motif cluster was removed from the neutral sequences. Depending on the location of the middle removed CTCF cluster, the positive maps either lost a central boundary or experienced a reduction in boundary strength owing to the loss of a CTCF cluster adjacent to another. These manipulations resulted in 100 map pairs with a variety of structural differences. For negative maps, the neutral map was modified by introducing Gaussian noise with a s.d. randomly selected between 0.01 and 0.1, or by decreasing the resolution to a bin size randomly chosen between 25,00 to 25,000 bp. This resulted in two
+
+
+Nature Methods
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+sets of ‘negative’ map pairs, one based on noise and one on resolution. The positive and negative map pair sets were scored using each of the 12 applicable methods for predicted contact maps. The scores were min-max normalized for each method so that a score of 0 means there is no change (predicted negative) and a score of 1 means there is change (predicted positive). Using the true ‘positive’ and ‘negative’ labels of the map pairs, ROC and PR curves were generated, and the AUC was calculated for each method using sklearn (Fig. 5 and Extended Data Fig. 10).
+Comparing methods
+Adapted methods. We describe four new or adapted methodsContact Directionality, Distance Enrichment, Eigenvector, and Triangleto compare contact frequency maps generated from experiments or predictive models. Contact Directionality, Distance Enrichment, and Eigenvector were adapted from Directionality Index39, Contact Decay9, and PCA38, respectively, which are established methods for analyzing individual experimental maps at different scales. Triangle was developed to detect changes across gradual scales of contact, from regions that are near to far. Our goal was to evaluate maps on the basis of characteristics that these methods focus on. For example, Contact Directionality should evaluate changes at TAD boundaries where contact is concentrated in either direction but not at the center. Distance Enrichment is meant to emphasize changes at regions that are distal since it measures the average contact across all distances, over-representing distal regions that have fewer bins in the map. Eigenvector is meant to identify changes to blocks of regions that have more intra-region contact than inter-region contact. These methods were applied to each map, and the resulting tracks were compared using Correlation or MSE. The intermediate tracks can be visualized to qualitatively evaluate differences along the map (Extended Data Fig. 2). However, Triangle is applied directly to the map pair with no intermediate track. More detailed information on these methods and their implementation can be found in the Supplementary Note.
+Scoring contact maps. We applied all comparison metrics to pairs of experimental, predicted, and synthetic maps. For details on computation of each metric, see the Supplementary Note. Missing values were masked before evaluation and were not considered by the comparison metrics. Implementations of scoring methods can be found in the codebase. MSE and/or Correlation were applied to some methods to collapse two 2D tracks into a scalar value. Pearson correlation behaved almost identically to Spearman’s rank correlation and therefore was excluded from analyses. To expedite evaluation time across thousands of comparisons of in silico perturbed map pairs (Extended Data Figs. 5, 6, and 8), the resolution of the input was reduced by fivefold for Triangle, a process known to be computationally intensive. Furthermore, for Contact Directionality, we changed the resolution to 2,000 because some of the resulting tracks in some maps extended to infinity. Finally, for in silico perturbed maps, Loops and TADs scores were missing in cases where the feature was not detected in either map. To ensure that scores were comparable across approaches, we adjusted some methods such that higher values indicate greater disruption and smaller values indicate that maps are more similar; for example, for methods such as Correlation, we used the formula 1 – Correlation to ensure that higher scores signify bigger differences between maps. For all the results, we use min-max normalized scores to make it easier to interpret how scores for one method compare to scores of another. For predicted maps, we additionally scale all values by the mean score of all random 100 bp deletions using Akita, which we find to have minimal impact (Extended Data Fig. 6). For example, a raw MSE of 0.0065 and a raw 1 - pearson correlation of 0.036 both correspond to the same normalized score of 2. That is, a disruption of that magnitude corresponds to 2 times the average disruption of a 100 bp deletion. For Loops and TADs, we quantify the ratio of changed (for example, added or lost) features (TADs or loops) to extend these approaches and
+generate a single score for each pair of maps.
+Method parameters. The following methods required no adjustable input parameters: MSE, Spearman’s rank correlation coefficient, and Pearson correlation coefficient, SSIM, SCC, Distance Enrichment, Eigenvector, and Triangle correlation. We describe tunable parameters choices for the remaining methods below. Parameters were set to default unless otherwise noted. We did not optimize tunable parameter choices, instead selecting default choices from existing approaches. Results from alternative parameter selection are demonstrated in Supplementary Figures 1 and 2. For Insulation, the window_size parameter was set to 10, meaning the size of the diamond-shaped window was 10 bins. For Contact Directionality, the parameter ‘window_resolution’ was set to 10,000 bp, which determines the resolution of the sliding window. The ‘replace_ends’ option was invoked to replace the values at the ends of the directionality index track with zeros. The ‘buffer’ parameter was set to 50, meaning that zeros are applied within 50 base pairs from the track ends. For Loops, the parameter p was set to 2, which defines the width of the interaction region surrounding the peak. The width was set to 5, determining the size for the donut filter. The ther parameter was set to 1.1, which specifies the threshold for the ratio of the center windows to both the donut and lower-left filters. Similarly, ther_H and ther_V were both set to 1.1, defining the threshold for the ratio of center windows to the horizontal and vertical filters, respectively. Finally, radius was set to 5, which determines the maximum distance between two loop points for them to be considered part of the same loop. For TADs, the window_size was set to 5, defining the size of the diamond-shaped window. The ther parameter was set to 0.2, which established the threshold for TAD boundaries. Finally, the radius was set to 5, specifying the maximum distance between two TADs for them to be considered part of the same TAD.
+Data analysis
+The following packages and versions were used: Python v3.10.12, cooler v0.9.2, cooltools v0.5.4, Matplotlib v3.7.2, Numpy v1.23.5, Pandas v1.5.3, scipy v1.10.1, Seaborn v0.12.2, h5py v3.8.0, hicrep v0.2.6, sklearn v1.0.2, skimage v0.19.3, Arrowhead of Juicer Tools v1.8.9, CHESS v0.3.8, HiC1Dmetrics v0.2.5, Selfish v1.14.0, Rstudio v0.16.0, HiCcompare v1.26.0, TADcompare v1.14.0, dcHiC v1, and conda v4.12.0.
+Reporting summary
+Further information on research design is available in the Nature Portfolio Reporting Summary linked to this article.
+Data availability
+Micro-C and Hi-C datasets used in map comparisons and RNA-seq datasets for identifying DEG genes are publicly available from the 4DN data portal (Micro-C for ESCs and HFFs: 4DNES21D8SP8 and 4DNESWST3UBH; Hi-C for ESCs and HFFs: 4DNESX75DD7R and 4DNESNMAAN97; and RNA-seq for ESCs and HFFs: 4DNES3IOYG74 and 4DNESFH3EHTU). The reference genome from the hg38 build was used.
+Code availability
+Our codebase is publicly available to enable researchers to easily test and apply all 25 methods. The code is written in Python and R and accompanied by documentation to help users get started. The methods enable flexible parameter setting and running multiple methods simultaneously on one dataset, making it easier to compare the results of different approaches and to select the most appropriate methods. To aid in interpretation, we also provide code for visualizing methods that generate intermediate 1D tracks as in Extended Data Figure 2a. Overall, our codebase provides a valuable resource for researchers who wish to apply multiple contact map comparison methods to their own datasets
+
+
+Nature Methods
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+and rank pairs of maps based on their differences. All original code and resulting data for experimental and in silico scored contact map pairs are available at https://github.com/pollardlab/contact_map_scoring and https://doi.org/10.5281/zenodo.13977146 (ref. 51).
+References
+48. Lyu, H., Liu, E. & Wu, Z. Comparison of normalization methods for Hi-C data. Biotechniques 68, 56–64 (2020). 49. Fletez-Brant, K., Qiu, Y., Gorkin, D. U., Hu, M. & Hansen, K. D. Removing unwanted variation between samples in Hi-C experiments. Brief. Bioinform. 25, bbae217 (2024). 50. Amemiya, H. M., Kundaje, A. & Boyle, A. P. The ENCODE Blacklist: identification of problematic regions of the genome. Sci. Rep. 9, 9354 (2019). 51. Gjoni, K. et al. Comparing chromatin contact maps at scale: methods and insights. Zenodo https://doi.org/10.5281/ ZENODO.13977146 (2024).
+Acknowledgements
+We gratefully acknowledge members of the Pollard and Capra labs for project feedback, as well as V. Ramani, for proposing that we include Eigenvector in the study. We additionally thank M. Keiser for feedback and support. This work was supported by the NIH 4D Nucleome Project (award no. U01HL157989 to K.S.P.), the NIH Office of the Director (award no. R03OD034499 to K.S.P.), NIGMS (award no. R35GM127087 to J.A.C, award no. T32GM007347), NHGRI (award no. F30HG011200 to E.M.), Additional Ventures, two UCSF Achievement Rewards for College Scientists Scholarship (K.G. and L.M.G.) and Gladstone Institutes.
+Author contributions
+Conceptualization: K.G., L.M.G., S.K., E.M., M.P., J.A.C., K.S.P. Methodology: K.G., L.M.G., S.K., E.M. Formal analysis and investigation: K.G., L.M.G., S.K., E.M. Writing, original draft: K.G., L.M.G., S.K., E.M., M.P. Writing, review and editing: K.G., L.M.G., S.K., E.M., M.P., J.A.C., K.S.P. Visualization, K.G., L.M.G., S.K., E.M. Supervision, J.A.C., K.S.P. Funding acquisition, J.A.C., K.S.P.
+Competing interests
+The authors declare no competing interests.
+Additional information
+Extended data is available for this paper at https://doi.org/10.1038/s41592-025-02630-5.
+Supplementary information The online version contains supplementary material available at https://doi.org/10.1038/s41592-025-02630-5.
+Correspondence and requests for materials should be addressed to John A. Capra or Katherine S. Pollard.
+Peer review information Nature Methods thanks Ferhat Ay and the
+other, anonymous, reviewer(s) for their contribution to the peer review of this work. Peer review information: Primary Handling Editor: Lin Tang, in collaboration with the Nature Methods team. Peer reviewer reports are available.
+Reprints and permissions information is available at www.nature.com/reprints.
+
+
+Nature Methods
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+Micro-C Hi-C
+Global methods
+Contact map methods
+Extended Data Fig. 1 | Score distributions of DEG regions for 10 kb, 1 MB, and 10 Mb windows. Each disruption score method (rows) produces a different range and mean (red line) of distribution of scores. Histograms show the
+normalized scores comparing maps between ESCs and HFF around DEGs of window size 10 kb (left), 1 Mb (middle), and 10 Mb (right), for MicroC (left panel) and HiC (right panel).
+
+
+Nature Methods
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+Boundary difference Stripe difference Focal contact difference
+ESC ESC ESC
+a
+Shared TADs
+Shared Loops
+b
+i
+Unique TADs
+Unique Loops
+TAD difference Loop difference
+HFF HFF HFF
+ESC ESC
+HFF HFF
+chr3: 137,129,984-138,178,560 chr3:138,702,848-139,751,424
+2
+1
+0
+-1
+-2
+log(Obs/Exp)
+Eigenvector
+Insultaion
+Contact Directionality
+ii
+iii
+iv
+0 100 200 300 400 position (pixel)
+0 100 200 300 400 position (pixel)
+0 100 200 300 400 position (pixel)
+Distance Enrichment
+v
+distance (bp)
+100 101 102
+distance (bp)
+100 101 102
+distance (bp)
+100 101 102
+chr12: 107,685,888-108,734,464 chr22: 32,262,144-33,310,720 chr8: 60,973,056-62,021,632
+Extended Data Fig. 2 | Visualizing changes that certain methods detect on example map pairs. a. i. Examples of regions where contact frequency maps differ between HFF and ESCs MicroC across three structural changes: a lost TAD boundary (left panel), a lost stripe (middle panel), and lost loops (right panel), as marked by red boxes. ii-vi. Tracks of scores along the map for ESCs (blue) and HFF (gray) for applicable methods. Tracks for methods in (ii - v) correspond to the coordinates of the contact maps, while Distance enrichment (v) is plotted across genomic distance. Contact directionality compares the interaction tendency of each locus towards upstream or downstream regions between maps (see Supplementary Method Descriptions for detailed equation).
+Distance enrichment is the comparison of the track of average interaction frequencies along genomic distances generated for each map. Disruption scores for these methods are calculated by taking the Spearman’s correlation or MSE between the two tracks. These examples highlight different features in the tracks, from overall structural differences and average contact, to sharp changes in contrast. b. Two example loci with differences in TADs (left panel) or loops (right panel) between HFF and ESC, where the TADs are marked with lines and the loops are circled. Black boundaries and circles are shared between the maps while red boundary lines and circles are unique to one of the maps.
+
+
+Nature Methods
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+!
+Arrowhead Contact Directionality (corr) dcHiC (mse) Distance Enrichment (corr)
+!
+Eigenvector (corr)
+HiC1Dmetrics deltaDLR HiC1Dmetrics ISC HiC1Dmetrics SSC Insulation (mse) Loops
+Selfish SSIM TADcompare Triangle (corr) 2
+1
+0
+-1
+-2
+log(Obs/Exp)
+1
+0.5
+0
+-0.5
+-1
+log(Obs/Exp)
+Extended Data Fig. 3 | Uniquely high scoring map for each method. DEG
+window scores for 1 Mb windows between MicroC ESC and HFF were scored and the top 5% highest scoring maps for each method were compared to get those
+that were top scoring in only one method. Here we show an example map out of all the uniquely top scoring maps for each method (total of 60 maps across 16 methods).
+
+
+Nature Methods
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+Global methods
+Contact map methods
+Extended Data Fig. 4 | Overlap of the most disruptive windows identified by each scoring method. MicroC ESC and HFF 1 Mb windows in chromosomes 21 and 22 were compared. Each cell in the heatmap represents the percentage of map pairs that are above the 5% cutoff for the method in row and above the 5% cutoff for the method in the column with respect to all map pairs that are above
+5% cutoff in the method in the row. Darker colors indicate higher concordance for the top scoring loci. The heatmap is symmetric except for methods with a smaller range of values. The imbalance of these two methods is caused by multiple map pairs that have scores equal to the 5th percentile, which results from methods producing low counts of discrete values.
+
+
+Nature Methods
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+Insulation (corr)
+Distance enrichment (corr)
+Eigenvector (corr)
+Contact directionality (corr)
+Insulation (mse)
+SCC
+MSE
+Perturbation Triangle (corr)
+Triangle (mse)
+Correlation
+SSIM
+Loops
+TADs
+5
+0 10
+a
+c CTCF insertion CTCF deletion Random deletion
+1 Mb
+Reference
+1 Mb
+Perturbed reference
+CTCF insertion CTCF deletion Random deletion
+Perturb
+Compare
+Akita
+Basic methods Map-informed Feature-informed
+Predict
+map Akita
+Predict map
+Insulation (corr)
+Distance Enrichment (corr)
+Eigenvector (corr)
+Contact Directionality (corr)
+Insulation (mse)
+SCC
+MSE
+Triangle (corr)
+Triangle (mse)
+Correlation
+SSIM
+Loops
+TADs
+b
+Disruption score
+A
+B
+B-A
+A
+B
+B-A
+A
+B
+B-A
+A
+B
+B-A
+A
+B
+B-A
+A
+B
+B-A
+2
+1
+0
+-1
+-2
+log(Obs-Exp)
+1
+0.5
+0
+-0.5
+-1
+∆ log(Obs-Exp)
+d
+i ii iii iv v vi
+Extended Data Fig. 5 | Comparison of disruption score methods. a. Schematic describing the strategy for comparing in silico perturbed contact maps. Random ~1 Mb windows of the human genome (GRCh38) are selected and input into Akita to predict chromatin contacts (left). The same window is also perturbed with a CTCF motif insertion, deletion, or random 100 base pair deletion. The resulting sequence is also input into Akita to predict chromatin contacts of this perturbed reference sequence (right). The perturbed and unperturbed maps were compared by applying the 13 global and contact map methods. b. Principal component analysis of disruption scores of each method from perturbed map pairs. c. Heatmap of normalized disruption scores across all methods and perturbations. The colored key along the top of the heatmap indicates whether
+the perturbation was a random deletion (pink), a CTCF insertion (navy), or a CTCF deletion (light blue). Method colors are the same as in b. Six broad trends in disruption score patterns across methods are marked with brackets. d. Representative example map pairs chosen from the groups identified in c. Example maps were manually selected by visual inspection of the pattern of scores (grayscale heatmap) that most closely matched the pattern in each section of the heatmap: i. high scores across 5 methods; ii. low across all methods except for Eigenvector (corr); iii. low scores across all methods; iv. low scores across methods but higher for MSE-based scores; v. high scores only for MSE-based scores; vi. high scores for correlation-based scores: triangle (corr), corr, and SCC.
+
+
+Nature Methods
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+Extended Data Fig. 6 | Score distributions of random deletions, CTCF
+deletions, and CTCF insertions. Each disruption score method (rows) produces a different range and mean (red line) across scores produced. Histograms show the raw scores comparing maps produced by 7500 random 100 bp deletions
+(left), 7500 CTCF insertions (middle), and 7500 CTCF deletions (right). To enable comparisons between the different scores, the rest of the in silico perturbation map pair figures report scores standardized to the mean disruption produced by a random 100 bp deletion.
+
+
+Nature Methods
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+Whole matrix scores Matrix-to-track scores
+Feature count scores
+Contact Directionality
+Distance Enrichment
+ab
+c
+Large change Small change No change Large change Small change No change
+Map 1
+Map 2
+map
+Map 1
+Map 2
+map
+MSE 1 - Spearman 1 - SSIM 1 - SCC
+0.123 0.427 0.514 0.335
+0.005 0.289 0.371 0.423
+6.955e-6 0.001 0.001 0.001
+Large change
+Small change
+No change
+TADs Loops
+Eigenvector
+Insulation
+Triangle
+MSE (excluded) 1- Spearman
+MSE (excluded) 1- Spearman
+MSE (excluded) 1- Spearman
+MSE 1- Spearman
+MSE 1- Spearman
+36.991 0.823
+4.846 0.119
+0.001 0.001
+29870.467 0.497
+53070.583 0.195
+168486630.25 0.001
+0.010 0.229
+0.002 0.181
+9.038e-6 0.001
+0.0219 0.456
+0.001 0.730
+6.641e-7 0.001
+0.125 0.427
+0.006 0.289
+9.456e-6 0.001
+Extended Data Fig. 7 | Scoring metrics on contact map pairs with large, small, and minimal changes. a. Scoring results across three example loci with a large, small, and minimal change upon CTCF motif insertion for whole matrix methods that take in contact matrices. b. Scoring results across three example loci for Matrix-to-track methods that produce tracks for each map and generate scores by comparing those tracks with correlation (1- Spearman) or MSE. Raw tracks
+are shown for each measurement and the MSE and 1- Spearman’s correlation between the tracks are shown below. c. Scoring examples across three example loci with no change, a minimal change, and a large change to folding for Featurecount methods that count features and generate scores by calculating the overlap ratio of features between the maps.
+
+
+Nature Methods
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+Extended Data Fig. 8 | Overlap of the most disruptive map pairs identified by each scoring method. Each cell in the heatmap represents the percentage of map pairs that are above the 5% cutoff for the method in row and above the 5% cutoff for the method in the column. Darker colors indicate higher concordance for
+the top scoring loci. The heatmap is symmetric except for Loops and TADs. The imbalance of these two methods is caused by multiple map pairs that have scores equal to the 5th percentile, which results from methods producing low counts of discrete values.
+
+
+Nature Methods
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+Resolution = 2048 bp
+Resolution = 6899 bp
+Resolution = 11763 bp
+Resolution = 16682 bp
+Resolution = 21845 bp
+Resolution = 26985 bp
+Resolution = 31638 bp
+Resolution = 36700 bp
+Resolution = 41705 bp
+Resolution = 45875 bp
+Resolution = 50972 bp
+Gaussian noise with stdev = 0
+Gaussian noise with stdev = 0.0202
+Gaussian noise with stdev = 0.0404
+Gaussian noise with stdev = 0.0606
+Gaussian noise with stdev = 0.0808
+Gaussian noise with stdev = 0.101
+Gaussian noise with stdev = 0.121
+Gaussian noise with stdev = 0.141
+Gaussian noise with stdev = 0.162
+Gaussian noise with stdev = 0.182
+Gaussian noise with stdev = 0.2
+Contrast
+multiplier = 1
+Contrast
+multiplier = 1.1
+Contrast
+multiplier = 1.2
+Contrast
+multiplier = 1.3
+Contrast
+multiplier = 1.4
+Contrast
+multiplier = 1.51
+Contrast
+multiplier = 1.61
+Contrast
+multiplier = 1.71
+Contrast
+multiplier = 1.81
+Contrast
+multiplier = 1.91
+Contrast
+multiplier = 2
+Intensity additive = 0
+Intensity additive = 0.0202
+Intensity additive = 0.0404
+Intensity additive = 0.0606
+Intensity additive = 0.0808
+Intensity additive = 0.101
+Intensity additive = 0.121
+Intensity additive = 0.141
+Intensity additive = 0.162
+Intensity additive = 0.182
+Intensity additive = 0.2
+Size scalar = 1
+Size scalar = 1.01
+Size scalar = 1.02
+Size scalar = 1.03
+Size scalar = 1.04
+Size scalar = 1.05
+Size scalar = 1.06
+Size scalar = 1.07
+Size scalar = 1.08
+Size scalar = 1.09
+Size scalar = 1.1
+Substructure multiplier = 0
+Substructure multiplier = 0.101
+Substructure multiplier = 0.202
+Substructure multiplier = 0.303
+Substructure multiplier = 0.404
+Substructure multiplier = 0.505
+Substructure multiplier = 0.606
+Substructure multiplier = 0.707
+Substructure multiplier = 0.808
+Substructure multiplier = 0.909
+Substructure multiplier = 1
+NOISE
+RESOLUTION
+CONTRAST
+INTENSITY
+SIZE
+SUB-STRUCTURE
+2 1 0 -1 -2
+log(Obs/Exp)
+Disruption
+5.0
+2.5
+0.0
+Disruption
+5.0
+2.5
+0.0
+Disruption
+5.0
+2.5
+0.0
+Disruption
+5.0
+2.5
+0.0
+Disruption
+5.0
+2.5
+0.0
+Disruption
+5.0
+2.5
+0.0
+Extended Data Fig. 9 | Changes of disruption scores with gradual increases in perturbations. Each subpanel shows the changes of disruption scores (top row) and contact maps (bottom row) against the incremental changes in a technical or biological variation. The colors of the scoring metric are the same as seen in Figs. 4 and 5.
+
+
+Nature Methods
+Analysis https://doi.org/10.1038/s41592-025-02630-5
+ROC curves Negative: Noise
+PR curves Negative: Noise
+PR curves Negative: Resolution
+Extended Data Fig. 10 | ROC and precision recall curves. ROC (left) and precision recall curves using a negative set with noise (middle) or resolution (right) for all the methods that we applied to predicted maps.

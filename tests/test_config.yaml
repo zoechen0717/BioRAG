@@ -1,0 +1,21 @@
+logging:
+  backup_count: 5
+  file: tests/test_data/logs/test.log
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+  level: INFO
+  max_size: 10485760
+openai:
+  api_key: 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
+  embedding_model: text-embedding-ada-002
+  model: gpt-3.5-turbo
+paths:
+  cache: tests/test_data/cache
+  code: tests/test_data/code
+  embeddings: tests/test_data/embeddings
+  logs: tests/test_data/logs
+  papers: tests/test_data/papers
+rag:
+  cache_embeddings: true
+  chunk_size: 1000
+  max_tokens: 2000
+  top_k: 3
